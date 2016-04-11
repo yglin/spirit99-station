@@ -1,0 +1,24 @@
+<div>
+    <h3>This is {{channelCreateVM.title}} view</h3>
+    <md-content style='max-width: 480px;'>
+        <form name='channelCreateForm'>
+            <md-input-container class='md-block'>
+                <label>ID</label>
+                <input ng-model='channelCreateVM.channel.id'></input>
+            </md-input-container>
+            <md-input-container class='md-block'>
+                <label>名稱</label>
+                <input ng-model='channelCreateVM.channel.title'></input>
+            </md-input-container>
+            <md-input-container class='md-block'>
+                <label>簡介</label>
+                <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
+            </md-input-container>
+            <md-button class='md-primary md-raised'
+            ng-click='channelCreateVM.create()'>
+                確定
+            </md-button>
+            <p ng-show='channelCreateVM.message.show'>{{channelCreateVM.message.text}}</p>
+        </form>
+    </md-content>
+</div>

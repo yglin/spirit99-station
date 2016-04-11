@@ -1,0 +1,1886 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"channel",
+				"channelCreateVM"
+			],
+			[
+				"chann",
+				"channel"
+			],
+			[
+				"channe",
+				"channelCreateVM"
+			],
+			[
+				"di",
+				"div	Tag"
+			],
+			[
+				"$loc",
+				"$location	AngularJS(DI)"
+			],
+			[
+				"$loca",
+				"$location	AngularJS"
+			],
+			[
+				"start",
+				"startServer"
+			],
+			[
+				"se",
+				"sequelize"
+			],
+			[
+				"sql",
+				"sqldbs"
+			],
+			[
+				"config",
+				"configDB"
+			],
+			[
+				"star",
+				"startServer"
+			],
+			[
+				"create",
+				"create-url"
+			],
+			[
+				"info",
+				"infoWindow"
+			],
+			[
+				"Po",
+				"postMarkersVM"
+			],
+			[
+				"templ",
+				"templateParameter"
+			],
+			[
+				"te",
+				"toEqual"
+			],
+			[
+				"coor",
+				"coords"
+			],
+			[
+				"show",
+				"showInfoWindow"
+			],
+			[
+				"templa",
+				"templateParameter"
+			],
+			[
+				"template",
+				"templateUrl"
+			],
+			[
+				"post",
+				"postMarkersVM"
+			],
+			[
+				"md-",
+				"md-backdrop"
+			],
+			[
+				"red",
+				"redirect-to-create-post"
+			],
+			[
+				"side",
+				"sidenavPosts"
+			],
+			[
+				"read",
+				"readUrl"
+			],
+			[
+				"retur",
+				"returnValue"
+			],
+			[
+				"crea",
+				"createSpy"
+			],
+			[
+				"contro",
+				"control"
+			],
+			[
+				"contr",
+				"control"
+			],
+			[
+				"s99-button",
+				"s99-button-link-to-post"
+			],
+			[
+				"marker",
+				"markerModel"
+			],
+			[
+				"mak",
+				"markerModel"
+			],
+			[
+				"mark",
+				"markerModel"
+			],
+			[
+				"mar",
+				"markers"
+			],
+			[
+				"pos",
+				"postGadgetVM"
+			],
+			[
+				"elem",
+				"element"
+			],
+			[
+				"ang",
+				"angle_increment"
+			],
+			[
+				"rad",
+				"radius_increment"
+			],
+			[
+				"angl",
+				"angle"
+			],
+			[
+				"radiu",
+				"radius"
+			],
+			[
+				"ra",
+				"radius"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"po",
+				"post1"
+			],
+			[
+				"on",
+				"onMapIdleReloadPosts"
+			],
+			[
+				"thbc",
+				"thbc	toHaveBeenCalled"
+			],
+			[
+				"loca",
+				"location"
+			],
+			[
+				"navi",
+				"navigate"
+			],
+			[
+				"pro",
+				"progress"
+			],
+			[
+				"re",
+				"resolve"
+			],
+			[
+				"last",
+				"lastQuery"
+			],
+			[
+				"fake",
+				"FakeData"
+			],
+			[
+				"thb",
+				"toHaveBeenCalledWith"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"lo",
+				"locationQueries"
+			],
+			[
+				"quer",
+				"queriesCount"
+			],
+			[
+				"to",
+				"toBe"
+			],
+			[
+				"geo",
+				"geocodeResults"
+			],
+			[
+				"geco",
+				"gecodeResults"
+			],
+			[
+				"view",
+				"viewport"
+			],
+			[
+				"location",
+				"locationQueries"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"locatio",
+				"locationQueries"
+			],
+			[
+				"local",
+				"localStorage"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"addre",
+				"address"
+			],
+			[
+				"get",
+				"getAttribute"
+			],
+			[
+				"address",
+				"addresses"
+			],
+			[
+				"button",
+				"buttonNextLocation"
+			],
+			[
+				"th",
+				"thbc	toHaveBeenCalled"
+			],
+			[
+				"Geo",
+				"Geocoder"
+			],
+			[
+				"func",
+				"funcGeocode"
+			],
+			[
+				"ge",
+				"geocoder"
+			],
+			[
+				"prms",
+				"prmsGeocode"
+			],
+			[
+				"mock",
+				"mockGeocoder"
+			],
+			[
+				"$root",
+				"$rootScope	AngularJS"
+			],
+			[
+				"$pro",
+				"$promise"
+			],
+			[
+				"locat",
+				"locations"
+			],
+			[
+				"naviga",
+				"navigateTo"
+			],
+			[
+				"naviag",
+				"navigateTo"
+			],
+			[
+				"set",
+				"setItem"
+			],
+			[
+				"be",
+				"be	beforeEach"
+			],
+			[
+				"input",
+				"inputLocator"
+			],
+			[
+				"confi",
+				"confirm"
+			],
+			[
+				"ope",
+				"open-locator"
+			],
+			[
+				"ele",
+				"element"
+			],
+			[
+				"catego",
+				"categoryID"
+			],
+			[
+				"categ",
+				"categories"
+			],
+			[
+				"ca",
+				"categoryID"
+			],
+			[
+				"toggl",
+				"toggleVisible"
+			],
+			[
+				"period",
+				"period"
+			],
+			[
+				"inThe",
+				"inTheYear"
+			],
+			[
+				"end",
+				"endTime"
+			],
+			[
+				"in",
+				"inBetween"
+			],
+			[
+				"pree",
+				"presetID"
+			],
+			[
+				"Date",
+				"DatePeriod"
+			],
+			[
+				"pre",
+				"preset"
+			],
+			[
+				"getPrese",
+				"getPresetStart"
+			],
+			[
+				"preset",
+				"presetID"
+			],
+			[
+				"fil",
+				"filter"
+			],
+			[
+				"filter",
+				"filterChanged"
+			],
+			[
+				"date",
+				"datePeriodSelector"
+			],
+			[
+				"C",
+				"CONFIG"
+			],
+			[
+				"map",
+				"mapVM"
+			],
+			[
+				"b",
+				"browser"
+			],
+			[
+				"fa",
+				"fakePost"
+			],
+			[
+				"Pos",
+				"Post"
+			],
+			[
+				"_Pos",
+				"_PostFilter_"
+			],
+			[
+				"Post",
+				"PostFilter"
+			],
+			[
+				"$roo",
+				"$rootScope	AngularJS(DI)"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"ngcon",
+				"ngcontroller	angular.controller"
+			],
+			[
+				"redirec",
+				"redirectUrl"
+			],
+			[
+				"lat",
+				"latLng"
+			],
+			[
+				"l",
+				"longitude"
+			],
+			[
+				"mo",
+				"mouseEvents"
+			],
+			[
+				"click",
+				"clickedLocation"
+			],
+			[
+				"cick",
+				"clickedLocation"
+			],
+			[
+				"zoom",
+				"zoomIn"
+			],
+			[
+				"fir",
+				"firstChannel"
+			],
+			[
+				"respon",
+				"responsePosts"
+			],
+			[
+				"chan",
+				"channel"
+			],
+			[
+				"onPost",
+				"onPostLoadEnd"
+			],
+			[
+				"load",
+				"loadEnd"
+			],
+			[
+				"s99-dialog",
+				"s99-dialog-alert"
+			],
+			[
+				"nu",
+				"numOfPosts"
+			],
+			[
+				"home",
+				"homeMap"
+			],
+			[
+				"hom",
+				"home_map"
+			],
+			[
+				"wait",
+				"waitMapPanned"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "client/app/channel/create/create.tpl.html",
+			"settings":
+			{
+				"buffer_size": 1027,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "client/app/channel/create/channel-create.controller.js",
+			"settings":
+			{
+				"buffer_size": 1218,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/station/channel.js",
+			"settings":
+			{
+				"buffer_size": 767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/station/model/channel.model.js",
+			"settings":
+			{
+				"buffer_size": 739,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/thing/thing.model.js",
+			"settings":
+			{
+				"buffer_size": 365,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/station/model/database.js",
+			"settings":
+			{
+				"buffer_size": 309,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/thing/thing.controller.js",
+			"settings":
+			{
+				"buffer_size": 2364,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/routes.js",
+			"settings":
+			{
+				"buffer_size": 751,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/api/thing/index.js",
+			"settings":
+			{
+				"buffer_size": 388,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"last_filter": "Package Control: ins",
+		"selected_items":
+		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/yglin/Sites/spirit99-station",
+		"/Users/yglin/Sites/spirit99-station/client/app",
+		"/Users/yglin/Sites/spirit99-station/client/app/admin",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/create",
+		"/Users/yglin/Sites/spirit99-station/server",
+		"/Users/yglin/Sites/spirit99-station/server/api",
+		"/Users/yglin/Sites/spirit99-station/server/api/station",
+		"/Users/yglin/Sites/spirit99-station/server/api/station/model",
+		"/Users/yglin/Sites/spirit99-station/server/api/thing"
+	],
+	"file_history":
+	[
+		"/Users/yglin/Sites/spirit99-station/server/sqldbs/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/config/db.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/channel-list.tpl.html",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/channel-list.component.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/channel.router.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/create/create.tpl.html",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/create/channel-create.controller.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/channel/channel.module.js",
+		"/Users/yglin/Sites/spirit99-station/client/index.html",
+		"/Users/yglin/Sites/spirit99-station/client/app/app.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/station/model/database.js",
+		"/Users/yglin/Sites/spirit99-station/server/sqldb/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/station/model/channel.model.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/thing/thing.model.js",
+		"/Users/yglin/Sites/spirit99-station/server/config/environment/development.js",
+		"/Users/yglin/Sites/spirit99-station/server/app.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/thing/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/thing/thing.controller.js",
+		"/Users/yglin/Sites/spirit99-station/server/api/thing/thing.integration.js",
+		"/Users/yglin/Sites/spirit99-station/Gruntfile.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/config/environment/shared.js",
+		"/Users/yglin/Sites/spirit99-station/server/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/routes/index.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/routes.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/app.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/app.constant.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/config/environment/index.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/config/express.js",
+		"/Users/yglin/Sites/spirit99-station/server.obsolete/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/bin/www",
+		"/Users/yglin/Sites/spirit99-station/server/routes.js",
+		"/Users/yglin/Sites/spirit99-station/server/obsolete/sqldb/index.js",
+		"/Users/yglin/Sites/spirit99-station/server/config/environment/index.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/admin/admin.module.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/main/main.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/channels/channels.component.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/main/main.html",
+		"/Users/yglin/Sites/spirit99-station/client/app/channels/channels.tpl.html",
+		"/Users/yglin/Sites/spirit99-station/client/app/main/main.controller.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/main/main.controller.spec.js",
+		"/Users/yglin/Sites/spirit99-station/client/app/account/account.js",
+		"/Users/yglin/Sites/spirit99-station/server/config/express.js",
+		"/Users/yglin/Sites/spirit99-station/e2e/main/main.spec.js",
+		"/Users/yglin/Sites/spirit99-station/e2e/channels/channels.po.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-markers.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/protractor.conf.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/channel/channel.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/03.post.e2e.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/mocks/data.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-markers.controller.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/info-window/create.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/geolocation.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-markers.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/settings/settings.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/settings/settings.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/info-window/info-window-create.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/gadget/gadget.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-item.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/info-window/info-window.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/channel/channel.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/styles/spirit99-animate.css",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/gadget/gadget.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/gadget/gadget.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/gadget.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/gadget.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/styles/spirit99.css",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/info-window",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/01.map.e2e.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/locator.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/geolocation.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/geocoder.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/gadget.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/gadget/gadget.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/index.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/locator.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/gadget.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/gadget/gadget.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/locator/geocoder.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/toolbar/toolbar.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/02.channel.e2e.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/geocoder.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/geocoder.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/locator.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/locator.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/locator.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/locator/locator.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.config.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/views/locater/locater.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/services/map-navigator.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/gadget/gadget.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/floating/floating.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/mocks/geocoder.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/datetime/date-period.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/filter/post-filter.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/shortcuts/shortcuts.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/shortcuts/shortcuts.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/geolocation.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/app.module.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/views/locater/locater.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/dialog/dialog.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/filter/post-filter.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/filter/post-filter.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/filter/post-filter.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/datetime/date-period.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/category/category.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/category/category.service.test.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/toolbar/toolbar.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/layout/sidenav/sidenav.service.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/filter/filter.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-list.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-list.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/views/post-list/post-list.controller.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/views/post-list/post-list.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/obsolete/views/map/map.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/floating-controls/tool-buttons",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/post/post-item.directive.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/fake-data.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/01.map.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map.css",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/components/map/map-debug.tpl.html",
+		"/Users/yglin/Sites/spirit99/2.0/client/mocks/server.js",
+		"/Users/yglin/Sites/spirit99/2.0/client/app/app.route.js"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/yglin/Sites/spirit99-station",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/components/,*.test.js",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/components/,*.spec.js",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/,*.spec.js",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/**/*.spec.js",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/*.spec.js",
+			"/Users/yglin/Sites/spirit99/2.0/client/app/",
+			"/Users/yglin/Sites/spirit99/2.0/client/",
+			"/Users/yglin/Sites/spirit99/2.0/client/e2e-tests/",
+			"/Users/yglin/Sites/spirit99/2.0/client/e2e-test",
+			"/Users/yglin/Sites/spirit99/2.0/client/app",
+			"/Users/yglin/Sites/spirit99/2.0/",
+			"/Users/yglin/Sites/spirit99/client/app/",
+			"/Users/yglin/Sites/spirit99/client/app/scripts",
+			"/Users/yglin/Sites/spirit99/client/dist",
+			"/Users/yglin/Sites/spirit99/client",
+			"/Users/yglin/Sites/spirit99/client/app",
+			"/Users/yglin/Sites/spirit99/client",
+			"/Users/yglin/Sites/spirit99/web/app/views/country"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Channels",
+			"../sqldb",
+			"stationDBConfig",
+			"root",
+			"express",
+			"ngconstant",
+			"appPath",
+			"infoWindow",
+			"map:navigate",
+			"map:bounds_changed",
+			"post:loadStart",
+			"gadget",
+			"Gadget",
+			"gadget",
+			"Gadget",
+			"addresses",
+			"addLocationHistory",
+			"localStorge",
+			"addLocationHistory",
+			"address",
+			"nextL",
+			"Shortcuts",
+			"shortcuts",
+			"Shortcuts",
+			"fakePosition",
+			"Geolocation",
+			"s99-button-locator",
+			"locatorVM.inputCtrl.searchText",
+			"geocoderResults",
+			"locations",
+			"locater",
+			"dialogLocator",
+			"Confirm",
+			"confirm",
+			"isVisble",
+			"create_time",
+			"pickRandomDate",
+			"datePreset",
+			"Period",
+			"searchVM",
+			"applyFilters",
+			"Can not find",
+			"fakeData",
+			"mapVM",
+			"waitMapUpdated",
+			"latitude",
+			"prmsGet",
+			"Channel.delete",
+			"delete",
+			"categories",
+			"FakeData",
+			"FakeData.fakeCategories",
+			"fakeCategories",
+			"\\smodule",
+			"module",
+			"[^\\.]module",
+			"\\smodule",
+			"^module",
+			"module",
+			"beforeEach(module",
+			"addChannel",
+			"addChann",
+			"secondChannel",
+			"s99-no-channel-tuned-prompt",
+			"no-channel",
+			"confirm",
+			"Confirm",
+			"confirm",
+			"Confirm",
+			"firstChannel",
+			"localStorageService",
+			"localStorage.",
+			"$watch",
+			"prmsUpdated",
+			"$http",
+			"prmsUpdate",
+			"$http.get",
+			"getIconObject",
+			"post.gMarkerOptions",
+			"post.options",
+			"required_fields",
+			"require_fields",
+			"gMarkerOptions",
+			"post-url",
+			"Config",
+			"count",
+			"post-url",
+			"getTunedInChannel",
+			"loadPosts",
+			"self.datePresets",
+			"genFakePosts",
+			".logoUrl",
+			"firstChennl",
+			"fakeLocalData",
+			"category",
+			"logoUrl",
+			"introUrl",
+			"portalUrl",
+			"Channel",
+			"self.channels[channelID]",
+			"focusOn.channelID",
+			"focusOn",
+			"parentCtrl.focusOnChannel",
+			"focusOn",
+			"fakeChannels",
+			"fakeServerData",
+			"MockServer",
+			"mockServer",
+			"fakeServerData",
+			"testChannel",
+			"fakeData",
+			"isOnline",
+			"update",
+			"isOnline",
+			"update",
+			"home-map",
+			"last-map",
+			"fakeLastMap",
+			"MAP_ZOOM",
+			"prmsInitMap",
+			"\\stimeout",
+			"\\srootScope",
+			"activaSaving",
+			"return self.map",
+			"INIT_MAP_SCHEME",
+			"initMap",
+			"UserCtrls",
+			"ChannelManager.get"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"ChannelList",
+			"config.station",
+			"station",
+			"infoWindowCreate",
+			"postMarkersVM.infoWindow",
+			"map:zoom_changed",
+			"map:navigate",
+			"postGadget",
+			"PostGadget",
+			"locatorGadget",
+			"LocatorGadget",
+			"locationQueries",
+			"location-queries",
+			"addQueryHistory",
+			"localStorage",
+			"addQueryHistory",
+			"query",
+			"toNextL",
+			"Gadget",
+			"gadget",
+			"Gadget",
+			"fakeData.geolocation",
+			"Geocoder",
+			"address",
+			"locations",
+			"addresses",
+			"locator",
+			"Locator",
+			"locator",
+			"isVisible",
+			"createTime",
+			"pickDateInTurn",
+			"datePeriodPreset",
+			"DatePeriod",
+			"postFilterVM",
+			"filter",
+			"mapDebugVM",
+			"waitMapPanned",
+			"longitude",
+			"Channel.prmsDelete",
+			"prmsDelete",
+			"categoryIDs",
+			"FakeData.categories",
+			"categories",
+			" angular.mock.module",
+			"beforeEach(angular.mock.module",
+			"prmsAdd",
+			"firstChannel",
+			"alert",
+			"Alert",
+			"alert",
+			"Alert",
+			"secondChannel",
+			"localStorage",
+			"localStorageService.",
+			"prmsChannelUpdated",
+			"getIcon",
+			"post.options",
+			"post.gMarkerOptions",
+			"REQUIRED_FIELDS",
+			"options",
+			"query-url",
+			"CONFIG",
+			"query-url",
+			"getChannel",
+			"reloadPosts",
+			"datePresets",
+			"genPosts",
+			"[\"logo-url\"]",
+			"firstChannel",
+			"fakeChannels",
+			"categories",
+			"'logo-url'",
+			"'intro-url'",
+			"'portal-url'",
+			"channel",
+			"focusOn",
+			"focusOn.channelID",
+			"focusOn",
+			"parentCtrl.focusOnChannel",
+			"fakePortals",
+			"fakeChannels",
+			"MockHttp",
+			"mockHttp",
+			"fakeHttpData",
+			"test",
+			"fakeServerData",
+			"prmsIsOnline",
+			"prmsUpdate",
+			"prmsIsOnline",
+			"prmsUpdate",
+			"last-map",
+			"home-map",
+			"fakeHomeMap",
+			"ZOOMS",
+			"prmsGetInitMap",
+			" $timeout",
+			" $rootScope",
+			"\\s$rootScope",
+			"activateSaving",
+			"return $q.resolve(self.map)",
+			"INIT_MAP_SCHEMES",
+			"prmsInitMap",
+			"custom",
+			"BookmarkAddController",
+			"presets",
+			"bookmarkListVM",
+			",",
+			"",
+			",",
+			"",
+			"searchVM.userCtrls.create_time.period",
+			"PRESETS",
+			"CONFIG",
+			"zoomLevels()",
+			"",
+			"Year",
+			"inThe",
+			"inAWeek",
+			"inADay",
+			"self.datePresets",
+			"datePresets",
+			"getIcon",
+			"openSidenav",
+			"app/views",
+			"spirit99",
+			"Post",
+			"post"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "client/app/channel/create/create.tpl.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1027,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								986,
+								986
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								11,
+								17,
+								43,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "client/app/channel/create/channel-create.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1218,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1123,
+								1123
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								11,
+								20,
+								15,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 381.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "server/api/station/channel.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								606,
+								606
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								14,
+								34,
+								24,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server/api/station/model/channel.model.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 739,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								728,
+								728
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								9,
+								34,
+								15,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server/api/thing/thing.model.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 365,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								9,
+								22,
+								39,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "server/api/station/model/database.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								4,
+								2,
+								10,
+								2,
+								55,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "server/api/thing/thing.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2364,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1084,
+								1228
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								3,
+								31,
+								19,
+								44,
+								50,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 698.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "server/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								3,
+								31,
+								19,
+								44,
+								50,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server/api/thing/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15,
+								388
+							]
+						],
+						"settings":
+						{
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								224,
+								3,
+								31,
+								19,
+								44,
+								50,
+								0,
+								0,
+								0,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "spirit99-station.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Sites/spirit99/server/spirit99-server.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 302.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

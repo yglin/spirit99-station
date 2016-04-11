@@ -5,9 +5,10 @@
 'use strict';
 
 import express from 'express';
-import sqldb from './sqldb';
+import sqldbs from './sqldbs';
 import config from './config/environment';
 import http from 'http';
+import Q from 'q';
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
@@ -30,11 +31,21 @@ function startServer() {
   });
 }
 
-sqldb.sequelize.sync()
-  .then(startServer)
-  .catch(function(err) {
-    console.log('Server failed to start due to error: %s', err);
-  });
+// startServer();
+
+Q.all(sqldbs.map(function (db, index) {
+    return db.sequelize.sync();
+})).then(startServer)
+.catch(function(err) {
+console.log('Server failed to start due to error: %s', err);
+});
+
+
+// sqldb.sequelize.sync()
+// .then(startServer)
+// .catch(function(err) {
+// console.log('Server failed to start due to error: %s', err);
+// });
 
 // Expose app
 exports = module.exports = app;
