@@ -26,6 +26,10 @@
                             ng-message='required'>頻道名稱是必填欄位</div>
                         </div>
                     </md-input-container>
+                    <md-button id='s99st-button-select-logo' class='md-raised'
+                    ng-click='channelCreateVM.assignLogo()'>
+                        選擇標誌
+                    </md-button>
                     <md-input-container class='md-block'>
                         <label>簡介</label>
                         <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>

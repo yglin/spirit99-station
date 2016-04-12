@@ -1,0 +1,27 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{$ctrl.title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label='Close' ng-click="$ctrl.cancel()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content>
+<div id='s99st-image-selector'>
+    <form name='imageForm'>
+        <md-input-container>
+            <label>圖片網址</label>
+            <input ng-model='$ctrl.image.url' required></input>
+        </md-input-container>
+    </form>
+</div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button class='md-primary md-raised'
+    ng-click="$ctrl.confirm()">
+    確定
+    </md-button>
+</md-dialog-actions>
+

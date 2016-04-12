@@ -11,6 +11,7 @@ angular.module('spirit99StationApp', [
     'ngRoute',
     'btford.socket-io',
     'validation.match',
+    'ngMaterial',
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
