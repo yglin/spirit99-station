@@ -22,7 +22,7 @@
         }
 
         function gotoCreatePage () {
-            $location.path('/channel/create');
+            $location.path('/channels/create');
         }
 
     }

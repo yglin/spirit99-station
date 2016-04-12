@@ -14,12 +14,9 @@ angular.module('spirit99StationApp', [
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/', {
-        template: '<channel-list></channel-list>'
+    .otherwise({
+        redirectTo: '/channels'
     });
-    // .otherwise({
-    //     redirectTo: '/'
-    // });
 
     $locationProvider.html5Mode(true);
 });

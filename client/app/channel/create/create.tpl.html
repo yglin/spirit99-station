@@ -1,21 +1,43 @@
 <div>
     <h3>This is {{channelCreateVM.title}} view</h3>
-    <md-content style='max-width: 480px;'>
+    <md-content>
         <form name='channelCreateForm'>
-            <md-input-container class='md-block'>
-                <label>ID</label>
-                <input ng-model='channelCreateVM.channel.id'></input>
-            </md-input-container>
-            <md-input-container class='md-block'>
-                <label>名稱</label>
-                <input ng-model='channelCreateVM.channel.title'></input>
-            </md-input-container>
-            <md-input-container class='md-block'>
-                <label>簡介</label>
-                <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
-            </md-input-container>
-            <md-button class='md-primary md-raised'
-            ng-click='channelCreateVM.create()'>
+            <div layout='column' layout-gt-sm='row' layout-padding>
+                <div flex='40'>
+                    <md-input-container class='md-block'>
+                        <label>ID</label>
+                        <input id='s99st-input-channel-id' name='channelID' ng-model='channelCreateVM.channel.id' required
+                        ng-remote-validate='/api/channels/validate-id'
+                        ng-remote-throttle='1000'></input>
+                        <div ng-messages='channelCreateForm.channelID.$error'>
+                            <div id='s99st-message-channel-id-required'
+                            ng-message='required'>頻道ID是必填欄位</div>
+                            <div id='s99st-message-channel-id-exists'
+                            ng-show='channelCreateForm.channelID.$error.ngRemoteValidate'>
+                            此ID無法使用，頻道已存在
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class='md-block'>
+                        <label>名稱</label>
+                        <input id='s99st-input-channel-title' name='channelTitle' ng-model='channelCreateVM.channel.title' required></input>
+                        <div ng-messages='channelCreateForm.channelTitle.$error'>
+                            <div id='s99st-message-channel-title-required'
+                            ng-message='required'>頻道名稱是必填欄位</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class='md-block'>
+                        <label>簡介</label>
+                        <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
+                    </md-input-container>
+                </div>
+                <div flex='60' id='preview'>
+                    <channel-item channel='channelCreateVM.channel'>
+                    </channel-item>
+                </div>
+            </div>
+            <md-button id='s99st-button-submit-create' class='md-primary md-raised'
+            ng-click='channelCreateVM.create()' ng-disabled='channelCreateForm.$invalid'>
                 確定
             </md-button>
             <p ng-show='channelCreateVM.message.show'>{{channelCreateVM.message.text}}</p>
