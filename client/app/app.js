@@ -12,6 +12,7 @@ angular.module('spirit99StationApp', [
     'btford.socket-io',
     'validation.match',
     'ngMaterial',
+    'ngFileUpload'
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider

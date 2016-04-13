@@ -8,11 +8,40 @@
     </div>
 </md-toolbar>
 <md-dialog-content>
-<div id='s99st-image-selector'>
+<div id='s99st-image-selector' layout='column' layout-margin>
+    <div layout='row' layout-padding layout-align='start center'>
+        <div>
+            <md-button class='md-raised' type="file"
+            ngf-select="$ctrl.uploadFile($file, $invalidFiles)"
+            accept="image/*" ngf-max-width="512" ngf-max-height="512"
+            ngf-max-size="1MB">
+                上傳圖片
+            </md-button>
+        </div>
+        <md-progress-circular md-mode="determinate" md-diameter='36'
+        ng-show='$ctrl.uploading.progress >= 0 && $ctrl.uploading.progress < 100'
+        value="{{$ctrl.uploading.progress}}">
+        </md-progress-circular>
+        <md-progress-circular md-mode="indeterminate" md-diameter='36'
+        ng-show='$ctrl.uploading.progress >= 100 && !($ctrl.uploading.success) && !($ctrl.uploading.fail)'>
+        </md-progress-circular>
+        <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.success'>上傳成功</h3>
+        <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.fail'>上傳失敗</h3>
+        <p ng-show='$ctrl.uploading.invalidFiles.length > 0'>
+            請選擇長寬小於512,<br>檔案大小不超過1MB的圖檔
+        </p>
+    </div>
+    <div>
+        <img class='s99-image-preview' ng-src='{{$ctrl.image.url}}'>
+    </div>
     <form name='imageForm'>
-        <md-input-container>
+        <md-input-container class='md-block'>
             <label>圖片網址</label>
-            <input ng-model='$ctrl.image.url' required></input>
+            <input type='url' name='imageUrl' ng-model='$ctrl.image.url' required>
+            <div ng-messages='imageForm.imageUrl.$error'>
+                <div ng-message='required'>必須有圖片網址</div>
+                <div ng-message='url'>無效的圖片網址</div>
+            </div>
         </md-input-container>
     </form>
 </div>
@@ -20,6 +49,7 @@
 <md-dialog-actions layout="row">
     <span flex></span>
     <md-button class='md-primary md-raised'
+    ng-disabled='imageForm.$invalid'
     ng-click="$ctrl.confirm()">
     確定
     </md-button>

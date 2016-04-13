@@ -4,6 +4,8 @@
  *Font Awesome Fonts
  */
 
+@import 'spirit99.css';
+
 @font-face {
   font-family: 'FontAwesome';
   src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
@@ -32,3 +34,5 @@
     max-width: 730px;
   }
 }
+
+

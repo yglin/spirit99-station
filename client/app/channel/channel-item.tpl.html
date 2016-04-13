@@ -1,3 +1,6 @@
-<div class='s99st-channel-item'>
-    <h3 class='s99st-channel-title'>{{$ctrl.channel.title}}</h3>
+<div class='s99-channel-item'>
+    <div layout='row'>
+        <img class='s99-channel-logo' ng-src='{{$ctrl.channel["logo-url"]}}' ng-show='$ctrl.channel["logo-url"]'>
+        <h3 class='s99-channel-title'>{{$ctrl.channel.title}}</h3>
+    </div>
 </div>

@@ -8,7 +8,7 @@
                         <label>ID</label>
                         <input id='s99st-input-channel-id' name='channelID' ng-model='channelCreateVM.channel.id' required
                         ng-remote-validate='/api/channels/validate-id'
-                        ng-remote-throttle='1000'></input>
+                        ng-remote-throttle='1000'>
                         <div ng-messages='channelCreateForm.channelID.$error'>
                             <div id='s99st-message-channel-id-required'
                             ng-message='required'>頻道ID是必填欄位</div>
@@ -20,7 +20,7 @@
                     </md-input-container>
                     <md-input-container class='md-block'>
                         <label>名稱</label>
-                        <input id='s99st-input-channel-title' name='channelTitle' ng-model='channelCreateVM.channel.title' required></input>
+                        <input id='s99st-input-channel-title' name='channelTitle' ng-model='channelCreateVM.channel.title' required>
                         <div ng-messages='channelCreateForm.channelTitle.$error'>
                             <div id='s99st-message-channel-title-required'
                             ng-message='required'>頻道名稱是必填欄位</div>
