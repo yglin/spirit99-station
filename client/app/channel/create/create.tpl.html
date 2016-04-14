@@ -7,13 +7,19 @@
                     <md-input-container class='md-block'>
                         <label>ID</label>
                         <input id='s99st-input-channel-id' name='channelID' ng-model='channelCreateVM.channel.id' required
+                        ng-pattern='channelCreateVM.channelIDPattern'
                         ng-remote-validate='/api/channels/validate-id'
                         ng-remote-throttle='1000'>
-                        <div ng-messages='channelCreateForm.channelID.$error'>
+                        <div ng-messages='channelCreateForm.channelID.$error' multiple md-auto-hide="false">
                             <div id='s99st-message-channel-id-required'
-                            ng-message='required'>頻道ID是必填欄位</div>
+                            ng-message='required'>
+                                頻道ID是必填欄位
+                            </div>
+                            <div ng-message='pattern'>
+                                請填入兩個以上英文字及數字，首字必須為英文字
+                            </div>
                             <div id='s99st-message-channel-id-exists'
-                            ng-show='channelCreateForm.channelID.$error.ngRemoteValidate'>
+                            ng-message='ngRemoteValidate'>
                             此ID無法使用，頻道已存在
                             </div>
                         </div>

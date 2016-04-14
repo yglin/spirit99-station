@@ -3,7 +3,7 @@
         <img class='s99-channel-logo' ng-src='{{$ctrl.channel["logo-url"]}}' ng-show='$ctrl.channel["logo-url"]'>
         <div layout='column' flex>
             <h4 class='s99-channel-title'>{{$ctrl.channel.title}}</h4>
-            <div class='s99-channel-description'>{{$ctrl.channel.description}}</div>
+            <div ng-show='$ctrl.channel.description' class='s99-channel-description'>{{$ctrl.channel.description}}</div>
         </div>
     </div>
 </div>

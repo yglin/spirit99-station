@@ -22,14 +22,14 @@
 .s99-channel-title {
     font-weight: bold;
     margin: 2px 10px;
-    color: grey;
+    color: darkblue;
 }
 
 .s99-channel-description {
-    color: blue;
     font-size: 80%;
     margin: 2px 10px;
     word-wrap: break-word;
+    color: grey;
 }
 
 .s99-channel-offline {

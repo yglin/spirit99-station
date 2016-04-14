@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-14 11:20:48
+* @Last Modified time: 2016-04-14 11:52:45
 */
 
 'use strict';
@@ -20,22 +20,8 @@
     function ChannelCreateController($http, $mdDialog) {
         var channelCreateVM = this;
         channelCreateVM.title = 'ChannelCreate';
-        channelCreateVM.channel = {
-            categories: [
-                {
-                    title: '草泥馬',
-                    icon: {
-                        url: 'http://0.blog.xuite.net/0/5/6/7/14658023/blog_1552243/txt/23809360/0.png'
-                    }
-                },
-                {
-                    title: 'e04',
-                    icon: {
-                        url: 'http://0.blog.xuite.net/0/5/6/7/14658023/blog_1552243/txt/23809360/0.png'
-                    }
-                }
-            ]
-        };
+        channelCreateVM.channelIDPattern = /^[A-Z]\w+$/i;
+        channelCreateVM.channel = {};
         channelCreateVM.message = {
             show: false,
             text: ''
@@ -59,6 +45,7 @@
         ////////////////
 
         function activate() {
+            channelCreateVM.channel.categories = [];
             channelCreateVM.channel['logo-url'] = 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Electromagnetic_radiation.png';
             channelCreateVM.category = angular.copy(categoryDefaults);
         }
