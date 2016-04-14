@@ -44,8 +44,18 @@
     max-height: 32px;
 }
 
-.s99-div-selected {
+.s99-div-selectable:focus {
+    outline: none;
+}
+
+.s99-div-selectable:hover {
     outline: 1px solid lightgreen;
+    cursor: pointer;
+}
+
+.s99-div-selected {
+    outline: 2px solid lightgreen;
+    cursor: pointer;
 }
 
 .s99-a-link {

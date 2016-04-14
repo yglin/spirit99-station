@@ -39,7 +39,7 @@
                         <div ng-repeat="category in channelCreateVM.channel.categories"
                         layout='column' layout-align='center center'
                         ng-click='channelCreateVM.selectCategory($index)'
-                        ng-class='{"s99-div-selected": $index == channelCreateVM.selectedCategoryIndex, "s99-ng-clickable": $index != channelCreateVM.selectedCategoryIndex}'>
+                        ng-class='{"s99-div-selected": $index == channelCreateVM.selectedCategoryIndex, "s99-div-selectable": $index != channelCreateVM.selectedCategoryIndex}'>
                             <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
                             <div class='md-caption'>{{category.title}}</div>
                         </div>
