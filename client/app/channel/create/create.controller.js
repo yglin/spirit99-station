@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-13 21:02:51
+* @Last Modified time: 2016-04-14 11:20:48
 */
 
 'use strict';
@@ -59,6 +59,7 @@
         ////////////////
 
         function activate() {
+            channelCreateVM.channel['logo-url'] = 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Electromagnetic_radiation.png';
             channelCreateVM.category = angular.copy(categoryDefaults);
         }
 

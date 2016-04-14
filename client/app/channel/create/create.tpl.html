@@ -30,10 +30,17 @@
                         <label>簡介</label>
                         <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
                     </md-input-container>
-                    <md-button id='s99st-button-select-logo' class='md-raised'
-                    ng-click='channelCreateVM.assignLogo()'>
-                        LOGO
-                    </md-button>
+                    <div layout='row' layout-align='start center'>
+                        <div>
+                            <md-button id='s99st-button-select-logo' class='md-raised'
+                            ng-click='channelCreateVM.assignLogo()'>
+                                更換 LOGO
+                            </md-button>
+                        </div>
+                        <div class='s99-ng-clickable' ng-click='channelCreateVM.assignLogo()'>
+                            <img class='s99-channel-logo' ng-src='{{channelCreateVM.channel["logo-url"]}}'>
+                        </div>
+                    </div>
                     <md-subheader>分類圖標</md-subheader>
                     <div layout='row' layout-wrap layout-padding>
                         <div ng-repeat="category in channelCreateVM.channel.categories"
