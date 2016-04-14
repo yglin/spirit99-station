@@ -44,6 +44,10 @@
     max-height: 32px;
 }
 
+.s99-div-selected {
+    outline: 1px solid lightgreen;
+}
+
 .s99-a-link {
     text-decoration: none;
 }
@@ -62,8 +66,12 @@
     
 }
 
-.s99-click-no-outline:focus {
+.s99-ng-clickable:focus {
     outline: none;
+}
+
+.s99-ng-clickable:hover {
+    cursor: pointer;
 }
 
 .s99-transparent-image {

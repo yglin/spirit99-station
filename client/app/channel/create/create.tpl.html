@@ -26,25 +26,68 @@
                             ng-message='required'>頻道名稱是必填欄位</div>
                         </div>
                     </md-input-container>
-                    <md-button id='s99st-button-select-logo' class='md-raised'
-                    ng-click='channelCreateVM.assignLogo()'>
-                        選擇標誌
-                    </md-button>
                     <md-input-container class='md-block'>
                         <label>簡介</label>
                         <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
                     </md-input-container>
+                    <md-button id='s99st-button-select-logo' class='md-raised'
+                    ng-click='channelCreateVM.assignLogo()'>
+                        LOGO
+                    </md-button>
+                    <md-subheader>分類圖標</md-subheader>
+                    <div layout='row' layout-wrap layout-padding>
+                        <div ng-repeat="category in channelCreateVM.channel.categories"
+                        layout='column' layout-align='center center'
+                        ng-click='channelCreateVM.selectCategory($index)'
+                        ng-class='{"s99-div-selected": $index == channelCreateVM.selectedCategoryIndex, "s99-ng-clickable": $index != channelCreateVM.selectedCategoryIndex}'>
+                            <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
+                            <div class='md-caption'>{{category.title}}</div>
+                        </div>
+                    </div>
+                    <div layout='row' layout-padding layout-align='start start'>
+                        <md-input-container>
+                            <label>分類名稱</label>
+                            <input ng-model='channelCreateVM.category.title'>
+                        </md-input-container>
+                        <div class='s99-ng-clickable' ng-click='channelCreateVM.selectCategoryIcon()'>
+                            <img style='max-width:48px;max-height:48px;' ng-src='{{channelCreateVM.category.icon.url}}'>
+                        </div>
+                        <div>
+                        <md-button class='md-fab md-mini'
+                        ng-hide='channelCreateVM.selectedCategoryIndex >= 0'
+                        ng-disabled='!channelCreateVM.category.title'
+                        ng-click='channelCreateVM.addCategory()'>
+                            <md-icon class='material-icons'>add</md-icon>
+                        </md-button>
+                        <md-button class='md-fab md-mini'
+                        ng-show='channelCreateVM.selectedCategoryIndex >= 0'
+                        ng-disabled='!channelCreateVM.category.title'
+                        ng-click='channelCreateVM.updateCategory(channelCreateVM.selectedCategoryIndex)'>
+                            <md-icon class='material-icons'>update</md-icon>
+                        </md-button>
+                        <md-button class='md-fab md-mini'
+                        ng-show='channelCreateVM.selectedCategoryIndex >= 0'
+                        ng-click='channelCreateVM.deleteCategory(channelCreateVM.selectedCategoryIndex)'>
+                            <md-icon class='material-icons'>close</md-icon>
+                        </md-button>
+                        </div>
+                    </div>
                 </div>
                 <div flex='60' id='preview'>
                     <channel-item channel='channelCreateVM.channel'>
                     </channel-item>
                 </div>
             </div>
-            <md-button id='s99st-button-submit-create' class='md-primary md-raised'
-            ng-click='channelCreateVM.create()' ng-disabled='channelCreateForm.$invalid'>
-                確定
-            </md-button>
-            <p ng-show='channelCreateVM.message.show'>{{channelCreateVM.message.text}}</p>
+            <div layout='row'>
+                <span flex flex-gt-sm='80'></span>
+                <div>
+                    <md-button id='s99st-button-submit-create' class='md-primary md-raised'
+                    ng-click='channelCreateVM.create()' ng-disabled='channelCreateForm.$invalid'>
+                        確定
+                    </md-button>
+                    <p ng-show='channelCreateVM.message.show'>{{channelCreateVM.message.text}}</p>
+                </div>
+            </div>
         </form>
     </md-content>
 </div>
