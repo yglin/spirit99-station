@@ -2,12 +2,14 @@
 
 .s99-channel-item {
     margin: 10px 5px;
+    width: 300px;
     min-height: 80px;
+    max-height: 200px;
 }
 
 .s99-channel-logo {
-    width:40px;
-    height:40px;
+    width:64px;
+    height:64px;
     border-radius: 10%;
     margin: 2px 5px;
 }
@@ -26,6 +28,7 @@
     color: blue;
     font-size: 80%;
     margin: 2px 10px;
+    word-wrap: break-word;
 }
 
 .s99-channel-offline {
