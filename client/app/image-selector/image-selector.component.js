@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-12 16:54:01
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-13 14:25:38
+* @Last Modified time: 2016-04-14 20:37:30
 */
 
 'use strict';
@@ -15,6 +15,9 @@
         templateUrl: 'app/image-selector/image-selector.tpl.html',
         controller: ImageSelectorController,
         bindings: {
+            maxWidth: '@',
+            maxHeight: '@',
+            maxSizeMb: '@'
         }
     });
 
@@ -27,6 +30,7 @@
         $ctrl.cancel = cancel;
         $ctrl.confirm = confirm;
         $ctrl.uploadFile = uploadFile;
+        $ctrl.onChange = onChange;
         $ctrl.image = {
             url: ''
         };
@@ -37,8 +41,12 @@
             invalidFiles: [],
             errorMessages: null
         };
+        $ctrl.invalid = false;
 
         $ctrl.$onInit = function () {
+            $ctrl.maxWidth = $ctrl.maxWidth || '128';
+            $ctrl.maxHeight = $ctrl.maxHeight || '128';
+            $ctrl.maxSizeMb = $ctrl.maxSizeMb || '2';
         };
 
         function cancel() {
@@ -73,6 +81,16 @@
                 }, function (evt) {
                     $ctrl.uploading.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
+            }
+        }
+
+        function onChange(image) {
+            $ctrl.invalid = false;
+            if (image.width && image.width > $ctrl.maxWidth) {
+                $ctrl.invalid = true;
+            }
+            else if (image.height && image.height > $ctrl.maxHeight) {
+                $ctrl.invalid = true;
             }
         }
     }
