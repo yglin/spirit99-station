@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-14 20:39:16
+* @Last Modified time: 2016-04-15 11:03:51
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp.channel')
         .controller('ChannelCreateController',ChannelCreateController);
 
-    ChannelCreateController.$inject = ['$scope', '$http', '$mdDialog', '$httpParamSerializer'];
+    ChannelCreateController.$inject = ['$scope', '$http', '$mdDialog', '$httpParamSerializer', 'ImageSelector'];
 
     /* @ngInject */
-    function ChannelCreateController($scope, $http, $mdDialog, $httpParamSerializer) {
+    function ChannelCreateController($scope, $http, $mdDialog, $httpParamSerializer, ImageSelector) {
         var channelCreateVM = this;
         channelCreateVM.title = 'ChannelCreate';
         channelCreateVM.channelIDPattern = /^[A-Z]\w+$/i;
@@ -61,10 +61,10 @@
         }
 
         function assignLogo() {
-            $mdDialog.show({
-                template: '<s99st-image-selector max-width="64" max-height="64" max-size-mb="1"></s99st-image-selector>',
-                parent: angular.element(document.body),
-                clickOutsideToClose:true
+            ImageSelector.select({
+                maxWidth: 64,
+                maxHeight: 64,
+                maxSizeMb: 1
             })
             .then(function(imgUrl) {
                 channelCreateVM.channel['logo-url'] = imgUrl;
@@ -83,10 +83,10 @@
         }
 
         function selectCategoryIcon() {
-            $mdDialog.show({
-                template: '<s99st-image-selector></s99st-image-selector>',
-                parent: angular.element(document.body),
-                clickOutsideToClose:true
+            ImageSelector.select({
+                maxWidth: 48,
+                maxHeight: 48,
+                maxSizeMb: 1
             })
             .then(function(imgUrl) {
                 channelCreateVM.category.icon = {
