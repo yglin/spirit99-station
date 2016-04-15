@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 16:52:30
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-14 17:34:43
+* @Last Modified time: 2016-04-15 11:38:23
 */
 
 'use strict';
@@ -32,7 +32,8 @@
                 latitude: 23.973875,
                 longitude: 120.982024
             },
-            zoom: 7
+            zoom: 7,
+            bounds: {}
         };
         $ctrl.markers = [];
 
@@ -45,6 +46,8 @@
         function rebuildMarkers() {
             $ctrl.markers.length = 0;
             var markerID = 0;
+            var latitudeSpan = Math.abs($ctrl.map.bounds.northeast.latitude - $ctrl.map.bounds.southwest.latitude);
+            var longitudeSpan = Math.abs($ctrl.map.bounds.northeast.longitude - $ctrl.map.bounds.southwest.longitude);
             for (var i = 0; i < $ctrl.categories.length; i++) {
                 var category = $ctrl.categories[i];
                 if (category.icon && category.icon.url) {
@@ -52,14 +55,15 @@
                     for (var j = 0; j < addCount; j++) {
                         $ctrl.markers.push({
                             id: markerID,
-                            latitude: 23.973875 + (Math.random() - 0.5) * 2.0,
-                            longitude: 120.982024 + (Math.random() - 0.5) * 2.0,
+                            latitude: $ctrl.map.center.latitude + (Math.random() - 0.5) * latitudeSpan,
+                            longitude: $ctrl.map.center.longitude + (Math.random() - 0.5) * longitudeSpan,
                             icon: category.icon.url
                         });
                         markerID += 1;                        
                     }
                 }
             }
+            console.log($ctrl.markers);
         }
     }
 })();
