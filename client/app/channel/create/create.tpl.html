@@ -1,4 +1,4 @@
-<div layout='row' layout-align='center start'>
+<div layout='row' layout-align='center start' id='s99st-channel-create'>
     <md-content>
         <form name='channelCreateForm'>
             <div>
@@ -6,16 +6,17 @@
                 <div>
                     <md-input-container class='md-block'>
                         <label>ID</label>
-                        <input id='s99st-input-channel-id' name='channelID' ng-model='channelCreateVM.channel.id' required
+                        <input name='id' ng-model='channelCreateVM.channel.id' required
                         ng-pattern='channelCreateVM.channelIDPattern'
                         ng-remote-validate='/api/channels/validate-id'
                         ng-remote-throttle='1000'>
-                        <div ng-messages='channelCreateForm.channelID.$error' multiple md-auto-hide="false">
+                        <div ng-messages='channelCreateForm.id.$error' multiple md-auto-hide="false">
                             <div id='s99st-message-channel-id-required'
                             ng-message='required'>
                                 頻道ID是必填欄位
                             </div>
-                            <div ng-message='pattern'>
+                            <div id='s99st-message-channel-id-false-pattern'
+                            ng-message='pattern'>
                                 請填入兩個以上英文字及數字，首字必須為英文字
                             </div>
                             <div id='s99st-message-channel-id-exists'
@@ -26,15 +27,15 @@
                     </md-input-container>
                     <md-input-container class='md-block'>
                         <label>名稱</label>
-                        <input id='s99st-input-channel-title' name='channelTitle' ng-model='channelCreateVM.channel.title' required>
-                        <div ng-messages='channelCreateForm.channelTitle.$error'>
+                        <input name='title' ng-model='channelCreateVM.channel.title' required>
+                        <div ng-messages='channelCreateForm.title.$error'>
                             <div id='s99st-message-channel-title-required'
                             ng-message='required'>頻道名稱是必填欄位</div>
                         </div>
                     </md-input-container>
                     <md-input-container class='md-block'>
                         <label>簡介</label>
-                        <textarea ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
+                        <textarea name='description' ng-model='channelCreateVM.channel.description' rows='3' md-select-on-focus></textarea>
                     </md-input-container>
                     <div layout='row' layout-align='start center'>
                         <div>
@@ -98,6 +99,7 @@
             </md-content>
             <div layout='row'>
                 <span flex></span>
+                <span id='s99st-message-channel-created' ng-show='channelCreateVM.success'>新頻道開張～</span>
                 <div>
                     <md-button id='s99st-button-submit-create' class='md-primary md-raised'
                     ng-click='channelCreateVM.create()' ng-disabled='channelCreateForm.$invalid'>

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 11:03:51
+* @Last Modified time: 2016-04-15 18:09:10
 */
 
 'use strict';
@@ -48,16 +48,6 @@
             channelCreateVM.channel.categories = [];
             channelCreateVM.channel['logo-url'] = 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Electromagnetic_radiation.png';
             channelCreateVM.category = angular.copy(categoryDefaults);
-        }
-
-        function onSccuess () {
-            channelCreateVM.message.show = true;
-            channelCreateVM.message.text = '新頻道開張~!!';
-        }
-
-        function onFail (error) {
-            channelCreateVM.message.show = true;
-            channelCreateVM.message.text = '新增頻道失敗...';
         }
 
         function assignLogo() {
@@ -115,7 +105,11 @@
 
         function create () {
             $http.post('/api/channels', channelCreateVM.channel)
-            .then(onSccuess, onFail);
+            .then(function(response) {
+                channelCreateVM.success = true;
+            }, function (error) {
+                channelCreateVM.fail = true;
+            });
         }
 
         // function generateGoogleStaticMapUrl() {

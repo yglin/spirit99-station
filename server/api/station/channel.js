@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-12 11:45:26
+* @Last Modified time: 2016-04-15 20:00:47
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var router = express.Router();
 var HttpStatus = require('http-status-codes');
 import {Channel} from './model/database.js'
 
+router.get('/', query);
 router.post('/validate-id', validateID);
 router.post('/', create);
 
@@ -34,10 +35,23 @@ function handleError(res, statusCode) {
     };
 }
 
+function query(req, res) {
+    Channel.findAll().then(function(channels) {
+        for (var i = 0; i < channels.length; i++) {
+            channels[i].categories = JSON.parse(channels[i].categories);
+        }
+        res.status(HttpStatus.OK).json(channels); 
+    }, handleError(res));
+}
+
 function create(req, res) {
     // console.log(req.body.id);
     return createDB(req.body.id)
     .then(function () {
+        var channel = req.body;
+        if (typeof channel.categories != 'string') {
+            channel.categories = JSON.stringify(channel.categories);
+        }
         return Channel.create(req.body);
     }, handleError(res))
     .then(respondWithResult(res, 201), handleError(res))

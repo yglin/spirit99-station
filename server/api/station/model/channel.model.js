@@ -11,21 +11,15 @@ export default function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: DataTypes.STRING,
-        'intro-url': {
-            type: DataTypes.STRING,
-            field: 'intro_url',
-            validate: {
-                isUrl: true
-            }
-        },
+        description: DataTypes.TEXT,
         'logo-url': {
             type: DataTypes.STRING,
             field: 'logo_url',
             validate: {
                 isUrl: true
             }
-        }
+        },
+        categories: DataTypes.TEXT
     }, {
         freezeTableName: true
     });
