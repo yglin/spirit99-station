@@ -1,9 +1,9 @@
-<div>
-    <h3>This is {{channelCreateVM.title}} view</h3>
+<div layout='row' layout-align='center start'>
     <md-content>
         <form name='channelCreateForm'>
-            <div layout='column' layout-gt-sm='row' layout-padding>
-                <div flex='40'>
+            <div>
+            <md-content layout='column' layout-gt-sm='row' layout-padding>
+                <div>
                     <md-input-container class='md-block'>
                         <label>ID</label>
                         <input id='s99st-input-channel-id' name='channelID' ng-model='channelCreateVM.channel.id' required
@@ -86,7 +86,8 @@
                         </div>
                     </div>
                 </div>
-                <div flex='60' id='preview'>
+                <!-- <div flex></div> -->
+                <div id='preview'>
                     <channel-item channel='channelCreateVM.channel'>
                     </channel-item>
                     <br>
@@ -94,9 +95,9 @@
                         <preview-map width='320' height='480' categories='channelCreateVM.channel.categories'></preview-map>
                     </div>
                 </div>
-            </div>
+            </md-content>
             <div layout='row'>
-                <span flex flex-gt-sm='80'></span>
+                <span flex></span>
                 <div>
                     <md-button id='s99st-button-submit-create' class='md-primary md-raised'
                     ng-click='channelCreateVM.create()' ng-disabled='channelCreateForm.$invalid'>
@@ -104,6 +105,7 @@
                     </md-button>
                     <p ng-show='channelCreateVM.message.show'>{{channelCreateVM.message.text}}</p>
                 </div>
+            </div>
             </div>
         </form>
     </md-content>
