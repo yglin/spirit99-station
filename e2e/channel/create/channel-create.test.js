@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-11 19:38:58
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 20:16:53
+* @Last Modified time: 2016-04-20 20:32:35
 */
 
 'use strict';
@@ -11,18 +11,15 @@ var config = browser.params;
 var exec = require('child_process').exec;
 
 describe('ChannelCreate View', function() {
-    var page;
+    var page, loginPage;
     var imageSelector;
     var channelListPage;
     var testChannel;
+    var testUser;
 
-    beforeAll(function() {
-    });
-    
     beforeEach(function() {
-        browser.get(config.baseUrl + '/channels/create');
-        
         page = require('./channel-create.po');
+        loginPage = require('../../account/login/login.po');
         imageSelector = require('../../image-selector.po');
         channelListPage = require('../channel-list.po');
         testChannel = {
@@ -31,9 +28,24 @@ describe('ChannelCreate View', function() {
             description: '唧唧歪歪雞雞歪歪',
             'logo-url': 'https://emos.plurk.com/92fe2c75e52cd5dc99f6e98f6f50d5aa_w48_h48.jpeg'
         };
+
+        testUser = {
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'test'
+        };
+
+        browser.get(config.baseUrl + '/channels/create');
     });
 
     it(' - Create a channel', function() {
+        // Should redirect to login page
+        expect(browser.getCurrentUrl()).toEqual(config.baseUrl + '/login');
+        loginPage.login(testUser);
+
+        // Should redirect back to channel create page
+        expect(browser.getCurrentUrl()).toEqual(config.baseUrl + '/channels/create');
+
         page.form.id.sendKeys(testChannel.id);
         page.form.title.sendKeys(testChannel.title);
         page.form.description.sendKeys(testChannel.description);
@@ -48,11 +60,14 @@ describe('ChannelCreate View', function() {
         }, 2000);
         imageSelector.confirm.click();
         page.form.buttonSubmit.click();
-        browser.wait(function() {
-            return page.messages.channelCreated.isDisplayed();
-        }, 2000);
-        browser.get(config.baseUrl + '/channels');
-        // browser.pause(54088);
+        // browser.wait(function() {
+        //     return page.messages.channelCreated.isDisplayed();
+        // }, 2000);
+        browser.wait(function(){
+            return browser.getCurrentUrl().then(function (url) {
+                return url == config.baseUrl + '/channels';
+            });
+        }, 5000);
         expect(channelListPage.channelItems.last().element(by.css('.s99-channel-title')).getText()).toEqual(testChannel.title);
     });
 

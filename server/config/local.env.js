@@ -5,19 +5,27 @@
 //
 // You will need to set these on the server you deploy to.
 
+var dbCredentials = require('../../.credentials/database')[process.env.NODE_ENV || 'development'];
+var googleOauth2 = require('../../.credentials/google/oauth2')[process.env.NODE_ENV || 'development'];
+
 module.exports = {
-  DOMAIN: 'http://localhost:9000',
-  SESSION_SECRET: 'spirit99station-secret',
+    DOMAIN: 'http://localhost:9000',
+    SESSION_SECRET: 'spirit99-station-ru.3g6ru.3gp6',
 
-  FACEBOOK_ID: 'app-id',
-  FACEBOOK_SECRET: 'secret',
+    DB_HOST: dbCredentials.host,
+    DB_DATABASE: dbCredentials.database,
+    DB_USERNAME: dbCredentials.username,
+    DB_PASSWORD: dbCredentials.password,
 
-  TWITTER_ID: 'app-id',
-  TWITTER_SECRET: 'secret',
+    FACEBOOK_ID: 'app-id',
+    FACEBOOK_SECRET: 'secret',
 
-  GOOGLE_ID: 'app-id',
-  GOOGLE_SECRET: 'secret',
+    TWITTER_ID: 'app-id',
+    TWITTER_SECRET: 'secret',
 
-  // Control debug level for modules using visionmedia/debug
-  DEBUG: ''
+    GOOGLE_ID: googleOauth2.client_id,
+    GOOGLE_SECRET: googleOauth2.client_secret,
+
+    // Control debug level for modules using visionmedia/debug
+    DEBUG: ''
 };

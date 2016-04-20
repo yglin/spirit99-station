@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-20 16:03:31
+* @Last Modified time: 2016-04-20 20:12:59
 */
 
 'use strict';
@@ -22,7 +22,7 @@ export function create(req, res) {
     // console.log(req.body.id);
     return createDB(req.body.id)
     .then(function () {
-        console.log(req.user);
+        // console.log(req.user);
         var channel = Channel.build({
             id: req.body.id,
             title: req.body.title,

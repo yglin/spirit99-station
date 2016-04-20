@@ -3,8 +3,6 @@
 var path = require('path');
 var _ = require('lodash');
 
-var googleOauth = require('../../../.credentials/google/oauth2')[process.env.NODE_ENV];
-
 function requiredProcessEnv(name) {
   if (!process.env[name]) {
     throw new Error('You must set the ' + name + ' environment variable');
@@ -56,8 +54,8 @@ var all = {
   },
 
   google: {
-    clientID:     googleOauth.client_id || 'id',
-    clientSecret: googleOauth.client_secret || 'secret',
+    clientID:     process.env.GOOGLE_ID || 'id',
+    clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
   }
 };
@@ -67,4 +65,4 @@ var all = {
 module.exports = _.merge(
   all,
   require('./shared'),
-  require('./' + process.env.NODE_ENV + '.js') || {});
+  require('./' + (process.env.NODE_ENV || 'development') + '.js') || {});

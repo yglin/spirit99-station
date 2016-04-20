@@ -1,18 +1,16 @@
 'use strict';
 
-var credentials = require('../../../.credentials/database');
-
 // Development specific configuration
 // ==================================
 module.exports = {
 
     // Sequelize connection opions
     sequelize: {
-        database: credentials.development.database,
-        username: credentials.development.username,
-        password: credentials.development.password,
+        database: process.env.DB_DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
         options: {
-            host: credentials.development.host,
+            host: process.env.DB_HOST,
             dialect: 'mysql',
             pool: {
                     max: 5,

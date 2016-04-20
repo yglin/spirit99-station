@@ -8,8 +8,6 @@ import path from 'path';
 import config from '../config/environment';
 import Sequelize from 'sequelize';
 
-// console.log(config.sequelize);
-
 var db = {
   Sequelize,
   sequelize: new Sequelize(config.sequelize.database, config.sequelize.username, config.sequelize.password, config.sequelize.options)

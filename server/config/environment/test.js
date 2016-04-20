@@ -3,18 +3,44 @@
 // Test specific configuration
 // ===========================
 module.exports = {
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/spirit99station-test'
-  },
-  sequelize: {
-    uri: 'sqlite://',
-    options: {
-      logging: false,
-      storage: 'test.sqlite',
-      define: {
-        timestamps: false
-      }
-    }
-  }
+
+    // Sequelize connection opions
+    sequelize: {
+        database: process.env.DB_DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        options: {
+            host: process.env.DB_HOST,
+            dialect: 'mysql',
+            pool: {
+                    max: 5,
+                    min: 0,
+                    idle: 10000
+            },
+            logging: false,
+            define: {
+                timestamps: false
+            }
+        }
+    },
+
+    // Seed database on startup
+    seedDB: true
 };
+
+// module.exports = {
+//   // MongoDB connection options
+//   mongo: {
+//     uri: 'mongodb://localhost/spirit99station-test'
+//   },
+//   sequelize: {
+//     uri: 'sqlite://',
+//     options: {
+//       logging: false,
+//       storage: 'test.sqlite',
+//       define: {
+//         timestamps: false
+//       }
+//     }
+//   }
+// };
