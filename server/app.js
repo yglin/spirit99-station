@@ -5,7 +5,7 @@
 'use strict';
 
 import express from 'express';
-import sqldbs from './sqldbs';
+import sqldb from './sqldb';
 import config from './config/environment';
 import http from 'http';
 import Q from 'q';
@@ -31,21 +31,11 @@ function startServer() {
   });
 }
 
-// startServer();
-
-Q.all(sqldbs.map(function (db, index) {
-    return db.sequelize.sync();
-})).then(startServer)
+sqldb.sequelize.sync()
+.then(startServer)
 .catch(function(err) {
 console.log('Server failed to start due to error: %s', err);
 });
-
-
-// sqldb.sequelize.sync()
-// .then(startServer)
-// .catch(function(err) {
-// console.log('Server failed to start due to error: %s', err);
-// });
 
 // Expose app
 exports = module.exports = app;

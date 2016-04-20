@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 18:09:10
+* @Last Modified time: 2016-04-20 16:02:12
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp.channel')
         .controller('ChannelCreateController',ChannelCreateController);
 
-    ChannelCreateController.$inject = ['$scope', '$http', '$mdDialog', '$httpParamSerializer', 'ImageSelector'];
+    ChannelCreateController.$inject = ['$scope', '$http', '$timeout', '$location', '$mdDialog', '$httpParamSerializer', 'ImageSelector'];
 
     /* @ngInject */
-    function ChannelCreateController($scope, $http, $mdDialog, $httpParamSerializer, ImageSelector) {
+    function ChannelCreateController($scope, $http, $timeout, $location, $mdDialog, $httpParamSerializer, ImageSelector) {
         var channelCreateVM = this;
         channelCreateVM.title = 'ChannelCreate';
         channelCreateVM.channelIDPattern = /^[A-Z]\w+$/i;
@@ -107,6 +107,9 @@
             $http.post('/api/channels', channelCreateVM.channel)
             .then(function(response) {
                 channelCreateVM.success = true;
+                $timeout(function () {
+                    $location.path('/channels');
+                }, 3000);
             }, function (error) {
                 channelCreateVM.fail = true;
             });
