@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-11 19:38:58
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-21 13:17:14
+* @Last Modified time: 2016-04-21 20:40:12
 */
 
 'use strict';
@@ -42,7 +42,12 @@ describe('ChannelCreate View', function() {
                 return url == config.baseUrl + '/channels';
             });
         }, 5000);
-        expect(channelListPage.channelItems.last().element(by.css('.s99-channel-title')).getText()).toEqual(testChannel.title);
+        var newChannels = channelListPage.channelItems.filter(function (elem, index) {
+            return elem.element(by.css('.s99-channel-title')).getText().then(function (text) {
+                return text == testChannel.title;
+            });
+        });
+        expect(newChannels.count()).toBe(1);
     });
 
     describe(' - Warnings for invalid user inputs', function() {

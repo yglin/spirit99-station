@@ -20,7 +20,7 @@ function setJSON(field) {
 
 
 export default function(sequelize, DataTypes) {
-    return sequelize.define('channel', {
+    var Channel = sequelize.define('channel', {
         id: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -43,13 +43,6 @@ export default function(sequelize, DataTypes) {
             get: getJSON('categories'),
             set: setJSON('categories')
         },
-        owner_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: '_id'
-            }
-        },
         state: {
             type: DataTypes.ENUM,
             values: ['private', 'public', 'closed']
@@ -63,4 +56,9 @@ export default function(sequelize, DataTypes) {
             }
         ]
     });
+
+    var User = require('../user/user.model')(sequelize, DataTypes);
+    Channel.belongsTo(User, {foreignKey: 'owner_id'});
+
+    return Channel;
 }

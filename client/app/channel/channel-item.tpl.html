@@ -1,9 +1,18 @@
 <div class='s99-channel-item'>
-    <div layout='row' layout-align='start start' layout-padding md-whiteframe="6">
-        <img class='s99-channel-logo' ng-src='{{$ctrl.channel["logo-url"]}}' ng-show='$ctrl.channel["logo-url"]'>
-        <div layout='column' flex>
+<div style='position:relative;'>
+    <div md-whiteframe="6" layout='row'
+    style='position: absolute;top:10px; left: 15px'>
+        <div style='width:60px;'></div>
+        <div layout='column' style='width:210px;min-height:80px;'>
             <h4 class='s99-channel-title'>{{$ctrl.channel.title}}</h4>
-            <div class='s99-channel-description'>{{$ctrl.channel.description}}</div>
+            <div class='s99-channel-description'>
+                <pre style='white-space: pre-line;'>{{$ctrl.channel.description}}</pre>
+            </div>
         </div>
     </div>
+    <div style='position:absolute;top:0px;left:0px;'>
+        <img class='s99-channel-logo'
+        ng-src='{{$ctrl.channel["logo-url"]}}' ng-show='$ctrl.channel["logo-url"]'>
+    </div>
+</div>
 </div>
