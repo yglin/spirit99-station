@@ -2,67 +2,41 @@
 * @Author: yglin
 * @Date:   2016-04-11 19:38:58
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-20 20:32:35
+* @Last Modified time: 2016-04-21 13:17:14
 */
 
 'use strict';
 
 var config = browser.params;
 var exec = require('child_process').exec;
+import {channels, users} from '../../mocks/data';
 
 describe('ChannelCreate View', function() {
     var page, loginPage;
-    var imageSelector;
     var channelListPage;
-    var testChannel;
-    var testUser;
+    var testChannel = channels[0];
+    var testUser = users[0];
 
     beforeEach(function() {
         page = require('./channel-create.po');
         loginPage = require('../../account/login/login.po');
-        imageSelector = require('../../image-selector.po');
         channelListPage = require('../channel-list.po');
-        testChannel = {
-            id: 'ggyy',
-            title: '唧唧歪歪',
-            description: '唧唧歪歪雞雞歪歪',
-            'logo-url': 'https://emos.plurk.com/92fe2c75e52cd5dc99f6e98f6f50d5aa_w48_h48.jpeg'
-        };
-
-        testUser = {
-            name: 'Test User',
-            email: 'test@example.com',
-            password: 'test'
-        };
 
         browser.get(config.baseUrl + '/channels/create');
+
+        // Login as needed
+        browser.getCurrentUrl().then(function (url) {
+            if (url == config.baseUrl + '/login') {
+                loginPage.login(testUser);
+                // Should redirect back to channel create page
+                expect(browser.getCurrentUrl()).toEqual(config.baseUrl + '/channels/create');
+            }
+        });
     });
 
     it(' - Create a channel', function() {
-        // Should redirect to login page
-        expect(browser.getCurrentUrl()).toEqual(config.baseUrl + '/login');
-        loginPage.login(testUser);
+        page.create(testChannel);
 
-        // Should redirect back to channel create page
-        expect(browser.getCurrentUrl()).toEqual(config.baseUrl + '/channels/create');
-
-        page.form.id.sendKeys(testChannel.id);
-        page.form.title.sendKeys(testChannel.title);
-        page.form.description.sendKeys(testChannel.description);
-        page.form.buttonLogo.click();
-        browser.wait(function() {
-            return imageSelector.divRoot.isDisplayed();
-        }, 2000);
-        imageSelector.url.sendKeys(testChannel['logo-url']);
-        // browser.pause(54088);
-        browser.wait(function() {
-            return imageSelector.confirm.isEnabled();
-        }, 2000);
-        imageSelector.confirm.click();
-        page.form.buttonSubmit.click();
-        // browser.wait(function() {
-        //     return page.messages.channelCreated.isDisplayed();
-        // }, 2000);
         browser.wait(function(){
             return browser.getCurrentUrl().then(function (url) {
                 return url == config.baseUrl + '/channels';
@@ -99,7 +73,7 @@ describe('ChannelCreate View', function() {
     });
 
     afterAll(function () {
-        var cmdCleanupDatabase = 'mysql -uyglin -pturbogan -e "DROP DATABASE IF EXISTS ' + testChannel.id + ';DELETE FROM station.channel WHERE id=\'' + testChannel.id + '\';"';
+        var cmdCleanupDatabase = 'mysql -uyglin -pturbogan -e "DROP DATABASE IF EXISTS ' + testChannel.id + ';"';
         exec(cmdCleanupDatabase, function (error, stdout, stderr) {
             if(error) {
                 console.log('Fail to clean up database!!');

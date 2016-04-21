@@ -61,13 +61,14 @@
                     <div layout='row' layout-padding layout-align='start start'>
                         <md-input-container>
                             <label>分類名稱</label>
-                            <input ng-model='channelCreateVM.category.title'>
+                            <input id='category-title' ng-model='channelCreateVM.category.title'>
                         </md-input-container>
-                        <div class='s99-ng-clickable' ng-click='channelCreateVM.selectCategoryIcon()'>
+                        <div class='s99-ng-clickable' id='category-icon'
+                        ng-click='channelCreateVM.selectCategoryIcon()'>
                             <img style='max-width:48px;max-height:48px;' ng-src='{{channelCreateVM.category.icon.url}}'>
                         </div>
                         <div>
-                        <md-button class='md-fab md-mini'
+                        <md-button class='md-fab md-mini' id='category-add'
                         ng-hide='channelCreateVM.selectedCategoryIndex >= 0'
                         ng-disabled='!channelCreateVM.category.title'
                         ng-click='channelCreateVM.addCategory()'>
@@ -85,6 +86,11 @@
                             <md-icon class='material-icons'>close</md-icon>
                         </md-button>
                         </div>
+                    </div>
+                    <div>
+                        <md-checkbox id='checkbox-public'
+                        ng-model='channelCreateVM.channel.public'
+                        aria-label='Public Channel'>公開</md-checkbox>
                     </div>
                 </div>
                 <!-- <div flex></div> -->

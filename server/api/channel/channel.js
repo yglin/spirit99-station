@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-20 20:12:59
+* @Last Modified time: 2016-04-21 10:35:30
 */
 
 'use strict';
@@ -13,7 +13,7 @@ var HttpStatus = require('http-status-codes');
 import {Channel} from '../../sqldb'
 
 export function query(req, res) {
-    Channel.findAll().then(function(channels) {
+    Channel.findAll({ where: {state: 'public'}}).then(function(channels) {
         res.status(HttpStatus.OK).json(channels); 
     }, handleError(res));
 }
@@ -29,7 +29,8 @@ export function create(req, res) {
             description: req.body.description,
             'logo-url': req.body['logo-url'],
             categories: req.body.categories,
-            owner_id: req.user._id
+            owner_id: req.user._id,
+            state: req.body.public ? 'public' : 'private'
         });
         return channel.save();
     }, handleError(res))

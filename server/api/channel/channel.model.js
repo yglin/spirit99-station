@@ -46,11 +46,21 @@ export default function(sequelize, DataTypes) {
         owner_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: require('../user/user.model')(sequelize, DataTypes),
+                model: 'user',
                 key: '_id'
             }
+        },
+        state: {
+            type: DataTypes.ENUM,
+            values: ['private', 'public', 'closed']
         }
     }, {
-        freezeTableName: true
+        freezeTableName: true,
+        indexes: [
+            {
+                fields: ['state'],
+                method: 'HASH'
+            }
+        ]
     });
 }
