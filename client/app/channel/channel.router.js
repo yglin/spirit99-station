@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:04:43
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-21 13:46:11
+* @Last Modified time: 2016-04-22 11:31:27
 */
 
 'use strict';
@@ -11,7 +11,14 @@ angular.module('spirit99StationApp.channel')
 .config(function($routeProvider) {
     $routeProvider
     .when('/channels', {
-        template: '<channel-list></channel-list>'
+        templateUrl: 'app/channel/channel-list.tpl.html',
+        controller: 'ChannelListController',
+        controllerAs: '$ctrl',
+        resolve: {
+            channels: ['Channel', '$q', function (Channel, $q) {
+                return Channel.query().$promise;
+            }]
+        }        
     })
     .when('/channels/create', {
         templateUrl: 'app/channel/create/create.tpl.html',
