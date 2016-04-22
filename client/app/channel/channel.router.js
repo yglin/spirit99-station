@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:04:43
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-22 11:31:27
+* @Last Modified time: 2016-04-22 14:58:10
 */
 
 'use strict';
@@ -15,8 +15,8 @@ angular.module('spirit99StationApp.channel')
         controller: 'ChannelListController',
         controllerAs: '$ctrl',
         resolve: {
-            channels: ['Channel', '$q', function (Channel, $q) {
-                return Channel.query().$promise;
+            channels: ['Channel', function (Channel) {
+                return Channel.query();
             }]
         }        
     })
