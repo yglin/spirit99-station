@@ -11,6 +11,8 @@ angular.module('spirit99StationApp.auth')
             return;
         }
 
+        $cookies.remove('path-before-login');
+        $cookies.remove('path-after-login');
         if (typeof next.authenticate === 'string') {
             Auth.hasRole(next.authenticate, _.noop).then(has => {
                 if (has) {
@@ -28,9 +30,22 @@ angular.module('spirit99StationApp.auth')
                         }
                     }
                     else {
+                        var afterPath = '/';
+                        var beforePath = '/';
+
                         if (next && next.$$route && next.$$route.originalPath) {
-                            $cookies.put('path-after-login', buildPathFromRoute(next));
+                            afterPath = buildPathFromRoute(next);
                         }
+                        $cookies.put('path-after-login', afterPath);
+
+                        if (current && current.$$route && current.$$route.originalPath) {
+                            beforePath =  buildPathFromRoute(current);
+                            if (beforePath == afterPath) {
+                                beforePath = '/';
+                            }
+                        }
+                        $cookies.put('path-before-login', beforePath);
+
                         $location.path('/login');
                     }
                 });

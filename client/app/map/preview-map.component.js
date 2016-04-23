@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 16:52:30
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 11:38:23
+* @Last Modified time: 2016-04-23 14:58:28
 */
 
 'use strict';
@@ -33,14 +33,32 @@
                 longitude: 120.982024
             },
             zoom: 7,
-            bounds: {}
+            bounds: {
+                northeast: {
+                    latitude: 24.973875,
+                    longitude: 121.982024
+                },
+                southwest: {
+                    latitude: 22.973875,
+                    longitude: 119.982024
+                }
+            }
         };
         $ctrl.markers = [];
 
+        $ctrl.listeners = [];
+
         $ctrl.$onInit = function () {
-            $scope.$on('channel:creation:categoriesChanged', function() {
+            rebuildMarkers();
+            $ctrl.listeners.push($scope.$on('categoriesChanged', function() {
                 rebuildMarkers();
-            })
+            }));
+        };
+
+        $ctrl.$onDestroy = function () {
+            for (var i = 0; i < $ctrl.watches.length; i++) {
+                $ctrl.listeners[i]();
+            }
         };
 
         function rebuildMarkers() {
@@ -63,7 +81,6 @@
                     }
                 }
             }
-            console.log($ctrl.markers);
         }
     }
 })();

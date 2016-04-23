@@ -1,0 +1,115 @@
+<form name='channelForm'>
+    <div>
+    <md-content layout='column' layout-gt-sm='row' layout-padding>
+        <div style='max-width: 300px;'>
+            <md-input-container class='md-block' ng-if='$ctrl.action == "create"'>
+                <label>ID</label>
+                <input name='id' ng-model='$ctrl.channel.id' required
+                ng-pattern='$ctrl.channelIDPattern'
+                ng-remote-validate='/api/channels/validate-id'
+                ng-remote-throttle='1000'>
+                <div ng-messages='channelForm.id.$error' multiple md-auto-hide="false">
+                    <div id='s99st-message-channel-id-required'
+                    ng-message='required'>
+                        頻道ID是必填欄位
+                    </div>
+                    <div id='s99st-message-channel-id-false-pattern'
+                    ng-message='pattern'>
+                        請填入兩個以上英文字及數字，首字必須為英文字
+                    </div>
+                    <div id='s99st-message-channel-id-exists'
+                    ng-message='ngRemoteValidate'>
+                    此ID無法使用，頻道已存在
+                    </div>
+                </div>
+            </md-input-container>
+            <md-subheader ng-if='$ctrl.action !=="create"' class='md-primary'>{{$ctrl.channel.id}}</md-subheader>
+            <md-input-container class='md-block'>
+                <label>名稱</label>
+                <input name='title' ng-model='$ctrl.channel.title' required>
+                <div ng-messages='channelForm.title.$error'>
+                    <div id='s99st-message-channel-title-required'
+                    ng-message='required'>頻道名稱是必填欄位</div>
+                </div>
+            </md-input-container>
+            <md-input-container class='md-block'>
+                <label>簡介</label>
+                <textarea name='description' ng-model='$ctrl.channel.description' rows='3' md-select-on-focus></textarea>
+            </md-input-container>
+            <div layout='row' layout-align='start center'>
+                <div class='s99-ng-clickable' ng-click='$ctrl.assignLogo()'>
+                    <img class='s99-channel-logo' ng-src='{{$ctrl.channel["logo-url"]}}'>
+                </div>
+                <div>
+                    <md-button id='s99st-button-select-logo' class='md-raised'
+                    ng-click='$ctrl.assignLogo()'>
+                        更換 LOGO
+                    </md-button>
+                </div>
+            </div>
+            <md-subheader>分類圖標</md-subheader>
+            <div layout='row' layout-wrap layout-padding>
+                <div ng-repeat="category in $ctrl.channel.categories"
+                layout='column' layout-align='center center'
+                ng-click='$ctrl.selectCategory($index)'
+                ng-class='{"s99-div-selected": $index == $ctrl.selectedCategoryIndex, "s99-div-selectable": $index != $ctrl.selectedCategoryIndex}'>
+                    <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
+                    <div class='md-caption'>{{category.title}}</div>
+                </div>
+            </div>
+            <div layout='row' layout-padding layout-align='start start'>
+                <md-input-container>
+                    <label>分類名稱</label>
+                    <input id='category-title' ng-model='$ctrl.category.title'>
+                </md-input-container>
+                <div class='s99-ng-clickable' id='category-icon'
+                ng-click='$ctrl.selectCategoryIcon()'>
+                    <img style='max-width:48px;max-height:48px;' ng-src='{{$ctrl.category.icon.url}}'>
+                </div>
+                <div>
+                <md-button class='md-fab md-mini' id='category-add'
+                ng-hide='$ctrl.selectedCategoryIndex >= 0'
+                ng-disabled='!$ctrl.category.title'
+                ng-click='$ctrl.addCategory()'>
+                    <md-icon class='material-icons'>add</md-icon>
+                </md-button>
+                <md-button class='md-fab md-mini'
+                ng-show='$ctrl.selectedCategoryIndex >= 0'
+                ng-disabled='!$ctrl.category.title'
+                ng-click='$ctrl.updateCategory($ctrl.selectedCategoryIndex)'>
+                    <md-icon class='material-icons'>update</md-icon>
+                </md-button>
+                <md-button class='md-fab md-mini'
+                ng-show='$ctrl.selectedCategoryIndex >= 0'
+                ng-click='$ctrl.deleteCategory($ctrl.selectedCategoryIndex)'>
+                    <md-icon class='material-icons'>close</md-icon>
+                </md-button>
+                </div>
+            </div>
+            <div>
+                <md-checkbox id='checkbox-public'
+                ng-model='$ctrl.channel.public'
+                aria-label='Public Channel'>公開</md-checkbox>
+            </div>
+        </div>
+        <!-- <div flex></div> -->
+        <div id='preview'>
+            <channel-item channel='$ctrl.channel'>
+            </channel-item>
+            <br>
+            <div>
+                <preview-map width='320' height='480' categories='$ctrl.channel.categories'></preview-map>
+            </div>
+        </div>
+    </md-content>
+    <div layout='row'>
+        <span flex></span>
+        <div>
+            <md-button id='s99st-button-submit-create'class='md-primary md-raised'
+            ng-disabled='channelForm.$invalid' ng-click='$ctrl.submit($ctrl.channel)'>
+                確定
+            </md-button>
+        </div>
+    </div>
+    </div>
+</form>

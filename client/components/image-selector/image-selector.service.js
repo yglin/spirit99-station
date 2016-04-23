@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:08:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 11:00:54
+* @Last Modified time: 2016-04-23 13:31:06
 */
 
 'use strict';
@@ -31,7 +31,7 @@
             options.inDialog = true;
             
             $mdDialog.show({
-                templateUrl: 'app/image-selector/image-selector.tpl.html',
+                templateUrl: 'components/image-selector/image-selector.tpl.html',
                 controller: 'ImageSelectorController',
                 controllerAs: '$ctrl',
                 bindToController: true,
