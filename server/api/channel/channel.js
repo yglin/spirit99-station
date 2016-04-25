@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 15:59:03
+* @Last Modified time: 2016-04-23 17:05:47
 */
 
 'use strict';
@@ -52,7 +52,7 @@ function create(req, res) {
             'logo-url': req.body['logo-url'],
             categories: req.body.categories,
             owner_id: req.user._id,
-            state: req.body.public ? 'public' : 'private'
+            state: req.body.state
         });
         return channel.save();
     }, handleError(res))

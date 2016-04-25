@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:04:43
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 10:19:54
+* @Last Modified time: 2016-04-23 16:37:48
 */
 
 'use strict';
@@ -23,7 +23,7 @@ angular.module('spirit99StationApp.channel')
     .when('/channels/create', {
         templateUrl: 'app/channel/create/create.tpl.html',
         controller: 'ChannelCreateController',
-        controllerAs: 'channelCreateVM',
+        controllerAs: '$ctrl',
         authenticate: 'user'
     })
     .when('/channels/update/:id', {

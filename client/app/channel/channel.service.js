@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 16:06:48
+* @Last Modified time: 2016-04-23 17:04:13
 */
 
 'use strict';
@@ -17,6 +17,7 @@
     function Channel($http, $q, Auth) {
         return {
             query: query,
+            create: create,
             update: update,
             getFromUser: getFromUser
         };
@@ -27,6 +28,19 @@
 
         function query() {
             return $http.get('/api/channels')
+            .then(function (response) {
+                return $q.resolve(response.data);
+            }, httpError);
+        }
+
+        function create(channelData) {
+            console.log(channelData);
+            channelData.state = 'private';
+            if (channelData.public) {
+                channelData.state = 'public';
+            }
+            delete channelData.public;
+            return $http.post('/api/channels', channelData)
             .then(function (response) {
                 return $q.resolve(response.data);
             }, httpError);

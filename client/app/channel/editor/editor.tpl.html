@@ -41,7 +41,7 @@
                     <img class='s99-channel-logo' ng-src='{{$ctrl.channel["logo-url"]}}'>
                 </div>
                 <div>
-                    <md-button id='s99st-button-select-logo' class='md-raised'
+                    <md-button id='select-logo' class='md-raised'
                     ng-click='$ctrl.assignLogo()'>
                         更換 LOGO
                     </md-button>
@@ -49,18 +49,24 @@
             </div>
             <md-subheader>分類圖標</md-subheader>
             <div layout='row' layout-wrap layout-padding>
-                <div ng-repeat="category in $ctrl.channel.categories"
+                <div ng-repeat="(id, category) in $ctrl.channel.categories"
                 layout='column' layout-align='center center'
-                ng-click='$ctrl.selectCategory($index)'
-                ng-class='{"s99-div-selected": $index == $ctrl.selectedCategoryIndex, "s99-div-selectable": $index != $ctrl.selectedCategoryIndex}'>
+                ng-click='$ctrl.selectCategory(id)'
+                ng-class='{"s99-div-selected": id == $ctrl.selectedCategoryID, "s99-div-selectable": id != $ctrl.selectedCategoryID}'>
                     <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
                     <div class='md-caption'>{{category.title}}</div>
                 </div>
             </div>
+            <div>
+                <md-button class='md-raised md-warn'
+                id='remove-all-categories'
+                ng-show='$ctrl.channel.categories.length > 0'
+                ng-click="$ctrl.clearCategories()">全部移除</md-button>
+            </div>
             <div layout='row' layout-padding layout-align='start start'>
                 <md-input-container>
                     <label>分類名稱</label>
-                    <input id='category-title' ng-model='$ctrl.category.title'>
+                    <input id='category-title' name='categoryID' ng-model='$ctrl.category.title'>
                 </md-input-container>
                 <div class='s99-ng-clickable' id='category-icon'
                 ng-click='$ctrl.selectCategoryIcon()'>
@@ -68,20 +74,20 @@
                 </div>
                 <div>
                 <md-button class='md-fab md-mini' id='category-add'
-                ng-hide='$ctrl.selectedCategoryIndex >= 0'
+                ng-hide='$ctrl.selectedCategoryID'
                 ng-disabled='!$ctrl.category.title'
                 ng-click='$ctrl.addCategory()'>
                     <md-icon class='material-icons'>add</md-icon>
                 </md-button>
                 <md-button class='md-fab md-mini'
-                ng-show='$ctrl.selectedCategoryIndex >= 0'
+                ng-show='$ctrl.selectedCategoryID'
                 ng-disabled='!$ctrl.category.title'
-                ng-click='$ctrl.updateCategory($ctrl.selectedCategoryIndex)'>
+                ng-click='$ctrl.updateCategory()'>
                     <md-icon class='material-icons'>update</md-icon>
                 </md-button>
                 <md-button class='md-fab md-mini'
-                ng-show='$ctrl.selectedCategoryIndex >= 0'
-                ng-click='$ctrl.deleteCategory($ctrl.selectedCategoryIndex)'>
+                ng-show='$ctrl.selectedCategoryID'
+                ng-click='$ctrl.deleteCategory()'>
                     <md-icon class='material-icons'>close</md-icon>
                 </md-button>
                 </div>
@@ -98,14 +104,14 @@
             </channel-item>
             <br>
             <div>
-                <preview-map width='320' height='480' categories='$ctrl.channel.categories'></preview-map>
+                <preview-map width='320' height='480' channel='$ctrl.channel'></preview-map>
             </div>
         </div>
     </md-content>
     <div layout='row'>
         <span flex></span>
         <div>
-            <md-button id='s99st-button-submit-create'class='md-primary md-raised'
+            <md-button id='submit' class='md-primary md-raised'
             ng-disabled='channelForm.$invalid' ng-click='$ctrl.submit($ctrl.channel)'>
                 確定
             </md-button>

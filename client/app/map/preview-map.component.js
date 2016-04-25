@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 16:52:30
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 14:58:28
+* @Last Modified time: 2016-04-25 15:30:31
 */
 
 'use strict';
@@ -17,7 +17,7 @@
         bindings: {
             width: '@',
             height: '@',
-            categories: '='
+            channel: '='
         }
     });
 
@@ -56,7 +56,7 @@
         };
 
         $ctrl.$onDestroy = function () {
-            for (var i = 0; i < $ctrl.watches.length; i++) {
+            for (var i = 0; i < $ctrl.listeners.length; i++) {
                 $ctrl.listeners[i]();
             }
         };
@@ -66,8 +66,8 @@
             var markerID = 0;
             var latitudeSpan = Math.abs($ctrl.map.bounds.northeast.latitude - $ctrl.map.bounds.southwest.latitude);
             var longitudeSpan = Math.abs($ctrl.map.bounds.northeast.longitude - $ctrl.map.bounds.southwest.longitude);
-            for (var i = 0; i < $ctrl.categories.length; i++) {
-                var category = $ctrl.categories[i];
+            for (var i = 0; i < $ctrl.channel.categories.length; i++) {
+                var category = $ctrl.channel.categories[i];
                 if (category.icon && category.icon.url) {
                     var addCount = 2 + Math.floor(Math.random() * 4);
                     for (var j = 0; j < addCount; j++) {

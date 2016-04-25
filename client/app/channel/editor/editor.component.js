@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 14:52:06
+* @Last Modified time: 2016-04-25 15:28:26
 */
 
 'use strict';
@@ -21,10 +21,10 @@
         }
     });
 
-    ChannelEditorController.$inject = ['$scope', 'ImageSelector'];
+    ChannelEditorController.$inject = ['$scope', 'ImageSelector', 'ygDialog'];
 
     /* @ngInject */
-    function ChannelEditorController($scope, ImageSelector) {
+    function ChannelEditorController($scope, ImageSelector, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'ChannelEditor';
         $ctrl.channelIDPattern = /^[A-Z]\w+$/i;
@@ -34,7 +34,9 @@
         $ctrl.addCategory = addCategory;
         $ctrl.updateCategory = updateCategory;
         $ctrl.deleteCategory = deleteCategory;
+        $ctrl.clearCategories = clearCategories;
 
+        var maxID;
         var categoryDefaults = {
             icon: {
                 url: 'http://icongal.com/gallery/image/460113/chartreuse_base_con_pixe_marker_map_outside_biswajit.png'
@@ -43,6 +45,7 @@
 
         $ctrl.$onInit = function () {
             $ctrl.category = angular.copy(categoryDefaults);
+            maxID = Math.max.apply(null, [0].concat(Object.keys($ctrl.channel.categories)));
         };
 
         function assignLogo() {
@@ -56,14 +59,14 @@
             });
         }
 
-        function selectCategory(index) {
-            if ($ctrl.selectedCategoryIndex == index) {
-                $ctrl.selectedCategoryIndex = -1;
+        function selectCategory(id) {
+            if ($ctrl.selectedCategoryID == id) {
+                $ctrl.selectedCategoryID = null;
                 $ctrl.category = angular.copy(categoryDefaults);
             }
             else {
-                $ctrl.selectedCategoryIndex = index;
-                $ctrl.category = angular.copy($ctrl.channel.categories[index]);
+                $ctrl.selectedCategoryID = id;
+                $ctrl.category = angular.copy($ctrl.channel.categories[id]);
             }
         }
 
@@ -81,21 +84,36 @@
         }
 
         function addCategory() {
-            $ctrl.channel.categories.push($ctrl.category);
+            maxID += 1;
+            $ctrl.channel.categories[maxID] = $ctrl.category;
+            $ctrl.category = angular.copy(categoryDefaults);
+            $scope.$broadcast('categoriesChanged');
+            console.log($ctrl.channel.categories);
+        }
+
+        function updateCategory() {
+            $ctrl.channel.categories[$ctrl.selectedCategoryID] = $ctrl.category;
+            $ctrl.selectedCategoryID = null;
             $ctrl.category = angular.copy(categoryDefaults);
             $scope.$broadcast('categoriesChanged');
         }
 
-        function updateCategory(index) {
-            $ctrl.channel.categories[index] = $ctrl.category;
+        function deleteCategory() {
+            delete $ctrl.channel.categories[$ctrl.selectedCategoryID];
+            $ctrl.selectedCategoryID = null;
+            $ctrl.category = angular.copy(categoryDefaults);
             $scope.$broadcast('categoriesChanged');
         }
 
-        function deleteCategory(index) {
-            $ctrl.channel.categories.splice(index, 1);
-            $ctrl.selectedCategoryIndex = -1;
-            $ctrl.category = angular.copy(categoryDefaults);
-            $scope.$broadcast('categoriesChanged');
+        function clearCategories() {
+            ygDialog.confirm('移除所有分類', '確定要移除所有的分類？')
+            .then(function () {
+                $ctrl.channel.categories = {};
+                // for (var id in $ctrl.channel.categories) {
+                //     delete $ctrl.channel.categories[id];
+                // }
+                $scope.$broadcast('categoriesChanged');
+            });
         }
     }
 })();

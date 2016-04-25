@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-20 16:02:12
+* @Last Modified time: 2016-04-25 08:47:55
 */
 
 'use strict';
@@ -14,104 +14,24 @@
         .module('spirit99StationApp.channel')
         .controller('ChannelCreateController',ChannelCreateController);
 
-    ChannelCreateController.$inject = ['$scope', '$http', '$timeout', '$location', '$mdDialog', '$httpParamSerializer', 'ImageSelector'];
+    ChannelCreateController.$inject = ['$window', '$location', 'Channel'];
 
     /* @ngInject */
-    function ChannelCreateController($scope, $http, $timeout, $location, $mdDialog, $httpParamSerializer, ImageSelector) {
-        var channelCreateVM = this;
-        channelCreateVM.title = 'ChannelCreate';
-        channelCreateVM.channelIDPattern = /^[A-Z]\w+$/i;
-        channelCreateVM.channel = {};
-        channelCreateVM.message = {
-            show: false,
-            text: ''
-        };
-        channelCreateVM.assignLogo = assignLogo;
-        channelCreateVM.selectCategory = selectCategory;
-        channelCreateVM.selectCategoryIcon = selectCategoryIcon;
-        channelCreateVM.addCategory = addCategory;
-        channelCreateVM.updateCategory = updateCategory;
-        channelCreateVM.deleteCategory = deleteCategory;
-        channelCreateVM.create = create;
-
-        var categoryDefaults = {
-            icon: {
-                url: 'http://icongal.com/gallery/image/460113/chartreuse_base_con_pixe_marker_map_outside_biswajit.png'
-            }
+    function ChannelCreateController($window, $location, Channel) {
+        var $ctrl = this;
+        $ctrl.create = create;
+        $ctrl.channel = {
+            categories: {}
         };
 
-        activate();
-
-        ////////////////
-
-        function activate() {
-            channelCreateVM.channel.categories = [];
-            channelCreateVM.channel['logo-url'] = 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Electromagnetic_radiation.png';
-            channelCreateVM.category = angular.copy(categoryDefaults);
-        }
-
-        function assignLogo() {
-            ImageSelector.select({
-                maxWidth: 64,
-                maxHeight: 64,
-                maxSizeMb: 1
-            })
-            .then(function(imgUrl) {
-                channelCreateVM.channel['logo-url'] = imgUrl;
-            });
-        }
-
-        function selectCategory(index) {
-            if (channelCreateVM.selectedCategoryIndex == index) {
-                channelCreateVM.selectedCategoryIndex = -1;
-                channelCreateVM.category = angular.copy(categoryDefaults);
-            }
-            else {
-                channelCreateVM.selectedCategoryIndex = index;
-                channelCreateVM.category = angular.copy(channelCreateVM.channel.categories[index]);
-            }
-        }
-
-        function selectCategoryIcon() {
-            ImageSelector.select({
-                maxWidth: 48,
-                maxHeight: 48,
-                maxSizeMb: 1
-            })
-            .then(function(imgUrl) {
-                channelCreateVM.category.icon = {
-                    url: imgUrl
-                };
-            });            
-        }
-
-        function addCategory() {
-            channelCreateVM.channel.categories.push(channelCreateVM.category);
-            channelCreateVM.category = angular.copy(categoryDefaults);
-            $scope.$broadcast('channel:creation:categoriesChanged');
-        }
-
-        function updateCategory(index) {
-            channelCreateVM.channel.categories[index] = channelCreateVM.category;
-            $scope.$broadcast('channel:creation:categoriesChanged');
-        }
-
-        function deleteCategory(index) {
-            channelCreateVM.channel.categories.splice(index, 1);
-            channelCreateVM.selectedCategoryIndex = -1;
-            channelCreateVM.category = angular.copy(categoryDefaults);
-            $scope.$broadcast('channel:creation:categoriesChanged');
-        }
-
-        function create () {
-            $http.post('/api/channels', channelCreateVM.channel)
+        function create (channelData) {
+            Channel.create(channelData)
             .then(function(response) {
-                channelCreateVM.success = true;
-                $timeout(function () {
-                    $location.path('/channels');
-                }, 3000);
+                $window.alert('新增成功！');
+                $location.path('/channels');
             }, function (error) {
-                channelCreateVM.fail = true;
+                $window.alert('新增失敗');
+                console.error(error);
             });
         }
 

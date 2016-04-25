@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-21 13:05:34
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-21 13:08:32
+* @Last Modified time: 2016-04-25 14:00:08
 */
 
 'use strict';
@@ -46,7 +46,7 @@ module.exports = {
                     }
                 }
             ],
-            public: true,
+            state: 'public',
         }
     ],
     users: [
