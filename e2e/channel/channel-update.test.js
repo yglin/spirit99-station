@@ -2,21 +2,20 @@
 * @Author: yglin
 * @Date:   2016-04-21 12:53:07
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-25 15:06:11
+* @Last Modified time: 2016-04-26 21:01:48
 */
 
 'use strict';
 
 var config = browser.params;
-import {users} from '../mocks/data';
-import {channels} from '../../server/config/seed-data'
+import {mainDB} from '../../server/config/seed-data'
 
 describe('ChannelUpdate View', function() {
     // var page;
     var loginPage = require('../account/login/login.po');
     var channelEditor = require('./channel-editor.po');
-    var testChannel = channels[0];
-    var testUser = users[0];
+    var testChannel = mainDB.channels[0];
+    var testUser = mainDB.users[0];
     
     beforeEach(function() {
         // page = require('./channel-update.po');

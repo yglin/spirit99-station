@@ -2,20 +2,21 @@
 * @Author: yglin
 * @Date:   2016-04-11 19:38:58
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-25 14:49:20
+* @Last Modified time: 2016-04-26 21:01:37
 */
 
 'use strict';
 
 var config = browser.params;
 var exec = require('child_process').exec;
-import {channels, users} from '../mocks/data';
+import {channels} from '../mocks/data';
+import {mainDB} from '../../server/config/seed-data'
 
 describe('ChannelCreate View', function() {
     var channelEditor, loginPage;
     var channelListPage;
     var testChannel = channels[0];
-    var testUser = users[0];
+    var testUser = mainDB.users[0];
 
     beforeEach(function() {
         channelEditor = require('./channel-editor.po');

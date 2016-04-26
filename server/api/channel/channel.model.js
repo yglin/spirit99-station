@@ -48,13 +48,7 @@ export default function(sequelize, DataTypes) {
             values: ['private', 'public', 'closed']
         }
     }, {
-        freezeTableName: true,
-        indexes: [
-            {
-                fields: ['state'],
-                method: 'HASH'
-            }
-        ]
+        freezeTableName: true
     });
 
     var User = require('../user/user.model')(sequelize, DataTypes);

@@ -2,12 +2,18 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-26 11:11:05
+* @Last Modified time: 2016-04-26 15:52:49
 */
 
 'use strict';
+var _ = require('lodash');
 
-var data = {
+var data = module.exports = {
+    mainDB: {},
+    channelDBs: {}
+};
+
+data.mainDB = {
     users: [
         {
             provider: 'local',
@@ -29,38 +35,38 @@ var data = {
             title: '核子試爆場',
             description: '測試新功能，以及給使用者隨便亂搞，資料不定時會清除',
             'logo-url': 'https://i.warosu.org/data/sci/img/0073/32/1434439598515.jpg',
-            'categories': [
-                {
+            'categories': {
+                1: {
                     title: 'sweat',
                     icon: {
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/sweat.png'
                     }
                 },
-                {
+                2: {
                     title: '哭哭',
                     icon: {
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/cry.png'
                     }
                 },
-                {
+                3: {
                     title: 'love',
                     icon: {
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/love.png'
                     }
                 },
-                {
+                4: {
                     title: 'startle',
                     icon: {
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/startle.png'
                     }
                 },
-                {
+                5: {
                     title: '龜藍波火',
                     icon: {
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/fire.png'
                     }
                 }
-            ],
+            },
             owner_id: null,
             state: 'public'
         }
@@ -94,20 +100,21 @@ var data = {
             info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
                          'and openshift subgenerators'
         }
-    ],
-    posts: {}
+    ]
 }
 
-data.posts['nuclear-test-field'] = genPosts(data.channels[0], {count: 100});
+data.channelDBs['nuclear-test-field'] = {
+    post: genPosts(data.mainDB.channels[0], {count: 100})
+}
 
 function genPosts(channel, options) {
     options = typeof options === 'undefined' ? {} : options;
     options.count = typeof options.count === 'undefined' ? 10 : options.count;
     var count = Math.min(options.count, 100);
     var categoryIDs = Object.keys(channel.categories);
-    var fakeThumbnails = fakeThumbnails();
-    var fakeTitles = fakeTitles();
-    var fakeDescriptions = fakeDescriptions();
+    var thumbnails = fakeThumbnails();
+    var titles = fakeTitles();
+    var descriptions = fakeDescriptions();
     var posts = [];
 
     var radius = 0.0;
@@ -119,12 +126,11 @@ function genPosts(channel, options) {
         angle += angle_increment;
         angle_increment *= 0.9;
         var post = {};
-        post.id = i + 1;
-        post.title = _.sample(fakeTitles);
-        post.description = _.sample(fakeDescriptions);
+        post.title = _.sample(titles);
+        post.description = _.sample(descriptions);
         post.latitude = 23.973875 + radius * Math.sin(angle);
         post.longitude = 120.982024 + radius * Math.cos(angle);
-        post.create_time = pickDateInTurn();
+        post.createdAt = pickDateInTurn();
         if(Math.random() > 0.2){
             post.category = _.sample(categoryIDs);
         }
@@ -189,5 +195,3 @@ function pickDateInTurn () {
     return start + offset;
 }
 
-
-module.exports = data;

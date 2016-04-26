@@ -10,8 +10,23 @@ import config from './config/environment';
 import http from 'http';
 import Q from 'q';
 
-// Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
+var dbGoodToGO = Q.defer();
+
+sqldb.forceSync(sqldb.sequelize)
+.then(() => {
+    // Populate databases with sample data
+    if (config.seedDB) {
+        require('./config/seed')
+        .then(() => {
+            dbGoodToGO.resolve();
+        });
+    }
+    else {
+        dbGoodToGO.resolve();
+    }
+}, (error) => {
+    dbGoodToGO.reject(error);
+});
 
 // Setup server
 var app = express();
@@ -31,7 +46,8 @@ function startServer() {
   });
 }
 
-sqldb.sequelize.sync()
+
+dbGoodToGO.promise
 .then(startServer)
 .catch(function(err) {
 console.log('Server failed to start due to error: %s', err);
