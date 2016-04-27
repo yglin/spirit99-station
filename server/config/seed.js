@@ -54,9 +54,10 @@ User.sync()
                 testUserCreated.reject('Can not find user test@example.com');
             }
         });
-    });
+    })
 })
 .catch((error) => {
+    console.error(error);
     usersPopulated.reject(error);
 });
 
@@ -107,37 +108,41 @@ channelsPopulated.promise.then((channels) => {
 });
 
 function seedChannelDB(channelDB) {
-    var populatedModels = [];
-
     if (!seedData.channelDBs[channelDB.id]) {
         return Q.reject();
     }
 
-    for (var modelName in channelDB.models) {
-        var Model = channelDB.models[modelName];
-        var populated = Q.defer();
+    var sequences = [];
 
-        var bulkData = seedData.channelDBs[channelDB.id][modelName];
-        if (!bulkData) {
+    for (var i = 0; i < ChannelDBs.channelModelsOrdered.length; i++) {
+        var modelName = ChannelDBs.channelModelsOrdered[i];
+        if (!(modelName in seedData.channelDBs[channelDB.id])) {
             continue;
         }
-        Model.sync()
-        .then(() => {
-            return Model.bulkCreate(bulkData)
-            .then(() => {
-                console.log('Populated ' + channelDB.database + '.' + modelName);
-                populated.resolve();
-            });
-        })
-        .catch((error) => {
-            console.error(error);
-            populated.reject(error);
-        });
 
-        populatedModels.push(populated.promise);
+        sequences.push(function (index) {
+            var modelName = ChannelDBs.channelModelsOrdered[index];
+
+            var Model = channelDB.models[modelName];
+
+            var bulkData = seedData.channelDBs[channelDB.id][modelName];
+
+            return (function (model, bulkData) {
+                return model.sync()
+                .then(() => {
+                    console.log('Populate ' + channelDB.database + '.' + modelName);            
+                    return model.bulkCreate(bulkData)
+                    .then(() => {
+                        console.log('... done populating ' + channelDB.database + '.' + modelName);
+                        return index + 1;
+                    });
+                });
+            })(Model, bulkData);
+        });
     }
 
-    return Q.all(populatedModels).then(() => {
+    return sequences.reduce(Q.when, Q(0))
+    .then(() => {
         console.log('finished seeding channel database ' + channelDB.database);
         return Q.resolve();
     }, (error) => {

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-26 20:55:00
+* @Last Modified time: 2016-04-27 09:40:20
 */
 
 'use strict';
@@ -38,7 +38,7 @@ function grabFirstImgUrl(html) {
     return gotit.promise;
 }
 
-export default function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Post = sequelize.define('post', {
         _id: {
             type: DataTypes.INTEGER,
@@ -50,7 +50,7 @@ export default function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: DataTypes.TEXT,
+        content: DataTypes.TEXT,
         latitude: DataTypes.FLOAT,
         longitude: DataTypes.FLOAT,
         category: DataTypes.INTEGER(2),
@@ -58,9 +58,9 @@ export default function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             set: function (value) {
                 if (!value) {
-                    grabFirstImgUrl(this.getDataValue('description'))
+                    grabFirstImgUrl(this.getDataValue('content'))
                     .then(function (url) {
-                        this.setDataValue('thumbnail', value);
+                        this.setDataValue('thumbnail', url);
                     });
                 }
                 else {

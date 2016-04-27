@@ -17,9 +17,7 @@ function setJSON(field) {
         this.setDataValue(field, JSON.stringify(value));
     };
 }
-
-
-export default function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Channel = sequelize.define('channel', {
         id: {
             type: DataTypes.STRING,

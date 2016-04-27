@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-21 12:53:07
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-26 21:01:48
+* @Last Modified time: 2016-04-27 09:24:58
 */
 
 'use strict';
@@ -18,8 +18,6 @@ describe('ChannelUpdate View', function() {
     var testUser = mainDB.users[0];
     
     beforeEach(function() {
-        // page = require('./channel-update.po');
-
         browser.get(config.baseUrl + '/channels/update/' + testChannel.id);
 
         // Login as needed

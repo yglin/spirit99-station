@@ -12,21 +12,25 @@ import Q from 'q';
 
 var dbGoodToGO = Q.defer();
 
-sqldb.forceSync(sqldb.sequelize)
-.then(() => {
-    // Populate databases with sample data
-    if (config.seedDB) {
-        require('./config/seed')
-        .then(() => {
-            dbGoodToGO.resolve();
-        });
-    }
-    else {
-        dbGoodToGO.resolve();
-    }
-}, (error) => {
-    dbGoodToGO.reject(error);
-});
+// Populate databases with sample data
+if (config.seedDB) {
+    sqldb.forceSync(sqldb.sequelize)
+    .then(() => {
+      return require('./config/seed')
+      .then(() => {
+          dbGoodToGO.resolve();
+      });          
+    }, (error) => {
+      dbGoodToGO.reject(error);
+    });
+}
+else {
+    sqldb.sequelize.sync().then(() => {
+      dbGoodToGO.resolve();
+    }, (error) => {
+      dbGoodToGO.reject(error);
+    });
+}
 
 // Setup server
 var app = express();
