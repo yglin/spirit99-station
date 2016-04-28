@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-25 15:28:26
+* @Last Modified time: 2016-04-28 13:52:11
 */
 
 'use strict';
@@ -35,6 +35,7 @@
         $ctrl.updateCategory = updateCategory;
         $ctrl.deleteCategory = deleteCategory;
         $ctrl.clearCategories = clearCategories;
+        $ctrl.doSubmit = doSubmit;
 
         var maxID;
         var categoryDefaults = {
@@ -113,6 +114,14 @@
                 //     delete $ctrl.channel.categories[id];
                 // }
                 $scope.$broadcast('categoriesChanged');
+            });
+        }
+
+        function doSubmit(data) {
+            $ctrl.processingSubmit = true;
+            $ctrl.submit(data)
+            .finally(function () {
+                $ctrl.processingSubmit = false;
             });
         }
     }

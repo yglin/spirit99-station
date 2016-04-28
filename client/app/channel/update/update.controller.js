@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-21 13:25:23
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 15:06:51
+* @Last Modified time: 2016-04-28 14:11:50
 */
 
 'use strict';
@@ -28,19 +28,25 @@
         ////////////////
 
         function activate() {
-            var user = Auth.getCurrentUser();
-            Channel.getFromUser(user._id, $routeParams.id)
-            .then(function (channels) {
-                $ctrl.channel = channels[0];
-            }, function (error) {
-                $window.alert('找不到頻道 ' + $routeParams.id + ' 的資料，或者您沒有權限修改。');
-                $location.path('/');
-                console.error(error);
+            Auth.getCurrentUser(function (user) {
+                if (user._id) {
+                    Channel.getFromUser(user._id, $routeParams.id)
+                    .then(function (channels) {
+                        $ctrl.channel = channels[0];
+                    }, function (error) {
+                        console.error(error);
+                        $window.alert('找不到頻道 ' + $routeParams.id + ' 的資料，或者您沒有權限修改。');
+                        $location.path('/');
+                    });
+                }
+                else {
+                    $location.path('/login');
+                }
             });
         }
 
         function update(channelData) {
-            Channel.update(channelData).then(function () {
+            return Channel.update(channelData).then(function () {
                 $window.alert('更新完成！');
             }, function (error) {
                 $window.alert('更新失敗！');

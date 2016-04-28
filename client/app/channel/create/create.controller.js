@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-25 08:47:55
+* @Last Modified time: 2016-04-28 13:46:27
 */
 
 'use strict';
@@ -25,7 +25,7 @@
         };
 
         function create (channelData) {
-            Channel.create(channelData)
+            return Channel.create(channelData)
             .then(function(response) {
                 $window.alert('新增成功！');
                 $location.path('/channels');

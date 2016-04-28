@@ -20,7 +20,7 @@ var config = {
   // list of files / patterns to load in the browser
   specs: [
     'e2e/channel/channel-create.test.js',
-    // 'e2e/channel/channel-update.test.js',
+    'e2e/channel/channel-update.test.js',
   ],
 
   // Patterns to exclude.

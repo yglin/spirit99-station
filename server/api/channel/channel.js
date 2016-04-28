@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 13:26:02
+* @Last Modified time: 2016-04-28 14:03:32
 */
 
 'use strict';
@@ -150,9 +150,6 @@ function handleEntityNotBelonging(res, user_id, owner_field) {
 
 function saveUpdates(updates) {
     return function(entity) {
-        console.log(entity);
-        console.log('Will save');
-        console.log(updates);
         return entity.updateAttributes(updates)
         .then(updated => {
             return updated;

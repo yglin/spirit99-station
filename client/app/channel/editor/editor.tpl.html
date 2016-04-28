@@ -111,8 +111,11 @@
     <div layout='row'>
         <span flex></span>
         <div>
+            <md-progress-circular ng-show='$ctrl.processingSubmit' class='s99-progress-circular' md-mode='indeterminate'></md-progress-circular>
+        </div>
+        <div>
             <md-button id='submit' class='md-primary md-raised'
-            ng-disabled='channelForm.$invalid' ng-click='$ctrl.submit($ctrl.channel)'>
+            ng-disabled='channelForm.$invalid || $ctrl.processingSubmit' ng-click='$ctrl.doSubmit($ctrl.channel)'>
                 確定
             </md-button>
         </div>
