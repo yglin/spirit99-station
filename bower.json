@@ -15,11 +15,11 @@
     "angular-validation-match": "~1.5.2",
     "angular-messages": "^1.5.3",
     "angular-material": "^1.0.7",
-    "ng-flow": "~2",
     "ng-remote-validate": "^0.6.1",
     "ng-file-upload-shim": "^12.0.4",
     "ng-file-upload": "^12.0.4",
-    "angular-google-maps": "^2.3.2"
+    "angular-google-maps": "^2.3.2",
+    "bootstrap-css-only": "^3.3.6"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"
