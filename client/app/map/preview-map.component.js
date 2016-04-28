@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 16:52:30
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-25 15:30:31
+* @Last Modified time: 2016-04-28 17:04:10
 */
 
 'use strict';
@@ -11,7 +11,7 @@
     'use strict';
 
     angular.module('spirit99StationApp.map')
-    .component('previewMap',{
+    .component('s99PreviewMap',{
         templateUrl: 'app/map/preview-map.tpl.html',
         controller: PreviewMapController,
         bindings: {

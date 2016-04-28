@@ -5,5 +5,6 @@
     }
 </style>
 <ui-gmap-google-map center='$ctrl.map.center' zoom='$ctrl.map.zoom' bounds='$ctrl.map.bounds'>
-    <!-- <ui-gmap-markers models='$ctrl.markers' coords='"self"' icon='"icon"'></ui-gmap-markers> -->
+    <ui-gmap-marker idkey='s99-locate-map-marker' coords='$ctrl.marker'
+    options='{draggable: true}'></ui-gmap-marker>
 </ui-gmap-google-map>

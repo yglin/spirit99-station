@@ -1,0 +1,11 @@
+<span>Latitude: {{$ctrl.post.latitude}}</span>
+<span>Longitude: {{$ctrl.post.longitude}}</span>
+<div layout='column' layout-gt-sm='row' layout-padding>
+    <div>
+        <div style='max-width: 600px;' text-angular ng-model="$ctrl.post.content"></div>
+        <div ng-bind-html="$ctrl.post.content"></div>
+    </div>
+    <div>
+        <s99-locate-map width='300' height='480' marker='$ctrl.post'></s99-locate-map>
+    </div>
+</div>

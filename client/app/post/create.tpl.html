@@ -1,5 +1,2 @@
 <h1>This is {{$ctrl.title}} View</h1>
-<span>Latitude: {{$ctrl.post.latitude}}</span>
-<span>Longitude: {{$ctrl.post.longitude}}</span>
-<div style='max-width: 600px;' text-angular ng-model="$ctrl.post.content"></div>
-<div ng-bind-html="$ctrl.post.content"></div>
+<s99-post-editor ng-if='$ctrl.post' post='$ctrl.post'></s99-post-editor>
