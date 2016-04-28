@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-27 09:40:20
+* @Last Modified time: 2016-04-28 08:57:01
 */
 
 'use strict';
@@ -76,6 +76,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
         freezeTableName: true,
+        timestamps: true,
         indexes: [
             {
                 fields: ['latitude'],

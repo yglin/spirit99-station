@@ -18,9 +18,9 @@ module.exports = {
                     idle: 10000
             },
             logging: false,
-            // define: {
-            //     timestamps: false
-            // }
+            define: {
+                timestamps: false
+            }
         }
     },
 

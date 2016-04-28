@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 17:05:47
+* @Last Modified time: 2016-04-28 13:26:02
 */
 
 'use strict';
@@ -10,7 +10,8 @@
 var Q = require('q');
 var exec = require('child_process').exec;
 var HttpStatus = require('http-status-codes');
-import {Channel} from '../../sqldb'
+import {Channel} from '../../sqldb';
+import {createDB, deleteDB} from '../../sqldb/channels';
 
 module.exports = {
     query: query,
@@ -42,22 +43,37 @@ function query(req, res) {
 
 function create(req, res) {
     // console.log(req.body.id);
-    return createDB(req.body.id)
-    .then(function () {
-        // console.log(req.user);
-        var channel = Channel.build({
-            id: req.body.id,
-            title: req.body.title,
-            description: req.body.description,
-            'logo-url': req.body['logo-url'],
-            categories: req.body.categories,
-            owner_id: req.user._id,
-            state: req.body.state
+    req.on('close', function (error) {
+        req.requestCancelled = true;
+        console.error('request cancelled~!! ');
+    });
+
+    var channel = Channel.build({
+        id: req.body.id,
+        title: req.body.title,
+        description: req.body.description,
+        'logo-url': req.body['logo-url'],
+        categories: req.body.categories,
+        owner_id: req.user._id,
+        state: req.body.state
+    });
+
+    return channel.save()
+    .then(function (entity) {
+        return createDB(channel).then(function () {
+            return Q.resolve(entity);
         });
-        return channel.save();
-    }, handleError(res))
-    .then(respondWithResult(res, 201), handleError(res))
-    .catch(handleError(res));
+    })
+    .then(respondWithResult(res, 201))
+    .finally(function () {
+        if (req.requestCancelled) {
+            channel.destroy()
+            .then(function () {
+                return deleteDB(channel);
+            });
+        }        
+    })
+    .catch(handleError(res))
 }
 
 function update(req, res) {
@@ -98,12 +114,16 @@ function respondWithResult(res, statusCode) {
         if (entity) {
             res.status(statusCode).json(entity);
         }
+        else {
+            return Q.reject('Nothing to be responsed, entity = ' + entity);
+        }
     };
 }
 
 function handleError(res, statusCode) {
     statusCode = statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
     return function(err) {
+        console.error(err);
         res.status(statusCode).send(err);
     };
 }
@@ -139,26 +159,3 @@ function saveUpdates(updates) {
         });
     };
 }
-
-
-function createDB(name) {
-    // var defer = Q.defer();
-    // var cmds;
-    // cmds = 'mysqldump -u' + dbConfig.station.username + ' -p' + dbConfig.station.password + ' -d channel_structure > /tmp/channel.structure.sql';
-    // cmds += ' && ';
-    // cmds += 'mysqladmin -u' + dbConfig.station.username + ' -p' + dbConfig.station.password + ' create ' + name;
-    // cmds += ' && ';
-    // cmds += 'mysql -u' + dbConfig.station.username + ' -p' + dbConfig.station.password + ' ' + name + ' < /tmp/channel.structure.sql';
-
-    // exec(cmds, function (error, stdout, stderr) {
-    //     if (error) {
-    //         defer.reject(error);
-    //     }
-    //     else {
-    //         defer.resolve(stdout);
-    //     }
-    // });
-    // return defer.promise;
-    return Q.resolve();
-}
-

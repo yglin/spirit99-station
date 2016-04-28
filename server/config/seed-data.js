@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-27 14:33:23
+* @Last Modified time: 2016-04-27 19:43:44
 */
 
 'use strict';
@@ -67,7 +67,7 @@ data.mainDB = {
                     }
                 }
             },
-            owner_id: null,
+            owner_id: 1,
             state: 'public'
         }
     ],
@@ -173,7 +173,7 @@ function genComment(channel, options) {
     var descriptions = fakeDescriptions();
     var _fakeUsers = fakeUsers();
     var comments = [];
-    for (var i = count - 1; i >= 0; i--) {
+    for (var i = 0; i < count; i++) {
         var comment = {};
         comment.content = _.sample(descriptions);
         comment.author = _.sample(_fakeUsers).email;

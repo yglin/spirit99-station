@@ -5,111 +5,93 @@
 
 'use strict';
 var Q = require('q');
-import sqldb from '../sqldb';
-import ChannelDBs from '../sqldb/channels';
+var sqldb = require('../sqldb');
+var ChannelDBs = require('../sqldb/channels');
 var seedData = require('./seed-data');
 var Thing = sqldb.Thing;
 var User = sqldb.User;
 var Channel = sqldb.Channel;
 
-var allDone = Q.defer();
-module.exports = allDone.promise;
+module.exports = function (options) {
+    return sqldb.forceSync(sqldb.sequelize)
+    .then(populateThings)
+    .then(populateUsers)
+    .then(populateChannels)
+    .then(seedChannelDatabases);
+}
 
-var thingsPopulated = Q.defer();
-var usersPopulated = Q.defer();
-var channelsPopulated = Q.defer();
-
-Q.all([thingsPopulated, usersPopulated, channelsPopulated])
-.then(() => {
-    allDone.resolve();
-}, (error) => {
-    allDone.reject(error);
-});
-
-Thing.sync()
-.then(() => {
-    return Thing.bulkCreate(seedData.mainDB.things)
+function populateThings() {
+    return Thing.sync()
     .then(() => {
-        console.log('finished populating things');
-        thingsPopulated.resolve();
-    });
-})
-.catch((error) => {
-    thingsPopulated.reject(error);
-});
-
-var testUserCreated = Q.defer();
-
-User.sync()
-.then(() => {
-    return User.bulkCreate(seedData.mainDB.users)
-    .then(() => {
-        console.log('finished populating users');
-        usersPopulated.resolve();
-        return User.findOne({where: {email: 'test@example.com'}}).then(function (user) {
-            if (user) {
-                testUserCreated.resolve(user);
-            }
-            else {
-                testUserCreated.reject('Can not find user test@example.com');
-            }
+        return Thing.bulkCreate(seedData.mainDB.things)
+        .then(() => {
+            console.log('Done populating things');
+            return Q.resolve();
         });
-    })
-})
-.catch((error) => {
-    console.error(error);
-    usersPopulated.reject(error);
-});
+    });
+}
 
-Channel.sync()
-.then(() => {
-    return testUserCreated.promise;
-})
-.then((user) => {
-    for (var i = seedData.mainDB.channels.length - 1; i >= 0; i--) {
-        seedData.mainDB.channels[i].owner_id = user._id;
-    }
-    return Channel.bulkCreate(seedData.mainDB.channels)
+function populateUsers() {
+    return User.sync()
     .then(() => {
-        return Channel.findAll().then((channels) => {
-            if (channels.length > 0) {
-                console.log('finished populating channels');
-                channelsPopulated.resolve(channels);
+        return User.bulkCreate(seedData.mainDB.users)
+        .then(() => {
+            console.log('Done populating users');
+            return Q.resolve();
+        });
+    });
+}
+
+function populateChannels() {
+    return Channel.sync()
+    .then(() => {
+        return Channel.bulkCreate(seedData.mainDB.channels)
+        .then(() => {
+            console.log('Done populating channels');
+            return Q.resolve();
+        });
+    });
+}
+
+function seedChannelDatabases() {
+    return Channel.findAll()
+    .then((channels) => {
+        if (channels.length > 0) {
+            var channelDBsSeeded = [];
+            
+            for (var i = 0; i < channels.length; i++) {
+                var DBSeeded = (function (channel) {
+                    return ChannelDBs.createDB(channel)
+                    .then(() => {
+                        var channelDB = ChannelDBs.dbs[channel.id];
+                        if (channelDB) {
+                            return seedChannelDB(channelDB);
+                        }
+                        else {
+                            return Q.reject();
+                        }
+                    });
+                })(channels[i]);
+
+                channelDBsSeeded.push(DBSeeded);
+            }
+
+            return Q.all(channelDBsSeeded)
+            .then(() => {
+                console.log('Done seeding all channel databases');
                 return Q.resolve();
-            }
-            else {
-                return Q.reject('Find no channel');
-            }
-        });
-    });
-})
-.catch((error) => {
-    channelsPopulated.reject(error);
-});    
-
-channelsPopulated.promise.then((channels) => {
-    var channelDBsSeeded = [];
-    
-    for (var i = channels.length - 1; i >= 0; i--) {
-        var channelDBSeeded = ChannelDBs.create(channels[i])
-        .then((channelDB) => {
-            return channelDB.sequelize.sync().then(() => {
-                return seedChannelDB(channelDB);                
             });
-        });
-        channelDBsSeeded.push(channelDBSeeded);
-    }
-
-    Q.allSettled(channelDBsSeeded)
-    .then(() => {
-        console.log('finished seeding all channel databases');
-        allDone.resolve();
+        }
+        else {
+            console.log('No channels found, no need to seed channel databases');
+            return Q.resolve();
+        }
     });
-});
+}
 
 function seedChannelDB(channelDB) {
     if (!seedData.channelDBs[channelDB.id]) {
-        return Q.reject();
+        return Q.resolve('No fake data of channel ' + channelDB.id);
     }
 
     var sequences = [];
@@ -130,10 +112,9 @@ function seedChannelDB(channelDB) {
             return (function (model, bulkData) {
                 return model.sync()
                 .then(() => {
-                    console.log('Populate ' + channelDB.database + '.' + modelName);            
                     return model.bulkCreate(bulkData)
                     .then(() => {
-                        console.log('... done populating ' + channelDB.database + '.' + modelName);
+                        console.log('Done populating ' + channelDB.database + '.' + modelName);
                         return index + 1;
                     });
                 });
@@ -143,7 +124,7 @@ function seedChannelDB(channelDB) {
 
     return sequences.reduce(Q.when, Q(0))
     .then(() => {
-        console.log('finished seeding channel database ' + channelDB.database);
+        console.log('Done seeding channel database ' + channelDB.database);
         return Q.resolve();
     }, (error) => {
         console.error(error);

@@ -1,6 +1,6 @@
 'use strict';
 
-import crypto from 'crypto';
+var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var validatePresenceOf = function(value) {
@@ -85,6 +85,7 @@ module.exports = function(sequelize, DataTypes) {
 
     }, {
         freezeTableName: true,
+        timestamps: true,
         /**
          * Virtual Getters
          */

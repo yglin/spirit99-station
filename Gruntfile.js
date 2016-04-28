@@ -620,6 +620,31 @@ module.exports = function (grunt) {
         }, 1500);
     });
 
+    grunt.registerTask('seedDB', 'Force sync database and populate fake data', function () {
+        var done = this.async();
+        var seedDB = require('./server/config/seed');
+        seedDB()
+        .then(function () {
+            grunt.log.ok('Seeding data completed');
+            done();
+        }, function (error) {
+            grunt.log.error(error);
+            done(false);
+        });
+    });
+
+    grunt.registerTask('e2eClearData', 'Clear temp data created in e2e test ...', function () {
+        var done = this.async();
+        require('./e2e/mocks/clear-data')()
+        .then(function () {
+            grunt.log.ok('Test data cleared');
+            done();
+        }, function (error) {
+            grunt.log.error(error);
+            done(false);
+        });
+    })
+
     grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
         this.async();
     });
@@ -650,6 +675,7 @@ module.exports = function (grunt) {
             'injector',
             'wiredep:client',
             'postcss',
+            'seedDB',
             'express:dev',
             'wait',
             'open',
@@ -707,8 +733,10 @@ module.exports = function (grunt) {
                     'injector',
                     'wiredep:client',
                     'postcss',
+                    'seedDB',
                     'express:dev',
-                    'protractor'
+                    'protractor',
+                    'e2eClearData'
                 ]);
             }
         }

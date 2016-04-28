@@ -46,7 +46,8 @@ module.exports = function(sequelize, DataTypes) {
             values: ['private', 'public', 'closed']
         }
     }, {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: true
     });
 
     var User = require('../user/user.model')(sequelize, DataTypes);

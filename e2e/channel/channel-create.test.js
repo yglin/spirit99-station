@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-11 19:38:58
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-26 21:01:37
+* @Last Modified time: 2016-04-28 10:24:11
 */
 
 'use strict';
@@ -73,23 +73,6 @@ describe('ChannelCreate View', function() {
             channelEditor.buttonSubmit.click();
             expect(channelEditor.buttonSubmit.isEnabled()).toBe(false);
             expect(channelEditor.messages.channelTitleRequired.isDisplayed()).toBe(true);
-        });
-    });
-
-    afterAll(function () {
-        var cmdCleanupDatabase = 'mysql -uyglin -pturbogan -e "DROP DATABASE IF EXISTS ' + testChannel.id + ';"';
-        exec(cmdCleanupDatabase, function (error, stdout, stderr) {
-            if(error) {
-                console.log('Fail to clean up database!!');
-                console.log(cmdCleanupDatabase);
-                console.log('Error ==========================');
-                console.log(error);
-                console.log('Stdout =========================');
-                console.log(stdout);
-                console.log('Stderr =========================');
-                console.log(stderr);
-                console.log('================================');                
-            }
         });
     });
 });
