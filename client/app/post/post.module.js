@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:27:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 14:28:55
+* @Last Modified time: 2016-04-28 16:40:51
 */
 
 'use strict';
@@ -15,7 +15,7 @@
         'ngMessages',
         'ngSanitize',
         'ngMaterial',
-        'remoteValidation',
+        'textAngular',
         'ygDialog'
     ]);
 })();
