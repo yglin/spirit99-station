@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 17:16:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 13:40:38
+* @Last Modified time: 2016-04-28 20:00:24
 */
 
 'use strict';
@@ -79,7 +79,7 @@ var ChannelEditor = function() {
 
     self.submit = function () {
         self.buttonSubmit.click();
-        browser.wait(protractor.ExpectedConditions.alertIsPresent(), 10000)
+        browser.wait(protractor.ExpectedConditions.alertIsPresent(), 20000)
         .then(function () {
             browser.switchTo().alert().accept();    
         });     

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:05:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 17:38:46
+* @Last Modified time: 2016-04-28 19:54:52
 */
 
 'use strict';
@@ -15,7 +15,8 @@
         templateUrl: 'app/post/editor.tpl.html',
         controller: PostEditorController,
         bindings: {
-            post: '='
+            post: '=',
+            channel: '<'
         }
     });
 

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 14:03:32
+* @Last Modified time: 2016-04-28 19:48:14
 */
 
 'use strict';
@@ -29,6 +29,9 @@ function query(req, res) {
         whereConditions.owner_id = req.params.user_id;
     }
     else {
+        if (req.params.id) {
+            whereConditions.id = req.params.id;
+        }
         whereConditions.state = 'public';
     }
     Channel.findAll({ where: whereConditions}).then(function(channels) {

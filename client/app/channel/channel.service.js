@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 17:04:13
+* @Last Modified time: 2016-04-28 19:38:45
 */
 
 'use strict';
@@ -19,6 +19,7 @@
             query: query,
             create: create,
             update: update,
+            get: get,
             getFromUser: getFromUser
         };
 
@@ -56,6 +57,19 @@
             .then(function (response) {
                 return $q.resolve(response.data);
             }, httpError);
+        }
+
+        function get(channel_id) {
+            var url = '/api/channels/' + channel_id;
+            return $http.get(url)
+            .then(function (response) {
+                if (response.data.length > 0) {
+                    return $q.resolve(response.data[0]);
+                }
+                else {
+                    return $q.reject(response.data);
+                }
+            }, httpError);            
         }
 
         function getFromUser(user_id, channel_id) {

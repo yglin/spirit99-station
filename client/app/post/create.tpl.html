@@ -1,2 +1,2 @@
 <h1>This is {{$ctrl.title}} View</h1>
-<s99-post-editor ng-if='$ctrl.post' post='$ctrl.post'></s99-post-editor>
+<s99-post-editor ng-if='$ctrl.post && $ctrl.channel' post='$ctrl.post' channel='$ctrl.channel'></s99-post-editor>

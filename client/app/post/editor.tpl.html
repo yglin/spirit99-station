@@ -8,6 +8,16 @@
                 <input ng-model='$ctrl.post.title'></input>
             </md-input-container>
         </div>
+        <md-subheader>分類圖標</md-subheader>
+        <div layout='row' layout-wrap layout-padding>
+            <div ng-repeat="(id, category) in $ctrl.channel.categories"
+            layout='column' layout-align='center center'
+            ng-click='$ctrl.selectCategory(id)'
+            ng-class='{"s99-div-selected": id == $ctrl.selectedCategoryID, "s99-div-selectable": id != $ctrl.selectedCategoryID}'>
+                <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
+                <div class='md-caption'>{{category.title}}</div>
+            </div>
+        </div>
         <div text-angular ng-model="$ctrl.post.content"></div>
         <div ng-bind-html="$ctrl.post.content"></div>
     </div>
