@@ -37,6 +37,12 @@
     font-style: italic;
 }
 
+.s99-post-item {
+    margin: 10px 5px;
+    width: 280px;
+    height: 150px;
+}
+
 .s99-post-thumbnail {
     max-width: 96px;
     max-height: 96px;

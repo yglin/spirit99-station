@@ -1,11 +1,18 @@
 <span>Latitude: {{$ctrl.post.latitude}}</span>
 <span>Longitude: {{$ctrl.post.longitude}}</span>
 <div layout='column' layout-gt-sm='row' layout-padding>
-    <div>
-        <div style='max-width: 600px;' text-angular ng-model="$ctrl.post.content"></div>
+    <div style='max-width: 600px;'>
+        <div layout-padding>
+            <md-input-container class='md-block' flex-gt-xs>
+                <label>標題</label>
+                <input ng-model='$ctrl.post.title'></input>
+            </md-input-container>
+        </div>
+        <div text-angular ng-model="$ctrl.post.content"></div>
         <div ng-bind-html="$ctrl.post.content"></div>
     </div>
     <div>
+        <s99-post-item post='$ctrl.post'></s99-post-item>
         <s99-locate-map width='300' height='480' marker='$ctrl.post'></s99-locate-map>
     </div>
 </div>
