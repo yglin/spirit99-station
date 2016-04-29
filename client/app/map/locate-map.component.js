@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 16:59:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 17:42:14
+* @Last Modified time: 2016-04-29 09:24:28
 */
 
 'use strict';
@@ -17,7 +17,7 @@
         bindings: {
             width: '@',
             height: '@',
-            marker: '='
+            marker: '=',
         }
     });
 
@@ -47,6 +47,8 @@
         };
 
         $ctrl.$onInit = function () {
+            $ctrl.marker.draggable = true;
+
             if ($ctrl.marker.latitude && $ctrl.marker.longitude) {
                 $ctrl.map.center.latitude = $ctrl.marker.latitude;
                 $ctrl.map.center.longitude = $ctrl.marker.longitude;

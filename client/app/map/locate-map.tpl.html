@@ -4,7 +4,8 @@
         height: {{$ctrl.height}}px;
     }
 </style>
+<h5 class='s99-hint'>拖曳圖標可以更改位置</h5>
 <ui-gmap-google-map center='$ctrl.map.center' zoom='$ctrl.map.zoom' bounds='$ctrl.map.bounds'>
     <ui-gmap-marker idkey='s99-locate-map-marker' coords='$ctrl.marker'
-    options='{draggable: true}'></ui-gmap-marker>
+    options='$ctrl.marker'></ui-gmap-marker>
 </ui-gmap-google-map>
