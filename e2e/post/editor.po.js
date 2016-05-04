@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 15:43:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 10:15:43
+* @Last Modified time: 2016-05-04 17:37:56
 */
 
 'use strict';
@@ -15,6 +15,8 @@ function EditorPage() {
     this.root = element(by.css('#post-editor-root'));
     this.title = this.root.element(by.css('input[name=title]'));
     this.author = this.root.element(by.css('input[name=author]'));
+    this.latitude = this.root.element(by.css('input[name=latitude]'));
+    this.longitude = this.root.element(by.css('input[name=longitude]'));
     this.buttonSubmit = this.root.element(by.css('#submit'));
 
     this.selectCategory = selectCategory;
@@ -25,9 +27,12 @@ function EditorPage() {
 
 function inputContent(content) {
     var textAngular = this.root.element(by.css('#post-content-input'));
+    var textAngularTextArea = textAngular.element(by.css('textarea'));
     expect(textAngular.isPresent()).toBe(true);
     textAngular.click();
-    browser.actions().sendKeys(util.getTextFromHtml(content)).perform();
+    element(by.css('button[name=html]')).click();
+    textAngularTextArea.clear();
+    textAngularTextArea.sendKeys(content);
 }
 
 function selectCategory(id) {
@@ -55,6 +60,14 @@ function apply(post) {
     }
     if (post.category) {
         this.selectCategory(post.category);
+    }
+    if (post.latitude) {
+        this.latitude.clear();
+        this.latitude.sendKeys(post.latitude);
+    }
+    if (post.longitude) {
+        this.longitude.clear();
+        this.longitude.sendKeys(post.longitude);
     }
 }
 

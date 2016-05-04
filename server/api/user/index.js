@@ -26,7 +26,6 @@ function (req, res, next) {
 },
 auth.isAuthenticated(),
 function (req, res, next) {
-    console.log('Hi~ mom, check user id = ' + req.user._id);
     if (req.user._id != req.locals.user_id) {
         console.error('User ID not match, ' + req.user._id + ' != ' + req.locals.user_id);
         res.status(HttpStatus.UNAUTHORIZED).end();

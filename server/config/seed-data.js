@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 13:32:02
+* @Last Modified time: 2016-05-04 19:36:05
 */
 
 'use strict';
@@ -154,7 +154,7 @@ function genPosts(channel, options) {
         angle_increment *= 0.9;
         var post = {};
         post.title = _.sample(titles);
-        post.content = _.sample(descriptions);
+        post.content = '<p>' + _.sample(descriptions) + '</p>';
         post.latitude = 23.973875 + radius * Math.sin(angle);
         post.longitude = 120.982024 + radius * Math.cos(angle);
         post.author = _.sample(_fakeUsers).email;

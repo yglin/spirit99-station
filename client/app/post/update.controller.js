@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-03 19:53:57
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 13:40:33
+* @Last Modified time: 2016-05-04 16:29:18
 */
 
 'use strict';
@@ -22,6 +22,7 @@
         $ctrl.title = 'Post Update View';
         $ctrl.channel = undefined;
         $ctrl.post = undefined;
+        $ctrl.update = update;
 
         activate();
 
@@ -33,7 +34,7 @@
                 Util.returnUrl();
                 return;
             }
-            
+
             Auth.getCurrentUser(function (user) {
                 if (user._id) {
                     Channel.get($routeParams.channel_id)
@@ -54,6 +55,16 @@
                     });
                 }
             });
+        }
+
+        function update(data) {
+            return Post.update($routeParams.channel_id, $routeParams.post_id, data)
+            .then(function () {
+                $window.alert('修改完成~!!');
+                Util.returnUrl('/' + $routeParams.channel_id + '/posts/' + $routeParams.post_id);
+            }, function (error) {
+                $window.alert('修改失敗...');
+            })
         }
     }
 })();

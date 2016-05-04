@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-29 13:12:03
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 13:36:22
+* @Last Modified time: 2016-05-04 21:22:19
 */
 
 'use strict';
@@ -14,24 +14,47 @@
         .module('spirit99StationApp.post')
         .service('Post', Post);
 
-    Post.$inject = ['$http', '$q'];
+    Post.$inject = ['$http', '$q', 'Auth'];
 
     /* @ngInject */
-    function Post($http, $q) {
+    function Post($http, $q, Auth) {
         var self = this;
-        self.create = create;
         self.get = get;
+        self.create = create;
+        self.update = update;
         self.getFromUser = getFromUser;
 
         ////////////////
-        function httpError(error) {
+        function httpError(error, defer) {
+            console.error(error);
             return $q.reject(error.data);
         }
 
         function create(channel_id, data) {
-            return $http.post('/api/channels/' + channel_id + '/posts', data)
+            var postCreated = $q.defer();
+            Auth.getCurrentUser(function (user) {
+                var apiPath = '/api';
+                if (user && user._id) {
+                    apiPath += '/users/' + user._id;
+                }
+                apiPath += '/channels/' + channel_id + '/posts';
+
+                $http.post(apiPath, data)
+                .then(function (response) {
+                    postCreated.resolve(response.data);
+                }, function (error) {
+                    console.error(error);
+                    postCreated.reject(error);
+                });
+                
+            });
+            return postCreated.promise;
+        }
+
+        function update(channel_id, post_id, data) {
+            return $http.put('/api/channels/' + channel_id + '/posts/' + post_id, data)
             .then(function (response) {
-                return $q.resolve(response.data);
+                return $q.resolve(response);
             }, httpError);
         }
 

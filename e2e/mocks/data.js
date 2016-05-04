@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-21 13:05:34
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-02 19:27:36
+* @Last Modified time: 2016-05-04 19:33:01
 */
 
 'use strict';
@@ -59,7 +59,7 @@ module.exports = {
     posts: [
         {
             title: '作者的家',
-            content: '這裡是窮光蛋作者的家...',
+            content: '<p>這裡是窮光蛋作者的家...</p>',
             category: 2,
             author: 'YGG@ygmail.tw',
             latitude: 24.081111,

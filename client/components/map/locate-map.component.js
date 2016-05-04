@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 16:59:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 17:49:37
+* @Last Modified time: 2016-05-04 16:34:29
 */
 
 'use strict';
@@ -19,7 +19,7 @@
             height: '@',
             coords: '=',
             icon: '=',
-            readonly: '='
+            editable: '='
         }
     });
 
@@ -72,11 +72,11 @@
                     $ctrl.marker.coords.longitude = $ctrl.map.center.longitude;
                 }            
 
-                if ($ctrl.readonly) {
-                    $ctrl.marker.options.draggable = false;
+                if ($ctrl.editable) {
+                    $ctrl.marker.options.draggable = true;
                 }
                 else {
-                    $ctrl.marker.options.draggable = true;                
+                    $ctrl.marker.options.draggable = false;                
                 }
 
                 onChangeIcon($ctrl.icon);

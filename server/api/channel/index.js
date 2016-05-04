@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-18 14:22:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 13:19:56
+* @Last Modified time: 2016-05-04 16:24:38
 */
 
 'use strict';
@@ -28,7 +28,6 @@ router.use('/:channel_id/posts', function (req, res, next) {
     }
 
     req.locals.Post = channelDBs.getModel(req.params.channel_id, 'post');
-    console.log('Hi~ mom, get post model = ' + req.locals.Post);
     if (req.locals.Post) {
         next();
     }
