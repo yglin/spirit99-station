@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 08:57:01
+* @Last Modified time: 2016-05-04 10:57:46
 */
 
 'use strict';
@@ -14,7 +14,7 @@ function grabFirstImgUrl(html) {
     var gotit = Q.defer();
     jsdom.env(
         html,
-        function (errors, window) {
+        function (error, window) {
             if (error) {
                 console.error('Failed to grab first img url from ' + html);
                 gotit.reject(error);
@@ -51,8 +51,8 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         content: DataTypes.TEXT,
-        latitude: DataTypes.FLOAT,
-        longitude: DataTypes.FLOAT,
+        latitude: DataTypes.DECIMAL(10, 7),
+        longitude: DataTypes.DECIMAL(10, 7),
         category: DataTypes.INTEGER(2),
         thumbnail: {
             type: DataTypes.STRING,
@@ -68,12 +68,8 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        author: {
-            type: DataTypes.STRING,
-            validate: {
-                isEmail: true
-            }
-        }
+        author: DataTypes.STRING,
+        owner_id: DataTypes.INTEGER
     }, {
         freezeTableName: true,
         timestamps: true,
@@ -85,6 +81,10 @@ module.exports = function(sequelize, DataTypes) {
             {
                 fields: ['longitude'],
                 method: 'BTREE'                
+            },
+            {
+                fields: ['owner_id'],
+                method: 'BTREE'
             }
         ]
     });

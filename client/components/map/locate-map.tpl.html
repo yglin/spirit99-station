@@ -1,0 +1,19 @@
+<style type="text/css">
+    .angular-google-map-container {
+        width: {{$ctrl.width}}px;
+        height: {{$ctrl.height}}px;
+    }
+</style>
+<h5 class='s99-hint' ng-hide='$ctrl.readonly'>拖曳圖標可以更改位置</h5>
+<div>
+    <div ng-if='!$ctrl.showMap' layout='column' layout-align='center center' class='angular-google-map-container'>
+        <md-progress-circular md-mode='indeterminate' md-diameter="100"></md-progress-circular>
+    </div>
+    <ui-gmap-google-map ng-if='$ctrl.showMap' center='$ctrl.map.center' zoom='$ctrl.map.zoom' bounds='$ctrl.map.bounds'>
+        <ui-gmap-marker idkey='s99-locate-map-marker' coords='$ctrl.marker.coords' options='$ctrl.marker.options'></ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
+<div style='display:none;' id='s99-locate-map-debug-div'
+latitude={{$ctrl.marker.coords.latitude}}
+longitude={{$ctrl.marker.coords.longitude}}>
+</div>

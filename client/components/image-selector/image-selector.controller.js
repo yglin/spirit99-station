@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-15 10:48:59
+* @Last Modified time: 2016-05-03 11:50:07
 */
 
 'use strict';
@@ -46,7 +46,10 @@
         }
 
         function confirm() {
-            $mdDialog.hide($ctrl.image.url);
+            $mdDialog.hide({
+                url: $ctrl.image.url,
+                anchor: $ctrl.anchor
+            });
         }
 
         function uploadFile(file, invalidFiles) {

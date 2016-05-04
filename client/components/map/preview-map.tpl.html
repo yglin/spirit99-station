@@ -1,0 +1,14 @@
+<style type="text/css">
+    .angular-google-map-container {
+        width:{{$ctrl.width}}px;
+        height: {{$ctrl.height}}px;
+    }
+</style>
+<div>
+    <div ng-if='!$ctrl.showMap' layout='column' layout-align='center center' class='angular-google-map-container'>
+        <md-progress-circular md-mode='indeterminate' md-diameter="100"></md-progress-circular>
+    </div>
+    <ui-gmap-google-map ng-if='$ctrl.showMap' center='$ctrl.map.center' zoom='$ctrl.map.zoom' bounds='$ctrl.map.bounds'>
+        <ui-gmap-markers models='$ctrl.markers' coords='"self"' icon='"icon"'></ui-gmap-markers>
+    </ui-gmap-google-map>
+</div>

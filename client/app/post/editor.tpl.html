@@ -1,28 +1,61 @@
-<span>Latitude: {{$ctrl.post.latitude}}</span>
-<span>Longitude: {{$ctrl.post.longitude}}</span>
+<div id='post-editor-root'>
+<form name='postForm'>
 <div layout='column' layout-gt-sm='row' layout-padding>
     <div style='max-width: 600px;'>
         <div layout-padding>
             <md-input-container class='md-block' flex-gt-xs>
                 <label>標題</label>
-                <input ng-model='$ctrl.post.title'></input>
+                <input name='title' ng-model='$ctrl.post.title' required></input>
+                <div ng-messages='postForm.title.$error'>
+                    <div ng-message='required'>標題是必填欄位</div>
+                </div>
             </md-input-container>
         </div>
         <md-subheader>分類圖標</md-subheader>
         <div layout='row' layout-wrap layout-padding>
-            <div ng-repeat="(id, category) in $ctrl.channel.categories"
-            layout='column' layout-align='center center'
-            ng-click='$ctrl.selectCategory(id)'
-            ng-class='{"s99-div-selected": id == $ctrl.selectedCategoryID, "s99-div-selectable": id != $ctrl.selectedCategoryID}'>
-                <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
-                <div class='md-caption'>{{category.title}}</div>
+            <div ng-repeat="(id, category) in $ctrl.channel.categories">
+                <div layout='column' layout-align='center center'
+                id='category-button-{{id}}'
+                ng-click='$ctrl.selectCategory(id)'
+                style="outline: none;min-width: 64px;min-height: 64px;" 
+                ng-class='{"md-whiteframe-10dp": id == $ctrl.selectedCategoryID,
+                "md-whiteframe-3dp": id == $ctrl.hoveredCategoryID}'
+                ng-mouseenter="$ctrl.hoveredCategoryID = id;"
+                ng-mouseleave="$ctrl.hoveredCategoryID = -1;">
+                    <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
+                    <div class='md-caption'>{{category.title}}</div>
+                </div>
             </div>
         </div>
-        <div text-angular ng-model="$ctrl.post.content"></div>
-        <div ng-bind-html="$ctrl.post.content"></div>
+        <div id='post-content-input' text-angular ng-model="$ctrl.post.content" ng-change='$ctrl.onChangeContent()'></div>
+        <md-button id='select-logo' class='md-raised'
+        ng-click='$ctrl.addImage()'>上傳圖片</md-button>
+        <div layout-padding>
+            <md-input-container class='md-block' flex-gt-xs>
+                <label>作者</label>
+                <input name='author' ng-model='$ctrl.post.author' required></input>
+                <div ng-messages='postForm.author.$error'>
+                    <div ng-message='required'>作者是必填欄位</div>
+                </div>
+            </md-input-container>
+        </div>
     </div>
     <div>
         <s99-post-item post='$ctrl.post'></s99-post-item>
-        <s99-locate-map width='300' height='480' marker='$ctrl.post'></s99-locate-map>
+        <s99-locate-map width='300' height='480' coords='$ctrl.post' icon='$ctrl.postIcon'></s99-locate-map>
     </div>
+</div>
+<div layout='row'>
+    <span flex></span>
+    <div>
+        <md-progress-circular ng-show='$ctrl.processingSubmit' class='s99-progress-circular' md-mode='indeterminate'></md-progress-circular>
+    </div>
+    <div>
+        <md-button id='submit' class='md-primary md-raised'
+        ng-disabled='postForm.$invalid || $ctrl.processingSubmit' ng-click='$ctrl.doSubmit($ctrl.post)'>
+            確定
+        </md-button>
+    </div>
+</div>
+</form>
 </div>

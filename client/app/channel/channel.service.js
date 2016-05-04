@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 19:38:45
+* @Last Modified time: 2016-04-29 13:29:47
 */
 
 'use strict';
@@ -35,7 +35,7 @@
         }
 
         function create(channelData) {
-            console.log(channelData);
+            // console.log(channelData);
             channelData.state = 'private';
             if (channelData.public) {
                 channelData.state = 'public';

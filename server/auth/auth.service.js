@@ -32,14 +32,14 @@ export function isAuthenticated() {
                     _id: req.user._id
                 }
             })
-                .then(user => {
-                    if (!user) {
-                        return res.status(401).end();
-                    }
-                    req.user = user;
-                    next();
-                })
-                .catch(err => next(err));
+            .then(user => {
+                if (!user) {
+                    return res.status(401).end();
+                }
+                req.user = user;
+                next();
+            })
+            .catch(err => next(err));
         });
 }
 

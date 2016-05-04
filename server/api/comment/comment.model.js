@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 09:26:00
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 08:56:53
+* @Last Modified time: 2016-05-03 10:05:39
 */
 
 'use strict';
@@ -17,12 +17,7 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true
         },
         content: DataTypes.TEXT,
-        author: {
-            type: DataTypes.STRING,
-            validate: {
-                isEmail: true
-            }
-        }
+        author: DataTypes.STRING
     }, {
         freezeTableName: true,
         timestamps: true

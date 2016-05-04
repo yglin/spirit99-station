@@ -35,6 +35,23 @@
         </p>
     </div>
     <form name='imageForm'>
+        <div ng-if='$ctrl.anchor'>
+            <h5 class='s99-hint'>選擇錨點</h5>
+            <md-radio-group ng-model='$ctrl.anchor' layout='row' layout-padding>
+                <div layout='column' layout-align='center center'>
+                    <img src='assets/images/marker-anchor-left.jpg'>
+                    <md-radio-button value='left' aria-label='anchor-left'>靠左</md-radio-button>
+                </div>
+                <div layout='column' layout-align='center center'>
+                    <img src='assets/images/marker-anchor-middle.jpg'>
+                    <md-radio-button value='middle' aria-label='anchor-middle'>置中</md-radio-button>
+                </div>
+                <div layout='column' layout-align='center center'>
+                    <img src='assets/images/marker-anchor-right.jpg'>
+                    <md-radio-button value='right' aria-label='anchor-right'>靠右</md-radio-button>
+                </div>
+            </md-radio-group>
+        </div>
         <md-input-container class='md-block'>
             <label>圖片網址</label>
             <input type='url' name='imageUrl' ng-model='$ctrl.image.url' required>

@@ -52,7 +52,11 @@
                 <div ng-repeat="(id, category) in $ctrl.channel.categories"
                 layout='column' layout-align='center center'
                 ng-click='$ctrl.selectCategory(id)'
-                ng-class='{"s99-div-selected": id == $ctrl.selectedCategoryID, "s99-div-selectable": id != $ctrl.selectedCategoryID}'>
+                style="outline: none;min-width: 64px;min-height: 64px;" 
+                ng-class='{"md-whiteframe-10dp": id == $ctrl.selectedCategoryID,
+                "md-whiteframe-3dp": id == $ctrl.hoveredCategoryID}'
+                ng-mouseenter="$ctrl.hoveredCategoryID = id;"
+                ng-mouseleave="$ctrl.hoveredCategoryID = -1;">
                     <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
                     <div class='md-caption'>{{category.title}}</div>
                 </div>

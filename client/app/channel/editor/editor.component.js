@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 13:52:11
+* @Last Modified time: 2016-05-03 11:51:39
 */
 
 'use strict';
@@ -55,8 +55,8 @@
                 maxHeight: 64,
                 maxSizeMb: 1
             })
-            .then(function(imgUrl) {
-                $ctrl.channel['logo-url'] = imgUrl;
+            .then(function(data) {
+                $ctrl.channel['logo-url'] = data.url;
             });
         }
 
@@ -75,11 +75,13 @@
             ImageSelector.select({
                 maxWidth: 48,
                 maxHeight: 48,
-                maxSizeMb: 1
+                maxSizeMb: 1,
+                anchor: 'middle'
             })
-            .then(function(imgUrl) {
+            .then(function(data) {
                 $ctrl.category.icon = {
-                    url: imgUrl
+                    url: data.url,
+                    anchor: data.anchor
                 };
             });            
         }

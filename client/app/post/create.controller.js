@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:25:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 19:43:39
+* @Last Modified time: 2016-05-02 19:25:02
 */
 
 'use strict';
@@ -13,14 +13,15 @@
     .module('spirit99StationApp.post')
     .controller('PostCreateController', PostCreateController);
 
-    PostCreateController.$inject = ['$window', '$location', '$routeParams', 'Channel'];
+    PostCreateController.$inject = ['$window', 'Util', '$q', '$routeParams', 'Channel', 'Post'];
 
     /* @ngInject */
-    function PostCreateController($window, $location, $routeParams, Channel) {
+    function PostCreateController($window, Util, $q, $routeParams, Channel, Post) {
         var $ctrl = this;
         $ctrl.title = 'Create Post';
         $ctrl.post = undefined;
         $ctrl.channel = undefined;
+        $ctrl.create = create;
 
         activate();
 
@@ -38,14 +39,21 @@
                 }, function (error) {
                     console.error(error);
                     $window.alert('找不到頻道 ' + $routeParams.channel_id + ' 的資料');
-                    if ($routeParams.returnUrl) {
-                        $window.location.href = $routeParams.returnUrl;
-                    }
-                    else {
-                        $location.path('/');
-                    }
+                    Util.returnUrl()
                 });
             }
+        }
+
+        function create(data) {
+            return Post.create($routeParams.channel_id, data)
+            .then(function (post) {
+                $window.alert('發佈成功~!!');
+                Util.returnUrl('/' + $routeParams.channel_id + '/posts/' + post._id);
+                return $q.resolve();
+            }, function (error) {
+                $window.alert('發佈失敗...');
+                return $q.reject();
+            });
         }
     }
 })();

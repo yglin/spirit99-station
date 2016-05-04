@@ -6,6 +6,7 @@
 
 import express from 'express';
 import sqldb from './sqldb';
+import channelDBs from './sqldb/channels'
 import config from './config/environment';
 import http from 'http';
 import Q from 'q';
@@ -31,6 +32,7 @@ function startServer() {
 }
 
 sqldb.sequelize.sync()
+.then(channelDBs.connectAll)
 .then(startServer)
 .catch(function(err) {
 console.log('Server failed to start due to error: %s', err);

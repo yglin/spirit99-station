@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 19:48:14
+* @Last Modified time: 2016-05-04 11:31:34
 */
 
 'use strict';
@@ -22,18 +22,17 @@ module.exports = {
 
 function query(req, res) {
     var whereConditions = {};
-    if (req.params.user_id) {
-        if (req.params.channel_id) {
-            whereConditions.id = req.params.channel_id;
-        }
-        whereConditions.owner_id = req.params.user_id;
+    if (req.locals && req.locals.user_id) {
+        whereConditions.owner_id = req.locals.user_id;
     }
     else {
-        if (req.params.id) {
-            whereConditions.id = req.params.id;
-        }
         whereConditions.state = 'public';
     }
+
+    if (req.params.id) {
+        whereConditions.id = req.params.id;
+    }
+    
     Channel.findAll({ where: whereConditions}).then(function(channels) {
         if (!channels || !channels.length || channels.length == 0) {
             handleError(res, HttpStatus.NOT_FOUND)();

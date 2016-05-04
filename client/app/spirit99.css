@@ -6,6 +6,12 @@
     height: 150px;
 }
 
+.s99-channel-item pre {
+    white-space: pre-line;
+    background-color: white;
+    border: none;
+}
+
 .s99-channel-logo {
     width:64px;
     height:64px;
@@ -41,6 +47,12 @@
     margin: 10px 5px;
     width: 280px;
     height: 150px;
+}
+
+.s99-post-item pre {
+    white-space: pre-line;
+    background-color: white;
+    border: none;
 }
 
 .s99-post-thumbnail {

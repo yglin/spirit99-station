@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:50:10
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 18:25:27
+* @Last Modified time: 2016-05-02 10:20:42
 */
 
 'use strict';
@@ -12,7 +12,7 @@
 
     angular.module('spirit99StationApp.post')
     .component('s99PostItem',{
-        templateUrl: 'app/post/post-item.tpl.html',
+        templateUrl: 'app/post/item.tpl.html',
         controller: PostItemController,
         bindings: {
             post: '='

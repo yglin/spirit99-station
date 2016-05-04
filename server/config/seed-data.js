@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-27 19:43:44
+* @Last Modified time: 2016-05-04 13:32:02
 */
 
 'use strict';
@@ -39,30 +39,35 @@ data.mainDB = {
                 1: {
                     title: 'sweat',
                     icon: {
+                        anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/sweat.png'
                     }
                 },
                 2: {
                     title: '哭哭',
                     icon: {
+                        anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/cry.png'
                     }
                 },
                 3: {
                     title: 'love',
                     icon: {
+                        anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/love.png'
                     }
                 },
                 4: {
                     title: 'startle',
                     icon: {
+                        anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/startle.png'
                     }
                 },
                 5: {
                     title: '龜藍波火',
                     icon: {
+                        anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/fire.png'
                     }
                 }
@@ -153,6 +158,7 @@ function genPosts(channel, options) {
         post.latitude = 23.973875 + radius * Math.sin(angle);
         post.longitude = 120.982024 + radius * Math.cos(angle);
         post.author = _.sample(_fakeUsers).email;
+        post.owner_id = 1;
         post.createdAt = pickDateInTurn();
         if(Math.random() > 0.2){
             post.category = _.sample(categoryIDs);

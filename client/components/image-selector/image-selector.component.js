@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-12 16:54:01
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 13:31:13
+* @Last Modified time: 2016-05-03 11:46:51
 */
 
 'use strict';
@@ -17,7 +17,8 @@
         bindings: {
             maxWidth: '@',
             maxHeight: '@',
-            maxSizeMb: '@'
+            maxSizeMb: '@',
+            anchor: '@'
         }
     });
 
