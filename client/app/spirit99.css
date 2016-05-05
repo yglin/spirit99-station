@@ -45,8 +45,11 @@
 
 .s99-post-item {
     margin: 10px 5px;
-    width: 280px;
-    height: 150px;
+    max-width: 280px;
+}
+
+.s99-post-item div {
+    max-width: 100%;
 }
 
 .s99-post-item pre {
@@ -56,8 +59,8 @@
 }
 
 .s99-post-thumbnail {
-    max-width: 96px;
-    max-height: 96px;
+    width: 96px;
+    height: 96px;
 }
 
 .s99-category-icon {

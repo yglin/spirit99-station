@@ -6,15 +6,15 @@
 </style>
 <div id='s99-locate-map'>
 <h5 class='s99-hint' ng-show='$ctrl.editable'>拖曳圖標可以更改位置，或輸入經緯度</h5>
-<div layout='row' ng-show='$ctrl.editable' layout-padding>
+<div layout='row' ng-show='$ctrl.editable'>
     <input name='latitude' ng-model='$ctrl.marker.coords.latitude' placeholder='緯度'></input>
-    <span flex></span>
-    <input name='longitude' ng-model='$ctrl.marker.coords.longitude' placeholder='經度'></input>
+    <input flex name='longitude' ng-model='$ctrl.marker.coords.longitude' placeholder='經度'></input>
 </div>
 <div layout='row' ng-hide='$ctrl.editable' layout-padding>
 <div><span>緯度：</span><span id='latitude'>{{$ctrl.marker.coords.latitude | number: 6}}</span></div>
 <div><span>經度：</span><span id='longitude'>{{$ctrl.marker.coords.longitude | number: 6}}</span></div>
 </div>
+<br>
 <div>
     <div ng-if='!$ctrl.showMap' layout='column' layout-align='center center' class='angular-google-map-container'>
         <md-progress-circular md-mode='indeterminate' md-diameter="100"></md-progress-circular>

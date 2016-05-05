@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:08:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-23 13:31:06
+* @Last Modified time: 2016-05-05 10:58:22
 */
 
 'use strict';
@@ -35,6 +35,7 @@
                 controller: 'ImageSelectorController',
                 controllerAs: '$ctrl',
                 bindToController: true,
+                clickOutsideToClose: true,
                 locals: options
             })
             .then(function(url) {

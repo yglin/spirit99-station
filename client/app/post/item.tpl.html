@@ -1,18 +1,13 @@
-<div class='s99-post-item'>
-<div style='position:relative;'>
-    <div md-whiteframe="6" layout='row'
-    style='position: absolute;top:10px; left: 15px'>
-        <div style='width:90px;'></div>
-        <div layout='column' style='width:210px;min-height:100px;'>
-            <h4 class='s99-post-title'>{{$ctrl.post.title}}</h4>
-            <div class='s99-post-content' style="margin-left: 20px;">
-                <pre>{{$ctrl.getHeaderTextFromHtml($ctrl.post.content, 50)}}</pre>
-            </div>
-        </div>
-    </div>
-    <div style='position:absolute;top:0px;left:0px;'>
+<div class='s99-post-item' layout='row' layout-align='start start'>
+    <div style='max-width:96px; min-width: 96px; z-index: 10;'>
         <img class='s99-post-thumbnail'
         ng-src='{{$ctrl.post.thumbnail}}' ng-show='$ctrl.post.thumbnail'>
     </div>
-</div>
+    <div md-whiteframe="6" style='margin-left:-80px;margin-top:10px;z-index: 9;' layout-padding>
+        <h4 class='s99-post-title' style='margin-left: 80px;min-height: 60px'>{{$ctrl.post.title}}</h4>
+        <div class='s99-post-content'>
+            <pre>{{$ctrl.getHeaderTextFromHtml($ctrl.post.content, 50)}}</pre>
+        </div>
+    </div>
+    <!-- <div style='clear: both;'></div> -->
 </div>
