@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-03 19:58:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 20:01:14
+* @Last Modified time: 2016-05-05 09:08:09
 */
 
 'use strict';
@@ -33,6 +33,6 @@ describe('Update Post View', function() {
         editor.apply(updateData);
         editor.submit();
         util.waitForRedirect(config.baseUrl + '/' + testChannel.id + '/posts/' + testPostID);
-        viewer.equalToPost(updateData);
+        viewer.equalTo(updateData, testChannel);
     });
 });

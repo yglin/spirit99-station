@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 10:18:04
+* @Last Modified time: 2016-05-05 08:46:07
 */
 
 'use strict';
@@ -26,6 +26,6 @@ describe('Create Post View', function() {
         editPage.apply(testPost);
         editPage.submit();
         browser.waitForAngular();
-        viewPage.equalToPost(testPost);
+        viewPage.equalTo(testPost, testChannel);
     });
 });

@@ -2,6 +2,8 @@
 <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
 <div layout='column' layout-gt-sm='row'>
 <div style='max-width: 600px;' layout-margin>
+    <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
+    <span class='s99-category-title'>{{$ctrl.categoryTitle}}</span>
     <md-content style='min-height: 200px;'>
         <div class='s99-post-content' ng-bind-html="$ctrl.post.content"></div>
     </md-content>
@@ -10,6 +12,6 @@
         <span flex></span></span><span class='s99-post-author'>{{$ctrl.post.author}}</span>
     </div>
 </div>
-    <s99-locate-map ng-if='$ctrl.post' width='300' height='480' coords='$ctrl.post' icon='$ctrl.postIcon'></s99-locate-map>
+    <s99-locate-map ng-if='$ctrl.post' width='300' height='480' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
 </div>
 </div>

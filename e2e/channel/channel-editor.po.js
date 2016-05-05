@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 17:16:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 20:00:24
+* @Last Modified time: 2016-05-05 09:09:26
 */
 
 'use strict';
@@ -61,10 +61,10 @@ var ChannelEditor = function() {
                     dialog.confirm();                    
                 }
             });
-            for (var i = 0; i < channel.categories.length; i++) {
-                self.categoryTitle.sendKeys(channel.categories[i].title);
+            for (var id in channel.categories) {
+                self.categoryTitle.sendKeys(channel.categories[id].title);
                 self.categoryIcon.click();
-                imageSelector.select(channel.categories[i].icon.url);
+                imageSelector.select(channel.categories[id].icon.url);
                 self.buttonAddCategory.click();
             }
         }

@@ -4,6 +4,7 @@
         height: {{$ctrl.height}}px;
     }
 </style>
+<div id='s99-locate-map'>
 <h5 class='s99-hint' ng-show='$ctrl.editable'>拖曳圖標可以更改位置，或輸入經緯度</h5>
 <div layout='row' ng-show='$ctrl.editable' layout-padding>
     <input name='latitude' ng-model='$ctrl.marker.coords.latitude' placeholder='緯度'></input>
@@ -21,4 +22,5 @@
     <ui-gmap-google-map ng-if='$ctrl.showMap' center='$ctrl.map.center' zoom='$ctrl.map.zoom' bounds='$ctrl.map.bounds'>
         <ui-gmap-marker idkey='s99-locate-map-marker' coords='$ctrl.marker.coords' options='$ctrl.marker.options'></ui-gmap-marker>
     </ui-gmap-google-map>
+</div>
 </div>

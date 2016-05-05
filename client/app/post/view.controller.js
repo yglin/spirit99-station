@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-02 13:36:42
+* @Last Modified time: 2016-05-05 08:55:34
 */
 
 'use strict';
@@ -21,7 +21,8 @@
         var $ctrl = this;
         $ctrl.title = 'Post View';
         $ctrl.post = undefined;
-        $ctrl.postIcon = undefined;
+        $ctrl.categoryIcon = undefined;
+        $ctrl.categoryTitle = undefined;
 
         activate();
 
@@ -36,7 +37,9 @@
                     Channel.get($routeParams.channel_id).then(function (channel) {
                         if (post.category && channel.categories
                         && post.category in channel.categories) {
-                            $ctrl.postIcon = channel.categories[post.category].icon;
+                            var category = channel.categories[post.category];
+                            $ctrl.categoryIcon = category.icon;
+                            $ctrl.categoryTitle = category.title;
                         }
                     });
                 }, function (error) {
