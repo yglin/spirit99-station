@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-05 11:25:36
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-05 11:38:02
+* @Last Modified time: 2016-05-06 21:01:32
 */
 
 'use strict';
@@ -16,7 +16,7 @@ describe('Comment Create', function() {
     
     beforeEach(function() {
         testChannel = seedData.mainDB.channels[0];
-        testPostID = 11;
+        testPostID = 7;
         testComment = mocksData.comments[0];
         browser.get(config.baseUrl + '/' + testChannel.id + '/posts/' + testPostID);
 

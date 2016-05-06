@@ -23,6 +23,7 @@ var config = {
     'e2e/channel/channel-update.test.js',
     'e2e/post/create.test.js',
     'e2e/post/update.test.js',
+    'e2e/comment/create.test.js'
   ],
 
   // Patterns to exclude.
