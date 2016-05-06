@@ -1,0 +1,14 @@
+<div id='s99-comment-{{$ctrl.comment._id}}' class='s99-comment-item' layout-margin>
+    <md-content class='s99-comment-content' ta-bind ng-model='$ctrl.comment.content'></md-content>
+    <md-divider></md-divider>
+    <div layout='row' layout-wrap layout-margin layout-align='end center'>
+        <div>
+            <span flex></span>
+            <span class='s99-comment-author'>{{$ctrl.comment.author}}</span>
+        </div>
+        <div>
+            <span flex></span>
+            <span class='s99-date'>{{$ctrl.comment.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
+        </div>
+    </div>
+</div>

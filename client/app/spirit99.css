@@ -63,6 +63,11 @@
     height: 96px;
 }
 
+.s99-comment-content {
+    max-width: 90vw;
+    max-height: 300px;
+}
+
 .s99-category-icon {
     max-width: 32px;
     max-height: 32px;
@@ -133,4 +138,13 @@
 .s99-image-preview {
     max-width: 256px;
     max-height: 256px;
+}
+
+.ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:20px 0;
 }

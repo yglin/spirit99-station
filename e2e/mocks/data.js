@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-21 13:05:34
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 19:33:01
+* @Last Modified time: 2016-05-05 11:34:40
 */
 
 'use strict';
@@ -55,7 +55,7 @@ module.exports = {
             email: 'test@example.com',
             password: 'test'
         }
-   ],
+    ],
     posts: [
         {
             title: '作者的家',
@@ -65,5 +65,11 @@ module.exports = {
             latitude: 24.081111,
             longitude: 120.548569
         }
-   ]
+    ],
+    comments: [
+        {
+            content: '<p>阿不就好棒棒</p>',
+            author: 'abujo@haobonbon.com.tw'
+        }
+    ]
 };

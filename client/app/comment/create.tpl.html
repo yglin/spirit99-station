@@ -1,0 +1,46 @@
+<style type="text/css">
+    .ta-editor.s99-comment-editor, .ta-scroll-window.s99-comment-editor {
+        min-height: 150px;
+        height: 150px;
+        overflow: auto;
+        font-family: inherit;
+        font-size: 100%;
+    }
+    .s99-comment-editor > .ta-bind {
+        min-height: 150px;
+        padding: 6px 12px;
+    }
+    .ta-toolbar{
+      display: none;
+    }
+    .ta-toolbar.focussed{
+      display: block;
+      margin: 10px 5px;
+    }    
+</style>
+<form name='commentForm'>
+<div class='md-whiteframe-5dp' layout-padding>
+    <div text-angular id='comment-content-input' name='content'
+    ta-toolbar='[["h4", "h5", "h6"], ["bold", "italics", "underline", "strikeThrough"], ["insertImage", "insertVideo", "insertLink"]]'
+    ta-text-editor-class='s99-comment-editor'
+    ta-html-editor-class='s99-comment-editor'
+    ng-model="$ctrl.comment.content"
+    placeholder='點此留言...'
+    required></div>
+    <div layout='row' layout-align='center end'>
+        <md-input-container class='md-block' flex>
+            <label>我是誰...</label>
+            <input name='author' ng-model='$ctrl.comment.author' required></input>
+        </md-input-container>
+        <div>
+            <md-progress-circular ng-show='$ctrl.processingSubmit' class='s99-progress-circular' md-mode='indeterminate'></md-progress-circular>
+        </div>
+        <div>
+            <md-button id='submit' class='md-primary md-raised'
+            ng-disabled='commentForm.$invalid || $ctrl.processingSubmit' ng-click='$ctrl.doSubmit($ctrl.comment)'>
+                送出
+            </md-button>
+        </div>
+    </div>
+</div>
+</form>

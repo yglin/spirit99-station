@@ -6,6 +6,7 @@ angular.module('spirit99StationApp', [
     'spirit99StationApp.constants',
     'spirit99StationApp.channel',
     'spirit99StationApp.post',
+    'spirit99StationApp.comment',
     'ngCookies',
     'ngResource',
     'ngSanitize',

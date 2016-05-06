@@ -1,0 +1,6 @@
+<s99-comment-create ng-if='$ctrl.channel && $ctrl.post' channel='$ctrl.channel' post='$ctrl.post'></s99-comment-create>
+<br><br><br>
+<div ng-repeat='comment in $ctrl.comments | orderBy:"createdAt":true'>
+<s99-comment-item comment='comment'></s99-comment-item>
+<br><br><br>
+</div>

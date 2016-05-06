@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 19:36:05
+* @Last Modified time: 2016-05-06 11:05:01
 */
 
 'use strict';
@@ -112,7 +112,7 @@ data.mainDB.users = data.mainDB.users.concat(genUsers({count: 30}));
 
 data.channelDBs['nuclear-test-field'] = {
     post: genPosts(data.mainDB.channels[0], {count: 100}),
-    comment: genComment(data.mainDB.channels[0], {count: 100, post_id_range: [1, 100]})
+    comment: genComment(data.mainDB.channels[0], {count: 100, post_id_range: [1, 10]})
 }
 
 function genUsers(options) {
@@ -184,6 +184,7 @@ function genComment(channel, options) {
         comment.content = _.sample(descriptions);
         comment.author = _.sample(_fakeUsers).email;
         comment.post_id = _.random(options.post_id_range[0], options.post_id_range[1]);
+        comment.createdAt = pickDateInTurn();
         comments.push(comment);
     }
     return comments    
