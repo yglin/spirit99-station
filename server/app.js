@@ -35,7 +35,7 @@ sqldb.sequelize.sync()
 .then(channelDBs.connectAll)
 .then(startServer)
 .catch(function(err) {
-console.log('Server failed to start due to error: %s', err);
+console.error('Server failed to start due to error: %s', err);
 });
 
 // Expose app

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-06 20:15:36
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-06 21:02:20
+* @Last Modified time: 2016-05-10 13:34:57
 */
 
 'use strict';
@@ -30,6 +30,6 @@ function has(comment) {
             })
         ]);
     });
-    console.log(matched.count());
+    // console.log(matched.count());
     expect(matched.count()).toBeGreaterThan(0);
 }

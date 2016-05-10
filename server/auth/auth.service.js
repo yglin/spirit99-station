@@ -82,7 +82,7 @@ export function setTokenCookie(req, res) {
     var token = signToken(req.user._id, req.user.role);
     res.cookie('token', token);
     if (req.cookies['path-after-login']) {
-        console.log(req.cookies['path-after-login']);
+        // console.log(req.cookies['path-after-login']);
         res.redirect(req.cookies['path-after-login']);
     }
     else {

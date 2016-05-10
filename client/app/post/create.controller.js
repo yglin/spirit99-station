@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:25:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 21:12:21
+* @Last Modified time: 2016-05-10 13:32:23
 */
 
 'use strict';
@@ -48,7 +48,7 @@
             return Post.create($routeParams.channel_id, data)
             .then(function (post) {
                 $window.alert('發佈成功~!!');
-                console.log(post);
+                // console.log(post);
                 Util.returnUrl('/' + $routeParams.channel_id + '/posts/' + post._id);
                 return $q.resolve();
             }, function (error) {

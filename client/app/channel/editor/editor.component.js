@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 11:51:39
+* @Last Modified time: 2016-05-10 13:32:08
 */
 
 'use strict';
@@ -91,7 +91,7 @@
             $ctrl.channel.categories[maxID] = $ctrl.category;
             $ctrl.category = angular.copy(categoryDefaults);
             $scope.$broadcast('categoriesChanged');
-            console.log($ctrl.channel.categories);
+            // console.log($ctrl.channel.categories);
         }
 
         function updateCategory() {
