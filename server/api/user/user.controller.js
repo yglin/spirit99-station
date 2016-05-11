@@ -130,7 +130,11 @@ export function me(req, res, next) {
             'name',
             'email',
             'role',
-            'provider'
+            'provider',
+            'google',
+            'facebook',
+            'twitter',
+            'github'
         ]
     })
         .then(user => { // don't ever give out the password or salt

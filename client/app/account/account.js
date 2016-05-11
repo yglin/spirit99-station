@@ -12,11 +12,12 @@ angular.module('spirit99StationApp')
         name: 'logout',
         referrer: '/',
         template: '',
-        controller: function($location, $route, Auth) {
+        controller: function($rootScope, $location, $route, Auth) {
           var referrer = $route.current.params.referrer ||
                           $route.current.referrer ||
                           '/';
           Auth.logout();
+          $rootScope.$broadcast('account:logout');
           $location.path(referrer);
         }
       })

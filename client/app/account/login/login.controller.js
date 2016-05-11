@@ -1,13 +1,14 @@
 'use strict';
 
 class LoginController {
-    constructor(Auth, $location, $cookies) {
+    constructor(Auth, $rootScope, $location, $cookies) {
         this.user = {};
         this.errors = {};
         this.submitted = false;
 
         this.Auth = Auth;
         this.$location = $location;
+        this.$rootScope = $rootScope;
         this.$cookies = $cookies;
     }
 
@@ -28,6 +29,7 @@ class LoginController {
                 else {
                     this.$location.path('/');
                 }
+                this.$rootScope.$broadcast('account:login');
             })
             .catch(err => {
                 this.errors.other = err.message;

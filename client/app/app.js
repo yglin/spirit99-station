@@ -14,7 +14,8 @@ angular.module('spirit99StationApp', [
     'btford.socket-io',
     'validation.match',
     'ngMaterial',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ygDialog'
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
