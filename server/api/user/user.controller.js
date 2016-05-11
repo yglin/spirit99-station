@@ -152,3 +152,21 @@ export function me(req, res, next) {
 export function authCallback(req, res, next) {
     res.redirect('/');
 }
+
+export function validate(req, res) {
+    if (req.params.field == 'email') {
+        var result = {};
+        var email = req.body.value;
+        User.count({where: {email: email}})
+        .then(function (count) {
+            if (count > 0) {
+                result.isValid = false;
+            }
+            else {
+                result.isValid = true;
+            }
+            result.value = count;
+            res.status(200).json(result);
+        });
+    }
+}
