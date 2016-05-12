@@ -10,10 +10,10 @@ var config = browser.params;
 var LoginPage = function() {
     var self = this;
 
-    var form = self.form = element(by.css('.form'));
-    form.email = form.element(by.model('vm.user.email'));
-    form.password = form.element(by.model('vm.user.password'));
-    form.submit = form.element(by.css('.btn-login'));
+    var form = self.form = element(by.css('form[name=loginForm]'));
+    form.email = form.element(by.css('input[name=email]'));
+    form.password = form.element(by.css('input[name=password]'));
+    form.submit = form.element(by.css('button[type=submit]'));
     form.oauthButtons = require('../../components/oauth-buttons/oauth-buttons.po').oauthButtons;
 
     self.login = function(data) {
