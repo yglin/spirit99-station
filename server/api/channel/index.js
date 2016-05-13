@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-18 14:22:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-05 17:55:15
+* @Last Modified time: 2016-05-13 10:08:29
 */
 
 'use strict';
@@ -17,6 +17,7 @@ var post = require('../post');
 
 router.get('/', channel.query);
 router.get('/:id', channel.query);
+router.get('/:id/portal', channel.portal);
 router.post('/validate-id', channel.validateID);
 router.post('/', auth.isAuthenticated(), channel.create);
 router.put('/:id', auth.isAuthenticated(), channel.update);

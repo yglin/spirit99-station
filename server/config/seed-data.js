@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-06 11:05:01
+* @Last Modified time: 2016-05-13 13:43:35
 */
 
 'use strict';
@@ -144,19 +144,12 @@ function genPosts(channel, options) {
     var _fakeUsers = fakeUsers();
     var posts = [];
 
-    var radius = 0.0;
-    var radius_increment = 2.0 / count;
-    var angle = 0.0;
-    var angle_increment = Math.PI / 2;
     for (var i = 0; i < count; i++) {
-        radius += radius_increment;
-        angle += angle_increment;
-        angle_increment *= 0.9;
         var post = {};
         post.title = _.sample(titles);
         post.content = '<p>' + _.sample(descriptions) + '</p>';
-        post.latitude = 23.973875 + radius * Math.sin(angle);
-        post.longitude = 120.982024 + radius * Math.cos(angle);
+        post.latitude = 23.973875 + (2.0 * (Math.random() - 0.5));
+        post.longitude = 120.982024 + (2.0 * (Math.random() - 0.5));
         post.author = _.sample(_fakeUsers).email;
         post.owner_id = 1;
         post.createdAt = pickDateInTurn();

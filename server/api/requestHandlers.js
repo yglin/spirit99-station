@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-04 15:54:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-05 18:29:33
+* @Last Modified time: 2016-05-13 10:11:57
 */
 
 'use strict';
@@ -34,10 +34,10 @@ function respondWithResult(res, statusCode) {
     };
 }
 
-function handleError(res) {
+function handleError(res, statusCode) {
     return function(error) {
         console.error(error);
-        var statusCode = error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
+        statusCode = statusCode || error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
         res.status(statusCode).send(error);
     };
 }

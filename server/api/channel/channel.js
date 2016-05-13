@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 19:44:42
+* @Last Modified time: 2016-05-13 11:56:53
 */
 
 'use strict';
@@ -19,6 +19,7 @@ module.exports = {
     create: create,
     update: update,
     validateID: validateID,
+    portal: portal
 }
 
 function query(req, res) {
@@ -38,14 +39,6 @@ function query(req, res) {
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
-    // .then(function(channels) {
-    //     if (!channels || !channels.length || channels.length == 0) {
-    //         handleError(res, HttpStatus.NOT_FOUND)();
-    //     }
-    //     else {
-    //         respondWithResult(res, HttpStatus.OK)(channels);
-    //     }
-    // }, handleError(res));
 }
 
 function create(req, res) {
@@ -113,5 +106,26 @@ function validateID(req, res) {
         result.value = channel;
         res.status(HttpStatus.OK).json(result);    
     });
+}
+
+function portal(req, res) {
+    Channel.findById(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(function (channel) {
+        var portalData = {
+            id: channel.id,
+            title: channel.title,
+            description: channel.description,
+            'logo-url': channel['logo-url'],
+            categories: channel.categories
+        };
+        var hostUrl = req.protocol + '://' + req.headers.host;
+        portalData['query-url'] = hostUrl + '/api/channels/' + channel.id + '/posts';
+        portalData['create-url'] = hostUrl + '/' + channel.id + '/posts/create';
+        portalData['portal-url'] = hostUrl + req.originalUrl;
+        return Q.resolve(portalData);
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
