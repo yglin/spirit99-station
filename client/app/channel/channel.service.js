@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-29 13:29:47
+* @Last Modified time: 2016-05-15 11:21:21
 */
 
 'use strict';
@@ -12,15 +12,17 @@
     angular.module('spirit99StationApp.channel')
     .factory('Channel', Channel);
 
-    Channel.$inject = ['$http', '$q', 'Auth'];
+    Channel.$inject = ['$window', '$http', '$q', 'Auth'];
 
-    function Channel($http, $q, Auth) {
+    function Channel($window, $http, $q, Auth) {
         return {
             query: query,
             create: create,
             update: update,
             get: get,
-            getFromUser: getFromUser
+            getPortal: getPortal,
+            getFromUser: getFromUser,
+            importTo: importTo
         };
 
         function httpError(error) {
@@ -63,11 +65,24 @@
             var url = '/api/channels/' + channel_id;
             return $http.get(url)
             .then(function (response) {
-                if (response.data.length > 0) {
+                if (response.data.length && response.data.length > 0) {
                     return $q.resolve(response.data[0]);
                 }
                 else {
-                    return $q.reject(response.data);
+                    return $q.resolve(response.data);
+                }
+            }, httpError);            
+        }
+
+        function getPortal(channel_id) {
+            var url = '/api/channels/' + channel_id + '/portal';
+            return $http.get(url)
+            .then(function (response) {
+                if (response.data) {
+                    return $q.resolve(response.data);
+                }
+                else {
+                    return $q.reject(response);
                 }
             }, httpError);            
         }
@@ -84,6 +99,11 @@
             .then(function (response) {
                 return $q.resolve(response.data);
             }, httpError);
+        }
+
+        function importTo(channel_id, client_url) {
+            var portalUrl = $window.location.protocol + '//' + $window.location.host + '/api/channels/' + channel_id + '/portal';
+            $window.location.href = client_url + '?import=' + $window.encodeURIComponent(portalUrl);
         }
     }
 })();
