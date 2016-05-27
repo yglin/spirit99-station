@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 11:50:07
+* @Last Modified time: 2016-05-27 18:17:44
 */
 
 'use strict';
@@ -23,6 +23,9 @@
         $ctrl.confirm = confirm;
         $ctrl.uploadFile = uploadFile;
         $ctrl.onChange = onChange;
+        $ctrl.onLoaded = onLoaded;
+        $ctrl.onError = onError;
+
         $ctrl.image = {
             url: ''
         };
@@ -33,9 +36,13 @@
             invalidFiles: [],
             errorMessages: null
         };
+
         $ctrl.invalid = false;
+        $ctrl.inProgress = false;
 
         $ctrl.$onInit = function () {
+            $ctrl.minWidth = $ctrl.minWidth || '24';
+            $ctrl.minHeight = $ctrl.minHeight || '24';
             $ctrl.maxWidth = $ctrl.maxWidth || '128';
             $ctrl.maxHeight = $ctrl.maxHeight || '128';
             $ctrl.maxSizeMb = $ctrl.maxSizeMb || '2';
@@ -67,6 +74,7 @@
 
                 file.upload.then(function (response) {
                     $ctrl.image.url = response.data.data.link;
+                    $ctrl.previewUrl = $ctrl.image.url;
                     $timeout(function() {
                         $ctrl.uploading.success = true;
                     });
@@ -79,14 +87,30 @@
             }
         }
 
-        function onChange(image) {
-            $ctrl.invalid = false;
-            if (image.width && image.width > $ctrl.maxWidth) {
+        function onChange() {
+            $ctrl.inProgress = true;
+            $timeout.cancel($ctrl.timeoutLoadImage);
+            $ctrl.timeoutLoadImage = $timeout(function () {
+                $ctrl.previewUrl = $ctrl.image.url;
+            }, 1000);
+        }
+
+        function onLoaded(image) {
+            if (!image.width || image.width < $ctrl.minWidth || image.width > $ctrl.maxWidth) {
                 $ctrl.invalid = true;
             }
-            else if (image.height && image.height > $ctrl.maxHeight) {
+            else if (!image.height || image.height < $ctrl.minHeight || image.height > $ctrl.maxHeight) {
                 $ctrl.invalid = true;
             }
+            else {
+                $ctrl.invalid = false;
+            }
+            $ctrl.inProgress = false;
+        }
+
+        function onError() {
+            $ctrl.invalid = true;
+            $ctrl.inProgress = false;
         }
     }
 })();

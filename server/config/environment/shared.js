@@ -1,8 +1,19 @@
 'use strict';
 
-exports = module.exports = {
-  // List of user roles
-  env: process.env.NODE_ENV == 'production' ? 'production' : 'development',
-  spirit99Url: process.env.NODE_ENV == 'production' ? 'http://www.9493.tw' : 'http://localhost:9493',
-  userRoles: ['guest', 'user', 'admin']
-};
+exports = module.exports = (function () {
+    var sharedConstants = {
+        env: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+        // List of user roles
+        userRoles: ['guest', 'user', 'admin']
+    };
+
+    sharedConstants.spirit99Url = 'http://www.9493.tw';
+    if (process.env.NODE_ENV == 'development') {
+        sharedConstants.spirit99Url = 'http://localhost:9493';
+    }
+    else if (process.env.NODE_ENV == 'test') {
+        sharedConstants.spirit99Url = 'http://localhost:9001';
+    }
+
+    return sharedConstants;
+})();

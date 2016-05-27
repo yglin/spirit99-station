@@ -633,7 +633,7 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask('e2eClearData', 'Clear temp data created in e2e test ...', function () {
+    grunt.registerTask('clearData', 'Clear temp data created in previous test ...', function () {
         var done = this.async();
         require('./e2e/mocks/clear-data')()
         .then(function () {
@@ -667,6 +667,24 @@ module.exports = function (grunt) {
             ]);
         }
 
+        if (target === 'test') {
+            return grunt.task.run([
+                'clean:server',
+                'env:all',
+                'env:test',
+                'concurrent:pre',
+                'concurrent:server',
+                'injector',
+                'wiredep:client',
+                'postcss',
+                'clearData',
+                'seedDB',
+                'express:dev',
+                'wait',
+                'watch'
+            ]);
+        }
+
         grunt.task.run([
             'clean:server',
             'env:all',
@@ -675,7 +693,6 @@ module.exports = function (grunt) {
             'injector',
             'wiredep:client',
             'postcss',
-            'seedDB',
             'express:dev',
             'wait',
             'open',
@@ -733,10 +750,10 @@ module.exports = function (grunt) {
                     'injector',
                     'wiredep:client',
                     'postcss',
+                    'clearData',
                     'seedDB',
                     'express:dev',
                     'protractor',
-                    'e2eClearData'
                 ]);
             }
         }

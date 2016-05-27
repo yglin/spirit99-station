@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 19:47:06
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-14 20:16:51
+* @Last Modified time: 2016-05-27 17:21:18
 */
 
 'use strict';
@@ -26,7 +26,8 @@
             link: link,
             restrict: 'A',
             scope: {
-                onLoaded: '='
+                onLoaded: '=',
+                onError: '='
             }
         };
         return directive;
@@ -43,6 +44,12 @@
                     });
                 });
                 // scope.$apply(attrs['s99stImageOnload']);
+            });
+
+            element.bind('error', function () {
+                scope.$apply(function () {
+                    scope.onError();
+                });
             });
         }
     }
