@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 10:57:46
+* @Last Modified time: 2016-05-30 10:29:51
 */
 
 'use strict';
@@ -16,7 +16,7 @@ function grabFirstImgUrl(html) {
         html,
         function (error, window) {
             if (error) {
-                console.error('Failed to grab first img url from ' + html);
+                // console.error('Failed to grab first img url from ' + html);
                 gotit.reject(error);
             }
             var imgs = window.document.getElementsByTagName('img');
@@ -30,7 +30,7 @@ function grabFirstImgUrl(html) {
                 }
             }
             if (!src) {
-                console.error('Failed to grab first img url from ' + html);
+                // console.error('Failed to grab first img url from ' + html);
                 gotit.reject();
             }
         }

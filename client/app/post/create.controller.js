@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:25:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-10 13:32:23
+* @Last Modified time: 2016-05-30 14:12:35
 */
 
 'use strict';
@@ -42,6 +42,7 @@
                     Util.returnUrl()
                 });
             }
+            console.log($routeParams.returnUrl);
         }
 
         function create(data) {

@@ -1,9 +1,9 @@
-<md-dialog id='s99-dialog-alert' aria-label="Alert"  ng-cloak>
+<md-dialog id='s99-dialog' aria-label="Alert"  ng-cloak>
 <md-toolbar>
     <div class="md-toolbar-tools">
         <h2>{{dialogAlertVM.title}}</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="dialogAlertVM.cancel()">
+        <md-button id='cancel' class="md-icon-button" ng-click="dialogAlertVM.cancel()">
             <md-icon class="material-icons">close</md-icon>
         </md-button>
     </div>
@@ -13,10 +13,10 @@
 </md-dialog-content>
 <md-dialog-actions layout="row">
     <span flex></span>
-    <md-button id='s99-dialog-alert-button-confirm'
+    <md-button id='confirm'
     class='md-primary md-raised'
     ng-click="dialogAlertVM.confirm()">
-     知道了
+    知道了
     </md-button>
 </md-dialog-actions>
 </md-dialog>
