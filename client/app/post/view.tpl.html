@@ -11,7 +11,8 @@
         </div>
         <div layout='row' ng-if='$ctrl.isMyPost'>
             <span flex></span>
-            <md-button class='md-icon-button md-accent'>
+            <md-button class='md-icon-button md-accent'
+            ng-click='$ctrl.gotoUpdate()'>
                 <md-icon class='material-icons'>edit</md-icon>
             </md-button>
             <md-button class='md-icon-button md-accent'>

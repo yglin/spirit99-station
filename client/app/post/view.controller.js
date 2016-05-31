@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 13:41:12
+* @Last Modified time: 2016-05-31 14:20:52
 */
 
 'use strict';
@@ -14,16 +14,18 @@
         .module('spirit99StationApp.post')
         .controller('PostViewController', PostViewController);
 
-    PostViewController.$inject = ['$window', '$routeParams', 'Util', 'Channel', 'Post', 'Auth'];
+    PostViewController.$inject = ['$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth'];
 
     /* @ngInject */
-    function PostViewController($window, $routeParams, Util, Channel, Post, Auth) {
+    function PostViewController($window, $location, $routeParams, Util, Channel, Post, Auth) {
         var $ctrl = this;
         $ctrl.title = 'Post View';
         $ctrl.channel = undefined;
         $ctrl.post = undefined;
         $ctrl.categoryIcon = undefined;
         $ctrl.categoryTitle = undefined;
+
+        $ctrl.gotoUpdate = gotoUpdate;
 
         activate();
 
@@ -55,7 +57,7 @@
                             $ctrl.isMyPost = false;
                         }
                     });
-                    
+
                 }, function (error) {
                     $window.alert('找不到文章: channel id = ' + $routeParams.channel_id + ', post id = ' + $routeParams.post_id);
                     Util.returnUrl();
@@ -67,6 +69,10 @@
                 Util.returnUrl();
                 return;
             }
+        }
+
+        function gotoUpdate() {
+            $location.path('/' + $ctrl.channel.id + '/posts/update/' + $ctrl.post._id);
         }
     }
 })();
