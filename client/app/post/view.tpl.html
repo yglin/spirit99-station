@@ -1,5 +1,24 @@
 <div id='post-view-root' layout-padding style='max-width: 800px;'>
     <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
+    <div layout='row' layout-wrap layout-margin layout-align='end center'>
+        <div>
+            <span flex></span>
+            <span class='s99-post-author'>{{$ctrl.post.author}}</span>
+        </div>
+        <div>
+            <span flex></span>
+            <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
+        </div>
+        <div layout='row' ng-if='$ctrl.isMyPost'>
+            <span flex></span>
+            <md-button class='md-icon-button md-accent'>
+                <md-icon class='material-icons'>edit</md-icon>
+            </md-button>
+            <md-button class='md-icon-button md-accent'>
+                <md-icon class='material-icons'>delete</md-icon>
+            </md-button>
+        </div>
+    </div>
     <div layout='column' layout-gt-sm='row'>
         <div layout-margin>
             <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
@@ -7,18 +26,7 @@
             <md-content style='min-height: 200px;'>
                 <div class='s99-post-content' ta-bind ng-model="$ctrl.post.content"></div>
             </md-content>
-            <md-divider></md-divider>
-            <div layout='row' layout-wrap layout-margin layout-align='end center'>
-                <div>
-                    <span flex></span>
-                    <span class='s99-post-author'>{{$ctrl.post.author}}</span>
-                </div>
-                <div>
-                    <span flex></span>
-                    <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
-                </div>
-            </div>
-            <br>
+            <md-divider layout-margin></md-divider>
         </div>
         <s99-locate-map ng-if='$ctrl.post' width='300' height='480' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
     </div>
