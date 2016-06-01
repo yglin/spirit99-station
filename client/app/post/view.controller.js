@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 14:20:52
+* @Last Modified time: 2016-05-31 14:35:16
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp.post')
         .controller('PostViewController', PostViewController);
 
-    PostViewController.$inject = ['$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth'];
+    PostViewController.$inject = ['$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth', 'ygDialog'];
 
     /* @ngInject */
-    function PostViewController($window, $location, $routeParams, Util, Channel, Post, Auth) {
+    function PostViewController($window, $location, $routeParams, Util, Channel, Post, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Post View';
         $ctrl.channel = undefined;
@@ -26,6 +26,7 @@
         $ctrl.categoryTitle = undefined;
 
         $ctrl.gotoUpdate = gotoUpdate;
+        $ctrl.deletePost = deletePost;
 
         activate();
 
@@ -73,6 +74,19 @@
 
         function gotoUpdate() {
             $location.path('/' + $ctrl.channel.id + '/posts/update/' + $ctrl.post._id);
+        }
+
+        function deletePost() {
+            ygDialog.confirm('刪除文章', '<p>確定要刪除這篇文章嗎？</p><h3>' + $ctrl.post.title + '</h3>')
+            .then(function () {
+                Post.delete($ctrl.channel.id, $ctrl.post._id)
+                .then(function () {
+                    ygDialog.alert('刪除完成', '此文章已刪除');
+                    Util.returnUrl();
+                }, function (error) {
+                    ygDialog.alert('刪除失敗', '刪除文章失敗：<br><pre>' + JSON.stringify(error) + '</pre>');
+                })
+            })
         }
     }
 })();

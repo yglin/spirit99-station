@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-29 13:12:03
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 21:22:19
+* @Last Modified time: 2016-05-31 15:03:13
 */
 
 'use strict';
@@ -22,6 +22,7 @@
         self.get = get;
         self.create = create;
         self.update = update;
+        self.delete = _delete;
         self.getFromUser = getFromUser;
 
         ////////////////
@@ -46,9 +47,15 @@
                     console.error(error);
                     postCreated.reject(error);
                 });
-                
             });
             return postCreated.promise;
+        }
+
+        function _delete(channel_id, post_id) {
+            return $http.delete('/api/channels/' + channel_id + '/posts/' + post_id)
+            .then(function (response) {
+                return $q.resolve(response);
+            }, httpError);
         }
 
         function update(channel_id, post_id, data) {

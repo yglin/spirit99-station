@@ -1,4 +1,4 @@
-<div id='post-view-root' layout-padding style='max-width: 800px;'>
+<div id='s99-post-view' layout-padding style='max-width: 800px;'>
     <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
     <div layout='row' layout-wrap layout-margin layout-align='end center'>
         <div>
@@ -11,11 +11,12 @@
         </div>
         <div layout='row' ng-if='$ctrl.isMyPost'>
             <span flex></span>
-            <md-button class='md-icon-button md-accent'
+            <md-button id='goto-update' class='md-icon-button md-accent'
             ng-click='$ctrl.gotoUpdate()'>
                 <md-icon class='material-icons'>edit</md-icon>
             </md-button>
-            <md-button class='md-icon-button md-accent'>
+            <md-button class='md-icon-button md-accent'
+            ng-click="$ctrl.deletePost()">
                 <md-icon class='material-icons'>delete</md-icon>
             </md-button>
         </div>

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:28:00
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-13 10:42:31
+* @Last Modified time: 2016-05-31 15:08:24
 */
 
 'use strict';
@@ -19,6 +19,7 @@ router.get('/', post.query);
 router.get('/:id', post.get);
 router.post('/', post.create);
 router.put('/:id', auth.isAuthenticated(), post.update);
+router.delete('/:id', auth.isAuthenticated(), post.delete);
 
 // redirect route to comments
 router.use('/:post_id/comments', function (req, res, next) {

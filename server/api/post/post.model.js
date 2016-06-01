@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-30 10:29:51
+* @Last Modified time: 2016-05-31 15:19:28
 */
 
 'use strict';
@@ -69,7 +69,12 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         author: DataTypes.STRING,
-        owner_id: DataTypes.INTEGER
+        owner_id: DataTypes.INTEGER,
+        state: {
+            type: DataTypes.ENUM,
+            values: ['private', 'public', 'deleted'],
+            defaultValue: 'public'
+        }
     }, {
         freezeTableName: true,
         timestamps: true,

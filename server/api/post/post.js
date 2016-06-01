@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-13 16:21:28
+* @Last Modified time: 2016-05-31 15:20:19
 */
 
 'use strict';
@@ -15,11 +15,14 @@ module.exports = {
     query: query,
     get: get,
     create: create, 
-    update: update   
+    update: update,
+    delete: _delete
 }
 
 function query(req, res) {
-    var whereConditions = {};
+    var whereConditions = {
+        state: 'public'
+    };
 
     if('bounds' in req.query){
         var bounds = JSON.parse(req.query.bounds);
@@ -130,6 +133,16 @@ function update(req, res) {
     .then(handleEntityNotFound(res))
     .then(handleEntityNotBelonging(res, req.user._id, 'owner_id'))
     .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+function _delete(req, res) {
+    var Post = req.locals.Post;
+    return Post.findById(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(handleEntityNotBelonging(res, req.user._id, 'owner_id'))
+    .then(saveUpdates({state: 'deleted'}))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
