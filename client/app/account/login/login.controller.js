@@ -22,18 +22,17 @@ class LoginController {
             })
             .then(() => {
                 // Logged in, redirect to previous intent page, or home
-                var pathBeforeLogin = this.$cookies.get('path-before-login');
-                var pathAfterLogin = this.$cookies.get('path-after-login');
-                if (pathAfterLogin) {
-                    this.$location.path(pathAfterLogin);
-                }
-                else if (pathBeforeLogin) {
-                    this.$location.path(pathBeforeLogin);
-                }
-                else {
-                    this.$location.path('/');
-                }
-                this.$rootScope.$broadcast('account:login');
+                // var pathBeforeLogin = this.$cookies.get('path-before-login');
+                // var pathAfterLogin = this.$cookies.get('path-after-login');
+                // if (pathAfterLogin) {
+                //     this.$location.path(pathAfterLogin);
+                // }
+                // else if (pathBeforeLogin) {
+                //     this.$location.path(pathBeforeLogin);
+                // }
+                // else {
+                //     this.$location.path('/');
+                // }
             })
             .catch(err => {
                 this.errors.other = err.message;

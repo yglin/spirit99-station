@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 14:35:16
+* @Last Modified time: 2016-06-01 11:43:32
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp.post')
         .controller('PostViewController', PostViewController);
 
-    PostViewController.$inject = ['$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth', 'ygDialog'];
+    PostViewController.$inject = ['$scope', '$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth', 'ygDialog'];
 
     /* @ngInject */
-    function PostViewController($window, $location, $routeParams, Util, Channel, Post, Auth, ygDialog) {
+    function PostViewController($scope, $window, $location, $routeParams, Util, Channel, Post, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Post View';
         $ctrl.channel = undefined;
@@ -49,16 +49,12 @@
                         }
                     });
 
-                    // Check if my post
-                    Auth.getCurrentUser(function (user) {
-                        if (user && user._id && post.owner_id == user._id) {
-                            $ctrl.isMyPost = true;
-                        }
-                        else {
-                            $ctrl.isMyPost = false;
-                        }
-                    });
+                    checkMyPost();
 
+                    $scope.$on('account:login', checkMyPost);
+                    $scope.$on('account:logout', function () {
+                        $ctrl.isMyPost = false;
+                    });
                 }, function (error) {
                     $window.alert('找不到文章: channel id = ' + $routeParams.channel_id + ', post id = ' + $routeParams.post_id);
                     Util.returnUrl();
@@ -70,6 +66,18 @@
                 Util.returnUrl();
                 return;
             }
+        }
+
+        function checkMyPost() {
+            // Check if my post
+            Auth.getCurrentUser(function (user) {
+                if (user && user._id && $ctrl.post.owner_id == user._id) {
+                    $ctrl.isMyPost = true;
+                }
+                else {
+                    $ctrl.isMyPost = false;
+                }
+            });            
         }
 
         function gotoUpdate() {

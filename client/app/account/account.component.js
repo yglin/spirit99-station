@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-10 15:30:41
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 11:31:40
+* @Last Modified time: 2016-06-01 11:33:25
 */
 
 'use strict';
@@ -18,14 +18,14 @@
         }
     });
 
-    AccountController.$inject = ['$scope', '$location', '$cookies', 'Auth', 'ygDialog'];
+    AccountController.$inject = ['$scope', '$location', '$cookies', 'Account', 'Auth', 'ygDialog'];
 
     /* @ngInject */
-    function AccountController($scope, $location, $cookies, Auth, ygDialog) {
+    function AccountController($scope, $location, $cookies, Account, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Account';
-        $ctrl.gotoLogin = gotoLogin;
-        $ctrl.gotoLogout = gotoLogout;
+        $ctrl.gotoLogin = Account.loginDialog;
+        $ctrl.gotoLogout = Account.logoutDialog;
         $ctrl.user = undefined;
 
         $ctrl.$onInit = function () {
@@ -56,17 +56,17 @@
             });            
         }
 
-        function gotoLogin() {
-            $cookies.put('path-before-login', $location.path());
-            $location.path('/login');
-        }
+        // function gotoLogin() {
+        //     $cookies.put('path-before-login', $location.path());
+        //     $location.path('/login');
+        // }
 
-        function gotoLogout() {
-            ygDialog.confirm('登出', '<h3>確定要登出嗎？</h3>')
-            .then(function () {
-                $cookies.put('path-before-logout', $location.path());
-                $location.path('/logout');                
-            });
-        }
+        // function gotoLogout() {
+        //     ygDialog.confirm('登出', '<h3>確定要登出嗎？</h3>')
+        //     .then(function () {
+        //         $cookies.put('path-before-logout', $location.path());
+        //         $location.path('/logout');                
+        //     });
+        // }
     }
 })();

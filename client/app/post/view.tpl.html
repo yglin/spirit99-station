@@ -9,7 +9,7 @@
             <span flex></span>
             <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
         </div>
-        <div layout='row' ng-if='$ctrl.isMyPost'>
+        <div layout='row' ng-show='$ctrl.isMyPost'>
             <span flex></span>
             <md-button id='goto-update' class='md-icon-button md-accent'
             ng-click='$ctrl.gotoUpdate()'>

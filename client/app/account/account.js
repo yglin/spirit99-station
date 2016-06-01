@@ -17,7 +17,6 @@ angular.module('spirit99StationApp')
                     //                 $route.current.referrer ||
                     //                 '/';
                     Auth.logout();
-                    $rootScope.$broadcast('account:logout');
                     // $location.path(referrer);
                     var beforePath = $cookies.get('path-before-logout');
                     if (beforePath) {
