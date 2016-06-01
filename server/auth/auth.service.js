@@ -81,12 +81,12 @@ export function setTokenCookie(req, res) {
     }
     var token = signToken(req.user._id, req.user.role);
     res.cookie('token', token);
-    if (req.cookies['path-after-login']) {
+    if (req.cookies['url-after-login']) {
         // console.log(req.cookies['path-after-login']);
-        res.redirect(req.cookies['path-after-login']);
+        res.redirect(req.cookies['url-after-login']);
     }
     else {
-        console.log('redirect to /');
+        // console.log('redirect to /');
         res.redirect('/');
     }
 }

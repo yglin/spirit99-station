@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:13:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 13:52:08
+* @Last Modified time: 2016-06-01 20:53:14
 */
 
 (function() {
@@ -23,12 +23,13 @@
         ////////////////
 
         function loginDialog() {
-            $mdDialog.show({
+            return $mdDialog.show({
                 templateUrl: 'app/account/login/login-dialog.tpl.html',
                 controller: 'LoginDialogController',
                 controllerAs: '$ctrl',
                 bindToController: true,
-                clickOutsideToClose:true,                
+                clickOutsideToClose:true,
+                parent: angular.element(document.body)
             });
         }
 

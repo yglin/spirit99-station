@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:25:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 11:01:56
+* @Last Modified time: 2016-06-01 17:37:16
 */
 
 'use strict';
@@ -13,10 +13,10 @@
     .module('spirit99StationApp.post')
     .controller('PostCreateController', PostCreateController);
 
-    PostCreateController.$inject = ['$window', 'Util', '$q', '$routeParams', '$location', '$cookies', 'Auth', 'Channel', 'Post', 'ygDialog'];
+    PostCreateController.$inject = ['$window', 'Util', '$q', '$routeParams', '$location', '$cookies', 'Auth', 'Account', 'Channel', 'Post', 'ygDialog'];
 
     /* @ngInject */
-    function PostCreateController($window, Util, $q, $routeParams, $location, $cookies, Auth, Channel, Post, ygDialog) {
+    function PostCreateController($window, Util, $q, $routeParams, $location, $cookies, Auth, Account, Channel, Post, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Create Post';
         $ctrl.post = undefined;
@@ -47,8 +47,7 @@
                 if (!user || !user._id) {
                     ygDialog.confirm('尚未登入', '<p>您尚未登入，以此匿名建立的文章之後將無法再修改或刪除。</p><br><h4>是否要先登入呢？</h4>')
                     .then(function () {
-                        $cookies.put('path-after-login', $location);
-                        $location.path('/login');
+                        Account.loginDialog();
                     })
                 }
             });

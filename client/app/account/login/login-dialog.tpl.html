@@ -1,4 +1,48 @@
 <md-dialog id='s99-login-dialog' aria-label="Log-in" ng-cloak>
-<div ng-include='"app/account/login/login.html"' ng-controller="LoginController as vm">
-</div>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{$ctrl.title}}</h2>
+        <span flex></span>
+        <md-button id='cancel'
+        class="md-icon-button"
+        ng-click="$ctrl.cancel()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content layout-padding>
+    <form class="form" name="loginForm" ng-submit="vm.login(loginForm)" novalidate>
+        <md-input-container class='md-block'>
+            <label>Email帳號</label>
+            <input type="email" name="email" ng-model="$ctrl.user.email" required>
+            <div ng-messages='loginForm.email.$error'>
+                <div ng-message='required'>請輸入電子信箱帳號</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class='md-block'>
+            <label>密碼</label>
+            <input type="password" name="password" ng-model="$ctrl.user.password" required>
+            <div ng-messages='loginForm.password.$error'>
+                <div ng-message='required'>請輸入密碼</div>
+            </div>
+        </md-input-container>
+
+        <hr/>
+        <div class="row">
+            <oauth-buttons classes="btn-block"></oauth-buttons>
+        </div>
+        <div class='md-warn' ng-show='$ctrl.errors.other'>{{$ctrl.errors.other}}</div>
+    </form>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <md-button class='md-primary' ng-href="/signup">
+        註冊
+    </md-button>
+    <span flex></span>
+    <md-button class='md-primary md-raised' ng-disabled='loginForm.$invalid'
+    ng-click='$ctrl.login(loginForm)'>
+        登入
+    </md-button>
+</md-dialog-actions>
 </md-dialog>
