@@ -53,10 +53,11 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
         /**
          * Delete access token and user info
          */
-        logout() {
+        logout(callback) {
             $cookies.remove('token');
             currentUser = {};
             $rootScope.$broadcast('account:logout');
+            safeCb(callback)();
         },
 
         /**
@@ -71,6 +72,7 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
                 function(data) {
                     $cookies.put('token', data.token);
                     currentUser = User.get();
+                    $rootScope.$broadcast('account:login');
                     return safeCb(callback)(null, user);
                 },
                 function(err) {

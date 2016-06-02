@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-28 13:46:27
+* @Last Modified time: 2016-06-02 11:13:38
 */
 
 'use strict';
@@ -14,15 +14,23 @@
         .module('spirit99StationApp.channel')
         .controller('ChannelCreateController',ChannelCreateController);
 
-    ChannelCreateController.$inject = ['$window', '$location', 'Channel'];
+    ChannelCreateController.$inject = ['$scope', '$window', '$location', 'Channel'];
 
     /* @ngInject */
-    function ChannelCreateController($window, $location, Channel) {
+    function ChannelCreateController($scope, $window, $location, Channel) {
         var $ctrl = this;
         $ctrl.create = create;
         $ctrl.channel = {
             categories: {}
         };
+
+        activate();
+
+        function activate() {
+            $scope.$on('account:logout', function () {
+                $location.path('/'); 
+            });
+        }
 
         function create (channelData) {
             return Channel.create(channelData)

@@ -1,0 +1,70 @@
+<md-dialog id='s99-login-dialog' aria-label="Log-in" ng-cloak>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{$ctrl.title}}</h2>
+        <span flex></span>
+        <md-button id='cancel'
+        class="md-icon-button"
+        ng-click="$ctrl.cancel()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content layout-padding>
+    <form class="form" name="signupForm" novalidate>
+        <md-input-container class='md-block'>
+            <label>使用者名稱</label>
+            <input type="text" name="name" ng-model="$ctrl.user.name" required/>
+            <div ng-messages='signupForm.name.$error'>
+                <div ng-message='required'>請填入使用者名稱</div>
+                <div ng-message='server'>{{$ctrl.errors.name}}</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class='md-block'>
+            <label>Email帳號</label>
+            <input type="email" name="email" ng-model="$ctrl.user.email"
+            required
+            ng-remote-validate='/api/users/validate/email' ng-remote-throttle='1000'/>
+            <div ng-messages='signupForm.email.$error'>
+                <div ng-message='required'>請填入電子信箱作為登入帳號</div>
+                <div ng-message='email'>請填入有效的電子信箱</div>
+                <div ng-message='ngRemoteValidate'>這個Email帳號已經被註冊了</div>
+                <div ng-message='server'>{{$ctrl.errors.email}}</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class='md-block'>
+            <label>密碼</label>
+            <input type="password" name="password" ng-model="$ctrl.user.password"
+            required ng-minlength="3"/>
+            <div ng-messages='signupForm.password.$error'>
+                <div ng-message='required'>請輸入密碼</div>
+                <div ng-message='minlength'>密碼至少要三個字</div>
+                <div ng-message='server'>{{$ctrl.errors.password}}</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class='md-block'>
+            <label>確認密碼</label>
+            <input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword"
+            required ng-minlength="3" match="$ctrl.user.password"/>
+            <div ng-messages='signupForm.confirmPassword.$error'>
+                <div ng-message='required'>請再次輸入密碼</div>
+                <div ng-message='match'>密碼不符合</div>
+                <div ng-message='minlength'>密碼至少要三個字</div>
+            </div>
+        </md-input-container>
+    </form>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <md-button class='md-primary' ng-click='$ctrl.gotoLogin()'>
+        登入
+    </md-button>
+    <span flex></span>
+    <md-button class='md-primary md-raised' ng-disabled='signupForm.$invalid'
+    ng-click='$ctrl.register(signupForm)'>
+        註冊
+    </md-button>
+</md-dialog-actions>
+</md-dialog>

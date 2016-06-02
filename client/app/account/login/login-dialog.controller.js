@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:20:39
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 21:04:14
+* @Last Modified time: 2016-06-02 11:27:48
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp')
         .controller('LoginDialogController', LoginDialogController);
 
-    LoginDialogController.$inject = ['$scope', '$mdDialog', 'Auth'];
+    LoginDialogController.$inject = ['$scope', '$mdDialog', 'Auth', 'Account'];
 
     /* @ngInject */
-    function LoginDialogController($scope, $mdDialog, Auth) {
+    function LoginDialogController($scope, $mdDialog, Auth, Account) {
         var $ctrl = this;
         $ctrl.title = '登入';
         $ctrl.user = {};
@@ -26,6 +26,7 @@
 
         $ctrl.login = login;
         $ctrl.cancel = cancel;
+        $ctrl.gotoSignup = Account.signupDialog;
 
         activate();
 
@@ -33,7 +34,7 @@
 
         function activate() {
             $scope.$on('account:login', function () {
-                $mdDialog.hide();
+                $mdDialog.hide(true);
             });
         }
 
@@ -49,6 +50,9 @@
                 Auth.login({
                     email: $ctrl.user.email,
                     password: $ctrl.user.password
+                })
+                .then(function (user) {
+                    $mdDialog.hide(true);
                 })
                 .catch(function (err) {
                     $ctrl.errors.other = err.message;
