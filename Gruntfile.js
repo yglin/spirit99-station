@@ -622,12 +622,15 @@ module.exports = function (grunt) {
 
     grunt.registerTask('seedDB', 'Force sync database and populate fake data', function () {
         var done = this.async();
+        var clearData = require('./e2e/mocks/clear-data');
         var seedDB = require('./server/config/seed');
-        seedDB()
+        clearData()
+        .then(seedDB)
         .then(function () {
             grunt.log.ok('Seeding data completed');
             done();
-        }, function (error) {
+        })
+        .catch(function (error) {
             grunt.log.error(error);
             done(false);
         });
@@ -677,7 +680,6 @@ module.exports = function (grunt) {
                 'injector',
                 'wiredep:client',
                 'postcss',
-                'clearData',
                 'seedDB',
                 'express:dev',
                 'wait',
@@ -693,6 +695,7 @@ module.exports = function (grunt) {
             'injector',
             'wiredep:client',
             'postcss',
+            'seedDB',
             'express:dev',
             'wait',
             'open',

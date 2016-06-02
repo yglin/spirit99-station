@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 15:20:19
+* @Last Modified time: 2016-06-02 18:25:40
 */
 
 'use strict';
@@ -24,7 +24,7 @@ function query(req, res) {
         state: 'public'
     };
 
-    if('bounds' in req.query){
+    if(req.query.bounds){
         var bounds = JSON.parse(req.query.bounds);
         // console.log(bounds);
         var latMin, latMax, lngMin, lngMax;
@@ -54,6 +54,18 @@ function query(req, res) {
             $lt: lngMax
         };
     }
+
+    // if (req.query.startAt) {
+    //     whereConditions.startAt = {
+    //         $lt: req.query.startAt
+    //     }
+    // }
+
+    // if (req.query.endAt) {
+    //     whereConditions.endAt = {
+    //         $gt: req.query.endAt
+    //     }
+    // }
 
     var Post = req.locals.Post;
     Post.findAll({where: whereConditions, raw: true})
@@ -107,6 +119,8 @@ function create(req, res) {
         thumbnail: req.body.thumbnail,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
+        startAt: req.body.startAt,
+        endAt: req.body.endAt,
         owner_id: user_id
     });
 

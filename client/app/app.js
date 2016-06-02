@@ -15,7 +15,8 @@ angular.module('spirit99StationApp', [
     'validation.match',
     'ngMaterial',
     'ngFileUpload',
-    'ygDialog'
+    'ygDialog',
+    'datePicker'
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider

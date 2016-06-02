@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-13 13:43:35
+* @Last Modified time: 2016-06-02 14:11:40
 */
 
 'use strict';
@@ -153,6 +153,10 @@ function genPosts(channel, options) {
         post.author = _.sample(_fakeUsers).email;
         post.owner_id = 1;
         post.createdAt = pickDateInTurn();
+        if (i%5 == 0) {
+            post.startAt = new Date();
+            post.endAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        }
         if(Math.random() > 0.2){
             post.category = _.sample(categoryIDs);
         }

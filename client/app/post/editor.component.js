@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:05:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 14:16:27
+* @Last Modified time: 2016-06-02 18:20:13
 */
 
 'use strict';
@@ -21,18 +21,21 @@
         }
     });
 
-    PostEditorController.$inject = ['$scope', 'Auth', 'ImageSelector'];
+    PostEditorController.$inject = ['$scope', 'Auth', 'ImageSelector', 'DatetimePicker'];
 
     /* @ngInject */
-    function PostEditorController($scope, Auth, ImageSelector) {
+    function PostEditorController($scope, Auth, ImageSelector, DatetimePicker) {
         var $ctrl = this;
         $ctrl.title = 'Post Editor';
         $ctrl.selectedCategoryID = -1;
+        $ctrl.postIcon = undefined;
+        $ctrl.isEvent = false;
+
         $ctrl.selectCategory = selectCategory;
         $ctrl.onChangeContent = onChangeContent;
         $ctrl.addImage = addImage;
         $ctrl.doSubmit = doSubmit;
-        $ctrl.postIcon = undefined;
+        $ctrl.setDateTime = setDateTime;
 
         $ctrl.$onInit = function () {
             if (!$ctrl.post.content) {
@@ -53,6 +56,10 @@
                     }
                 });
             }
+
+            $ctrl.isEvent = $ctrl.post.startAt && $ctrl.post.endAt;
+            $ctrl.post.startAt = $ctrl.post.startAt ? new Date($ctrl.post.startAt) : new Date();
+            $ctrl.post.endAt = $ctrl.post.endAt ? new Date($ctrl.post.endAt) : new Date();
 
             // $scope.$watch('$ctrl.post.content', function () {
             //     $ctrl.post.thumbnail = grabFirstImgUrl($ctr.post.content); 
@@ -105,9 +112,23 @@
 
         function doSubmit(data) {
             $ctrl.processingSubmit = true;
+            
+            if (!$ctrl.isEvent) {
+                data.startAt = null;
+                data.endAt = null;
+            }
+
             $ctrl.submit(data)
             .finally(function () {
                 $ctrl.processingSubmit = false;
+            });
+        }
+
+        function setDateTime(datetime) {
+            DatetimePicker.pickDatetime(datetime)
+            .then(function (newDatetime) {
+                console.log(newDatetime);
+                datetime.setTime(newDatetime.getTime());
             });
         }
 

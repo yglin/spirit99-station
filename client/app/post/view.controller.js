@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 11:43:32
+* @Last Modified time: 2016-06-02 14:00:00
 */
 
 'use strict';
@@ -24,6 +24,7 @@
         $ctrl.post = undefined;
         $ctrl.categoryIcon = undefined;
         $ctrl.categoryTitle = undefined;
+        $ctrl.isEvent = false;
 
         $ctrl.gotoUpdate = gotoUpdate;
         $ctrl.deletePost = deletePost;
@@ -55,6 +56,9 @@
                     $scope.$on('account:logout', function () {
                         $ctrl.isMyPost = false;
                     });
+
+                    $ctrl.isEvent = $ctrl.post.startAt && $ctrl.post.endAt;
+                    
                 }, function (error) {
                     $window.alert('找不到文章: channel id = ' + $routeParams.channel_id + ', post id = ' + $routeParams.post_id);
                     Util.returnUrl();

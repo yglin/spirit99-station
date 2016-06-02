@@ -30,6 +30,29 @@
         <div id='post-content-input' text-angular ng-model="$ctrl.post.content" ng-change='$ctrl.onChangeContent()'></div>
         <md-button id='select-logo' class='md-raised'
         ng-click='$ctrl.addImage()'>上傳圖片</md-button>
+        <br>
+        <br>
+        <div>
+            <md-checkbox ng-model="$ctrl.isEvent" aria-label='Post is event'>
+                事件
+            </md-checkbox>
+            <div ng-show='$ctrl.isEvent' layout='row' layout-wrap
+            layout-align='space-between center'>
+                <md-button class='md-raised' ng-click='$ctrl.setDateTime($ctrl.post.startAt)'>
+                    開始時間：{{$ctrl.post.startAt | date: 'yyyy-MM-dd a h:m:s'}}
+                </md-button>
+                <md-button class='md-raised' ng-click='$ctrl.setDateTime($ctrl.post.endAt)'>
+                    結束時間：{{$ctrl.post.endAt | date: 'yyyy-MM-dd a h:m:s'}}
+                </md-button>
+<!--                 <div>
+                    <span>開始：</span><md-datepicker ng-model='$ctrl.post.startAt' md-placeholder='開始時間'></md-datepicker>
+                </div>
+                <div>
+                    <span>結束：</span><md-datepicker ng-model='$ctrl.post.endAt' md-placeholder='結束時間'></md-datepicker>
+                </div>
+ -->            </div>
+        </div>
+        <br>
         <div layout-padding>
             <md-input-container class='md-block' flex-gt-xs>
                 <label>作者</label>
