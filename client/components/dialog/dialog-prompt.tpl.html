@@ -1,0 +1,13 @@
+<md-dialog id='s99-dialog' aria-label="Prompt Dialog"  ng-cloak>
+<md-dialog-content layout-padding>
+    <div ng-bind-html="$ctrl.description"></div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button id='confirm'
+    class='md-primary md-raised'
+    ng-click="$ctrl.confirm()">
+    朕知道了
+    </md-button>
+</md-dialog-actions>
+</md-dialog>

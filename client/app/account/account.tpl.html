@@ -4,7 +4,7 @@ aria-label='Log In' ng-click="$ctrl.gotoLogin()">
     <md-icon md-svg-src='assets/images/User-Interface-Login-icon.svg' style='color:white;'></md-icon>
     <md-tooltip>登入</md-tooltip>
 </md-button>
-<div layout='row' layout-align='end center' ng-show='$ctrl.user'>
+<div id='user-pane' layout='row' layout-align='end center' ng-show='$ctrl.user'>
     <h4>{{$ctrl.user.name}}</h4>
     <div ng-show='$ctrl.user.avatar' style='margin:2px 5px;'>
         <img ng-src='{{$ctrl.user.avatar}}' style='border-radius: 50%;'/>

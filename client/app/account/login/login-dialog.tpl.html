@@ -11,7 +11,7 @@
     </div>
 </md-toolbar>
 <md-dialog-content layout-padding>
-    <form class="form" name="loginForm" ng-submit="vm.login(loginForm)" novalidate>
+    <form class="form" name="loginForm" novalidate>
         <md-input-container class='md-block'>
             <label>Email帳號</label>
             <input type="email" name="email" ng-model="$ctrl.user.email" required>
@@ -40,7 +40,7 @@
         註冊
     </md-button>
     <span flex></span>
-    <md-button class='md-primary md-raised' ng-disabled='loginForm.$invalid'
+    <md-button id='confirm' class='md-primary md-raised' ng-disabled='loginForm.$invalid'
     ng-click='$ctrl.login(loginForm)'>
         登入
     </md-button>

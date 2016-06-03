@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 14:00:00
+* @Last Modified time: 2016-06-03 13:47:38
 */
 
 'use strict';
@@ -93,8 +93,10 @@
             .then(function () {
                 Post.delete($ctrl.channel.id, $ctrl.post._id)
                 .then(function () {
-                    ygDialog.alert('刪除完成', '此文章已刪除');
-                    Util.returnUrl();
+                    ygDialog.prompt('<h3>文章已刪除</h3>')
+                    .then(function () {
+                        Util.returnUrl();
+                    });
                 }, function (error) {
                     ygDialog.alert('刪除失敗', '刪除文章失敗：<br><pre>' + JSON.stringify(error) + '</pre>');
                 })

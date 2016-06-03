@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:25:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 17:37:16
+* @Last Modified time: 2016-06-03 12:06:38
 */
 
 'use strict';
@@ -38,8 +38,10 @@
                     $ctrl.channel = channel;
                 }, function (error) {
                     console.error(error);
-                    $window.alert('找不到頻道 ' + $routeParams.channel_id + ' 的資料');
-                    Util.returnUrl()
+                    ygDialog.alert('找不到頻道', '<h3>找不到頻道 ' + $routeParams.channel_id + ' 的資料，錯誤回應：</h3><br><p>' + JSON.stringify(error) + '</p>')
+                    .finally(function () {
+                        Util.returnUrl();
+                    });
                 });
             }
 
@@ -56,12 +58,13 @@
         function create(data) {
             return Post.create($routeParams.channel_id, data)
             .then(function (post) {
-                $window.alert('發佈成功~!!');
-                // console.log(post);
-                Util.returnUrl('/' + $routeParams.channel_id + '/posts/' + post._id);
+                ygDialog.prompt('<h3>發佈成功~!!</h3>')
+                .finally(function () {
+                    Util.returnUrl('/' + $routeParams.channel_id + '/posts/' + post._id);                
+                });
                 return $q.resolve();
             }, function (error) {
-                $window.alert('發佈失敗...');
+                ygDialog.alert('發佈失敗', '<h3>文章發佈失敗...錯誤回應：</h3><br><p>' + JSON.stringify(error) + '</p>');
                 return $q.reject();
             });
         }
