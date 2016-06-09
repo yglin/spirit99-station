@@ -1,4 +1,27 @@
 // 'use strict';
+// 
+(function() {
+    'use strict';
+
+    angular
+    .module('spirit99StationApp')
+    .config(AccountRouter);
+
+    AccountRouter.$inject = ['$routeProvider'];
+
+    /* @ngInject */
+    function AccountRouter($routeProvider){
+        $routeProvider
+        .when('/profile', {
+            templateUrl: 'app/account/profile/profile.tpl.html',
+            controller: 'ProfileController',
+            controllerAs: '$ctrl',
+            authenticate: true
+        });
+    }
+
+})();
+
 
 // angular.module('spirit99StationApp')
 //     .config(function($routeProvider) {

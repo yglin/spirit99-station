@@ -16,7 +16,7 @@ angular.module('spirit99StationApp.auth')
             backPath = buildPathFromRoute(current);
         }
 
-        $cookies.remove('url-after-login');
+        // $cookies.remove('url-after-login');
         if (typeof next.authenticate === 'string') {
             Auth.hasRole(next.authenticate, _.noop).then(has => {
                 if (has) {
@@ -43,8 +43,14 @@ angular.module('spirit99StationApp.auth')
                 if (is) {
                     return;
                 }
-                event.preventDefault();
-                $location.path(backPath);
+                else {
+                    Account.loginDialog().then(function () {
+                        return;
+                    }, function () {
+                        event.preventDefault();
+                        $location.path(backPath);
+                    });
+                }
             });
         }
     });
