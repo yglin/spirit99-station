@@ -13,29 +13,37 @@ import Q from 'q';
 
 // var dbGoodToGO = Q.defer();
 
-// Setup server
-var app = express();
-var server = http.createServer(app);
-var socketio = require('socket.io')(server, {
-  serveClient: config.env !== 'production',
-  path: '/socket.io-client'
-});
-require('./config/socketio').default(socketio);
-require('./config/express').default(app);
-require('./routes').default(app);
+var app;
+var server;
+var socketio;
 
-// Start server
-function startServer() {
-  app.angularFullstack = server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-  });
-}
+// Setup database
+sqldb.init()
+.then(function () {
+    // Setup server
+    app = express();
+    server = http.createServer(app);
+    socketio = require('socket.io')(server, {
+      serveClient: config.env !== 'production',
+      path: '/socket.io-client'
+    });
+    require('./config/socketio').default(socketio);
+    require('./config/express').default(app);
+    require('./routes').default(app);
 
-sqldb.sequelize.sync()
-.then(channelDBs.connectAll)
-.then(startServer)
-.catch(function(err) {
-console.error('Server failed to start due to error: %s', err);
+    // Start server
+    function startServer() {
+      app.angularFullstack = server.listen(config.port, config.ip, function() {
+        console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+      });
+    }
+
+    sqldb.sequelize.sync()
+    .then(channelDBs.connectAll)
+    .then(startServer)
+    .catch(function(err) {
+    console.error('Server failed to start due to error: %s', err);
+    });
 });
 
 // Expose app

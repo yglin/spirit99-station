@@ -157,7 +157,7 @@ module.exports = function (grunt) {
                     dot: true,
                     src: [
                         '.tmp',
-                        '<%= yeoman.dist %>/!(.git*|.openshift|Procfile)**'
+                        '<%= yeoman.dist %>/!(.elasticbeanstalk|.git*|.openshift|Procfile)**'
                     ]
                 }]
             },
@@ -464,6 +464,43 @@ module.exports = function (grunt) {
             }
         },
 
+        // replace: {
+        //     dev: {
+        //         options: {
+        //             patterns:[
+        //                 {
+        //                     json: grunt.file.readJSON('./config/environment/development.json')
+        //                 }
+        //             ]
+        //         },
+        //         files: [{
+        //             expand: true,
+        //             src: ['client/components/**/*.env', 'client/app/**/*.env'],
+        //             rename: function (dest, src) {
+        //                 return src.replace('.env', '');
+        //             }
+        //         }]
+        //     },
+
+        //     dist: {
+        //         options: {
+        //             patterns:[
+        //                 {
+        //                     json: grunt.file.readJSON('./config/environment/production.json')
+        //                 }
+        //             ]
+        //         },
+        //         files: [{
+        //             expand: true,
+        //             src: ['client/components/**/*.env', 'client/app/**/*.env'],
+        //             rename: function (dest, src) {
+        //                 return src.replace('.env', '');
+        //             }
+        //         }]
+        //     }
+
+        // },
+
         mocha_istanbul: {
             unit: {
                 options: {
@@ -515,6 +552,9 @@ module.exports = function (grunt) {
         },
 
         env: {
+            dev: {
+                NODE_ENV: 'development'
+            },
             test: {
                 NODE_ENV: 'test'
             },
@@ -690,12 +730,13 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'env:all',
+            'env:dev',
+            // 'replace:dev',
             'concurrent:pre',
             'concurrent:server',
             'injector',
             'wiredep:client',
             'postcss',
-            'seedDB',
             'express:dev',
             'wait',
             'open',
@@ -804,6 +845,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'env:prod',
+        // 'replace:dist',
         'concurrent:pre',
         'concurrent:dist',
         'injector',

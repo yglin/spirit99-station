@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 14:11:40
+* @Last Modified time: 2016-06-06 11:20:16
 */
 
 'use strict';
@@ -144,6 +144,7 @@ function genPosts(channel, options) {
     var _fakeUsers = fakeUsers();
     var posts = [];
 
+    var oneDay = 24 * 60 * 60 * 1000;
     for (var i = 0; i < count; i++) {
         var post = {};
         post.title = _.sample(titles);
@@ -153,9 +154,9 @@ function genPosts(channel, options) {
         post.author = _.sample(_fakeUsers).email;
         post.owner_id = 1;
         post.createdAt = pickDateInTurn();
-        if (i%5 == 0) {
-            post.startAt = new Date();
-            post.endAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        if ((i % 4) == 0) {
+            post.startAt = new Date(post.createdAt + oneDay);
+            post.endAt = new Date(post.createdAt + oneDay + Math.random() * oneDay);
         }
         if(Math.random() > 0.2){
             post.category = _.sample(categoryIDs);
