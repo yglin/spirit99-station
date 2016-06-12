@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:13:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 14:52:29
+* @Last Modified time: 2016-06-12 15:24:10
 */
 
 (function() {
@@ -96,38 +96,24 @@
             });
 
             loggedIn.promise.then(function () {
-                if (role) {
-                    if (Auth.hasRole(role)) {
-                        authorized.resolve();
+                Auth.getCurrentUser(function (user) {
+                    if (role) {
+                        if (Auth.hasRole(role)) {
+                            authorized.resolve(user);
+                        }
+                        else {
+                            ygDialog.alert('權限不足', '<h3>抱歉，你沒有權限執行這項操作</h3>')
+                            .then(function () {
+                                authorized.reject();
+                            });
+                        }
                     }
                     else {
-                        ygDialog.alert('權限不足', '<h3>抱歉，你沒有權限執行這項操作</h3>')
-                        .then(function () {
-                            authorized.reject();
-                        });
-                    }
-                }
-                else {
-                    authorized.resolve();
-                }
+                        authorized.resolve(user);
+                    }                    
+                });
             });
-            // .then(function () {
-            //     if (role) {
-            //         if (Auth.hasRole(role)) {
-            //             return $q.resolve();
-            //         }
-            //         else {
-            //             return ygDialog.alert('權限不足', '<h3>你沒有權限執行這項操作</h3>')
-            //             .then(function () {
-            //                 return $q.reject();
-            //             });
-            //         }
-            //     }
-            //     else {
-            //         return $q.resolve();
-            //     }                
-            // })     
-
+            
             return authorized.promise;
         }
     }
