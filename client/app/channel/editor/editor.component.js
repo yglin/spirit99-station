@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-10 13:32:08
+* @Last Modified time: 2016-06-12 16:16:22
 */
 
 'use strict';
@@ -45,6 +45,9 @@
         };
 
         $ctrl.$onInit = function () {
+            if (!$ctrl.channel.categories) {
+                $ctrl.channel.categories = {};
+            }
             $ctrl.category = angular.copy(categoryDefaults);
             maxID = Math.max.apply(null, [0].concat(Object.keys($ctrl.channel.categories)));
         };

@@ -1,8 +1,8 @@
 <h3>{{$ctrl.user.name}}</h3>
-<div style='min-width: 640px;'>
-    <md-tabs>
+<div style='min-width: 800px;' ng-cloak>
+    <md-tabs md-dynamic-height>
         <md-tab label='我的頻道'>
-            <s99-my-channels></s99-my-channels>
+            <s99-my-channels ng-if='$ctrl.user' user='$ctrl.user'></s99-my-channels>
         </md-tab>
         <md-tab label='我的文章'>
             <h3>我的文章</h3>
