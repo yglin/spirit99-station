@@ -8,12 +8,14 @@ var Q = require('q');
 var sqldb = require('../sqldb');
 var ChannelDBs = require('../sqldb/channels');
 var seedData = require('./seed-data');
-var Thing = sqldb.Thing;
-var User = sqldb.User;
-var Channel = sqldb.Channel;
+
+var Thing;
+var User;
+var Channel;
 
 module.exports = function (options) {
-    return sqldb.forceSync(sqldb.sequelize)
+    return sqldb.init()
+    .then(sqldb.forceSync)
     .then(populateThings)
     .then(populateUsers)
     .then(populateChannels)
@@ -21,6 +23,7 @@ module.exports = function (options) {
 }
 
 function populateThings() {
+    Thing = sqldb.Thing;
     return Thing.sync()
     .then(() => {
         return Thing.bulkCreate(seedData.mainDB.things)
@@ -32,6 +35,7 @@ function populateThings() {
 }
 
 function populateUsers() {
+    User = sqldb.User;
     return User.sync()
     .then(() => {
         return User.bulkCreate(seedData.mainDB.users)
@@ -43,6 +47,7 @@ function populateUsers() {
 }
 
 function populateChannels() {
+    Channel = sqldb.Channel;
     return Channel.sync()
     .then(() => {
         return Channel.bulkCreate(seedData.mainDB.channels)
