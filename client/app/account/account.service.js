@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:13:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 11:29:14
+* @Last Modified time: 2016-06-12 14:52:29
 */
 
 (function() {
@@ -21,6 +21,7 @@
         self.loginDialog = loginDialog;
         self.logoutDialog = logoutDialog;
         self.signupDialog = signupDialog;
+        self.getToLogInAs = getToLogInAs;
 
         ////////////////
 
@@ -73,6 +74,61 @@
                 self.loginPromise.reject();
             });
             return self.loginPromise.promise;
+        }
+
+        function getToLogInAs(role) {
+            var authorized = $q.defer();
+            var loggedIn = $q.defer();;
+            
+            Auth.isLoggedIn(function (isLoggedIn) {
+                if (isLoggedIn) {
+                    loggedIn.resolve();
+                }
+                else {
+                    self.loginDialog()
+                    .then(function () {
+                        loggedIn.resolve();
+                    }, function () {
+                        loggedIn.reject();
+                        authorized.reject();
+                    });
+                }
+            });
+
+            loggedIn.promise.then(function () {
+                if (role) {
+                    if (Auth.hasRole(role)) {
+                        authorized.resolve();
+                    }
+                    else {
+                        ygDialog.alert('權限不足', '<h3>抱歉，你沒有權限執行這項操作</h3>')
+                        .then(function () {
+                            authorized.reject();
+                        });
+                    }
+                }
+                else {
+                    authorized.resolve();
+                }
+            });
+            // .then(function () {
+            //     if (role) {
+            //         if (Auth.hasRole(role)) {
+            //             return $q.resolve();
+            //         }
+            //         else {
+            //             return ygDialog.alert('權限不足', '<h3>你沒有權限執行這項操作</h3>')
+            //             .then(function () {
+            //                 return $q.reject();
+            //             });
+            //         }
+            //     }
+            //     else {
+            //         return $q.resolve();
+            //     }                
+            // })     
+
+            return authorized.promise;
         }
     }
 })();

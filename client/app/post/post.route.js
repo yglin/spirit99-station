@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 14:26:32
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-04 10:43:13
+* @Last Modified time: 2016-06-12 14:58:57
 */
 
 'use strict';
@@ -27,7 +27,10 @@
             templateUrl: 'app/post/update.tpl.html',
             controller: 'PostUpdateController',
             controllerAs: '$ctrl',
-            authenticate: 'user'
+            // authenticate: 'user'
+            resolve: {
+                user: loginAsUser
+            }
         })
         .when('/:channel_id/posts/:post_id', {
             templateUrl: 'app/post/view.tpl.html',
@@ -36,4 +39,12 @@
         });
     }
 
+    loginAsUser.$injector = ['Account', 'Util']
+
+    function loginAsUser(Account, Util) {
+        return Account.getToLogInAs('user')
+        .catch(function () {
+            Util.returnUrl('/');
+        });
+    }
 })();

@@ -16,10 +16,17 @@
             templateUrl: 'app/account/profile/profile.tpl.html',
             controller: 'ProfileController',
             controllerAs: '$ctrl',
-            authenticate: true
+            // authenticate: true,
+            resolve: {
+                user: ['Account', 'Util', function (Account, Util) {
+                    return Account.getToLogInAs('user')
+                    .catch(function () {
+                        Util.returnUrl('/');
+                    });
+                }]
+            }
         });
     }
-
 })();
 
 
