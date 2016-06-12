@@ -8,7 +8,22 @@
             <md-button class='md-icon-button' ng-href='/channels/update/{{channel.id}}'>
                 <md-icon class='material-icons'>edit</md-icon>
             </md-button>
+            <md-button class='md-icon-button' ng-click='$ctrl.close($index)'>
+                <md-icon class='material-icons'>portable_wifi_off</md-icon>
+            </md-button>
         </div>
-        <md-divider layout-margin></md-divider>
+    </div>
+    <md-divider layout-margin></md-divider>
+    <md-subheader>已關閉頻道</md-subheader>
+    <div ng-repeat='channel in $ctrl.closedChannels' layout-padding>
+        <div layout='row' layout-align='start center' style='min-width: 800px;'>
+            <div flex='10'><img class='s99-channel-logo' ng-src="{{channel['logo-url']}}"></div>
+            <h4 flex='30'>{{channel.title}}</h4>
+            <p flex='30'>{{channel.description}}</p>
+            <span flex></span>
+            <md-button class='md-icon-button' ng-click='$ctrl.reopen($index)'>
+                <md-icon class='material-icons'>wifi_tethering</md-icon>
+            </md-button>
+        </div>
     </div>
 </div>

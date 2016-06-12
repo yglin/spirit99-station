@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-13 11:56:53
+* @Last Modified time: 2016-06-12 16:53:52
 */
 
 'use strict';
@@ -18,6 +18,7 @@ module.exports = {
     query: query,
     create: create,
     update: update,
+    // delete: _delete,
     validateID: validateID,
     portal: portal
 }
@@ -90,6 +91,15 @@ function update(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
+// function _delete(req, res) {
+//     return Channel.findById(req.params.id)
+//     .then(handleEntityNotFound(res))
+//     .then(handleEntityNotBelonging(res, req.user._id, 'owner_id'))
+//     .then(saveUpdates({state: 'closed'}))
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
+// }
 
 function validateID(req, res) {
     var channelID = req.body.value;

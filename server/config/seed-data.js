@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-06 11:20:16
+* @Last Modified time: 2016-06-12 17:23:52
 */
 
 'use strict';
@@ -72,6 +72,14 @@ data.mainDB = {
                     }
                 }
             },
+            owner_id: 1,
+            state: 'public'
+        },
+        {
+            id: 'little-bird-going-home',
+            title: '小小鳥兒要回家',
+            description: '幫助走失的小鳥們回到鳥奴身邊',
+            'logo-url': 'http://icons.iconarchive.com/icons/iconsmind/outline/48/Bird-icon.png',
             owner_id: 1,
             state: 'public'
         }

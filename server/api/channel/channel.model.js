@@ -43,7 +43,8 @@ module.exports = function(sequelize, DataTypes) {
         },
         state: {
             type: DataTypes.ENUM,
-            values: ['private', 'public', 'closed']
+            values: ['private', 'public', 'closed'],
+            defaultValue: 'private'
         }
     }, {
         freezeTableName: true,

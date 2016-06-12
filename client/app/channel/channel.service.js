@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-15 11:21:21
+* @Last Modified time: 2016-06-12 16:53:25
 */
 
 'use strict';
@@ -19,6 +19,7 @@
             query: query,
             create: create,
             update: update,
+            // delete: _delete,
             get: get,
             getPortal: getPortal,
             getFromUser: getFromUser,
@@ -37,12 +38,10 @@
         }
 
         function create(channelData) {
-            // console.log(channelData);
-            channelData.state = 'private';
             if (channelData.public) {
                 channelData.state = 'public';
+                delete channelData.public;
             }
-            delete channelData.public;
             return $http.post('/api/channels', channelData)
             .then(function (response) {
                 return $q.resolve(response.data);
@@ -50,16 +49,21 @@
         }
 
         function update(channelData) {
-            channelData.state = 'private';
             if (channelData.public) {
                 channelData.state = 'public';
+                delete channelData.public;
             }
-            delete channelData.public;
             return $http.put('/api/channels/' + channelData.id, channelData)
             .then(function (response) {
                 return $q.resolve(response.data);
             }, httpError);
         }
+
+        // function _delete(channel_id) {
+        //     var url = '/api/channels/' + channel_id;
+        //     return $http.delete(url)
+        //     .catch(httpError);
+        // }
 
         function get(channel_id) {
             var url = '/api/channels/' + channel_id;
