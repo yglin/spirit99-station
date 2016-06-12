@@ -7,11 +7,13 @@ aria-label='Log In' ng-click="$ctrl.gotoLogin()">
 <div id='user-pane' layout='row' layout-align='end center' ng-show='$ctrl.user'>
     <h4>{{$ctrl.user.name}}</h4>
     <div ng-show='$ctrl.user.avatar' style='margin:2px 5px;'>
-        <img ng-src='{{$ctrl.user.avatar}}' style='border-radius: 50%;'/>
+        <a ng-href='/profile'>
+            <img ng-src='{{$ctrl.user.avatar}}' style='border-radius: 50%;'/>
+        </a>
     </div>
     <div ng-show='!$ctrl.user.avatar'>
         <md-button class='md-fab md-mini md-accent s99-ng-clickable'
-        aria-label='Account'>
+        aria-label='Account' ng-href='/profile'>
             <md-icon class='material-icons'>account_circle</md-icon>
         </md-button>        
     </div>

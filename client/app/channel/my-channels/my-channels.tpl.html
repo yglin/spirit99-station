@@ -13,8 +13,8 @@
             </md-button>
         </div>
     </div>
-    <md-divider layout-margin></md-divider>
-    <md-subheader>已關閉頻道</md-subheader>
+    <md-divider ng-show='$ctrl.channels.length > 0' layout-margin></md-divider>
+    <md-subheader ng-show='$ctrl.closedChannels.length > 0'>已關閉頻道</md-subheader>
     <div ng-repeat='channel in $ctrl.closedChannels' layout-padding>
         <div layout='row' layout-align='start center' style='min-width: 800px;'>
             <div flex='10'><img class='s99-channel-logo' ng-src="{{channel['logo-url']}}"></div>
