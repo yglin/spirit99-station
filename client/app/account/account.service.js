@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:13:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 15:24:10
+* @Last Modified time: 2016-06-13 16:52:19
 */
 
 (function() {
@@ -22,6 +22,7 @@
         self.logoutDialog = logoutDialog;
         self.signupDialog = signupDialog;
         self.getToLogInAs = getToLogInAs;
+        self.changePassword = changePassword;
 
         ////////////////
 
@@ -115,6 +116,17 @@
             });
             
             return authorized.promise;
+        }
+
+        function changePassword() {
+            $mdDialog.show({
+                templateUrl: 'app/account/settings/change-password-dialog.tpl.html',
+                controller: 'ChangePasswordDialogController',
+                controllerAs: '$ctrl',
+                bindToController: true,
+                clickOutsideToClose: true,
+                parent: angular.element(document.body)
+            });
         }
     }
 })();

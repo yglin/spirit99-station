@@ -109,8 +109,13 @@ export function changePassword(req, res, next) {
                         res.status(204).end();
                     })
                     .catch(validationError(res));
-            } else {
-                return res.status(403).end();
+            }
+            else {
+                res.status(403);
+                res.send({
+                    oldPassword: 'Incorrect password'
+                }).end();
+                return;
             }
         });
 }

@@ -1,9 +1,12 @@
 <div id='s99-my-settings'>
     <div layout='row' layout='start center' layout-padding>
-    <div><img style='width:96px;height:96px;border-radius:5%;' ng-src='{{$ctrl.user.avatar || "http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/green-user-icon.png"}}'></div>
-    <div>
-        <h3>{{$ctrl.user.name}}</h3>
-        <h5>{{$ctrl.user.email}}</h5>
+        <div><img style='width:96px;height:96px;border-radius:5%;' ng-src='{{$ctrl.user.avatar || "http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/green-user-icon.png"}}'></div>
+        <div>
+            <h3>{{$ctrl.user.name}}</h3>
+            <h5>{{$ctrl.user.email}}</h5>
+        </div>
     </div>
-    </div>
+    <md-button ng-if='$ctrl.user.provider == "local"' class='md-raised' ng-click='$ctrl.changePassword()'>
+        更改密碼
+    </md-button>
 </div>

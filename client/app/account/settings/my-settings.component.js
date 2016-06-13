@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-13 14:08:52
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-13 14:12:41
+* @Last Modified time: 2016-06-13 16:53:12
 */
 
 (function() {
@@ -17,12 +17,14 @@
         }
     });
 
-    MySettingsController.$inject = [];
+    MySettingsController.$inject = ['Account'];
 
     /* @ngInject */
-    function MySettingsController() {
+    function MySettingsController(Account) {
         var $ctrl = this;
         $ctrl.title = 'MySettings';
+
+        $ctrl.changePassword = Account.changePassword;
 
         $ctrl.$onInit = function () {
         };

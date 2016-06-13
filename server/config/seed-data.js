@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 17:23:52
+* @Last Modified time: 2016-06-13 14:50:25
 */
 
 'use strict';
@@ -160,7 +160,7 @@ function genPosts(channel, options) {
         post.latitude = 23.973875 + (2.0 * (Math.random() - 0.5));
         post.longitude = 120.982024 + (2.0 * (Math.random() - 0.5));
         post.author = _.sample(_fakeUsers).email;
-        post.owner_id = 1;
+        post.owner_id = i % 5;
         post.createdAt = pickDateInTurn();
         if ((i % 4) == 0) {
             post.startAt = new Date(post.createdAt + oneDay);
