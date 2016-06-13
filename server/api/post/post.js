@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 18:25:40
+* @Last Modified time: 2016-06-13 14:47:52
 */
 
 'use strict';
@@ -23,6 +23,10 @@ function query(req, res) {
     var whereConditions = {
         state: 'public'
     };
+
+    if (req.locals && req.locals.user_id) {
+        whereConditions.owner_id = req.locals.user_id;
+    }
 
     if(req.query.bounds){
         var bounds = JSON.parse(req.query.bounds);
