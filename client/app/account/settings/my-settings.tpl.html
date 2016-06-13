@@ -6,6 +6,12 @@
             <h5>{{$ctrl.user.email}}</h5>
         </div>
     </div>
+    <a layout='row' layout-padding layout-align='start end'
+    ng-if='$ctrl.user.provider == "google"'
+    ng-href="{{$ctrl.user.google.url}}">
+        <h3><i>前往</i></h3>
+        <div><img style='width:64px;height:64px;' ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Google_Plus_Shiny_Icon.svg/256px-Google_Plus_Shiny_Icon.svg.png"></div>
+    </a>
     <md-button ng-if='$ctrl.user.provider == "local"' class='md-raised' ng-click='$ctrl.changePassword()'>
         更改密碼
     </md-button>
