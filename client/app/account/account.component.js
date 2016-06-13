@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-10 15:30:41
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-01 11:33:25
+* @Last Modified time: 2016-06-13 20:10:15
 */
 
 'use strict';
@@ -40,6 +40,9 @@
                 if (user.provider == 'google' && profile.image && profile.image.url) {
                     return profile.image.url;
                 }
+                if (user.provider == 'facebook') {
+                    return 'http://graph.facebook.com/' + user.provider_id + '/picture?type=small';
+                }
             }
             return null;
         }
@@ -48,7 +51,7 @@
             Auth.getCurrentUser(function (user) {
                 if (user._id) {
                     $ctrl.user = user;
-                    $ctrl.user.avatar = findAvatar(user);
+                    $ctrl.avatar = findAvatar(user);
                 }
                 else {
                     $ctrl.user = undefined;

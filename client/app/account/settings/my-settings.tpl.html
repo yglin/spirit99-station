@@ -1,6 +1,6 @@
 <div id='s99-my-settings'>
     <div layout='row' layout='start center' layout-padding>
-        <div><img style='width:96px;height:96px;border-radius:5%;' ng-src='{{$ctrl.user.avatar || "http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/green-user-icon.png"}}'></div>
+        <div><img style='width:96px;height:96px;border-radius:5%;' ng-src='{{$ctrl.picture || "http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/green-user-icon.png"}}'></div>
         <div>
             <h3>{{$ctrl.user.name}}</h3>
             <h5>{{$ctrl.user.email}}</h5>
@@ -10,7 +10,13 @@
     ng-if='$ctrl.user.provider == "google"'
     ng-href="{{$ctrl.user.google.url}}">
         <h3><i>前往</i></h3>
-        <div><img style='width:64px;height:64px;' ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Google_Plus_Shiny_Icon.svg/256px-Google_Plus_Shiny_Icon.svg.png"></div>
+        <div><img style='width:64px;height:64px;' ng-src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Google_Plus_Shiny_Icon.svg"></div>
+    </a>
+    <a layout='row' layout-padding layout-align='start end'
+    ng-if='$ctrl.user.provider == "facebook"'
+    ng-href="{{$ctrl.getFacebookAccountLink($ctrl.user)}}">
+        <h3><i>前往</i></h3>
+        <div><img style='width:64px;height:64px;' ng-src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg"></div>
     </a>
     <md-button ng-if='$ctrl.user.provider == "local"' class='md-raised' ng-click='$ctrl.changePassword()'>
         更改密碼

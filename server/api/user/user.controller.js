@@ -136,6 +136,7 @@ export function me(req, res, next) {
             'email',
             'role',
             'provider',
+            'provider_id',
             'google',
             'facebook',
             'twitter',

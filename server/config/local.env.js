@@ -7,6 +7,7 @@
 
 var dbCredentials = require('../../.credentials/database')[process.env.NODE_ENV || 'development'];
 var googleOauth2 = require('../../.credentials/google/oauth2')[process.env.NODE_ENV || 'development'];
+var facebookOauth2 = require('../../.credentials/facebook/oauth2')[process.env.NODE_ENV || 'development'];
 
 module.exports = {
     DOMAIN: 'http://localhost:9000',
@@ -17,8 +18,8 @@ module.exports = {
     DB_USERNAME: dbCredentials.username,
     DB_PASSWORD: dbCredentials.password,
 
-    FACEBOOK_ID: 'app-id',
-    FACEBOOK_SECRET: 'secret',
+    FACEBOOK_ID: facebookOauth2.client_id,
+    FACEBOOK_SECRET: facebookOauth2.client_secret,
 
     TWITTER_ID: 'app-id',
     TWITTER_SECRET: 'secret',
