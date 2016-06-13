@@ -1,0 +1,11 @@
+<md-grid-list
+md-cols="15"
+md-row-height="300px"
+md-gutter="20px">
+    <md-grid-tile 
+    md-rowspan='1'
+    md-colspan='5'
+    ng-repeat="post in $ctrl.posts">
+        <s99-post-item post='post' link='post.links.read'></s99-post-item>
+    </md-grid-tile>
+</md-grid-list>

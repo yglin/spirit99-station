@@ -1,0 +1,17 @@
+<div id='s99-my-posts'>
+    <h3>{{$ctrl.title}}</h3>
+    <div ng-repeat="channel in $ctrl.channels">
+        <div layout='row' layout-padding layout-align='start center'
+        style='outline:none;'
+        ng-click="$ctrl.togglePosts($index)">
+            <div flex='10'><img class='s99-channel-logo-small' ng-src='{{channel["logo-url"]}}'></div>
+            <p flex='20'>{{channel.title}}</p>
+            <span flex></span>
+            <md-progress-circular ng-show='channel.onLoadingPosts' md-mode='indeterminate' md-diameter="50px"></md-progress-circular>
+            <md-button class='md-icon-button'>
+                <md-icon class='material-icons'>{{channel.expanded ? 'expand_less' : 'expand_more'}}</md-icon>
+            </md-button>
+        </div>
+        <s99-posts-grid ng-if='channel.posts' ng-show='channel.expanded' posts='channel.posts'></s99-posts-grid>
+    </div>
+</div>

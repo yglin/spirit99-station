@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-29 13:12:03
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-31 15:03:13
+* @Last Modified time: 2016-06-13 11:13:17
 */
 
 'use strict';
@@ -73,7 +73,11 @@
         }
 
         function getFromUser(user_id, channel_id, post_id) {
-            return $http.get('/api/users/' + user_id + '/channels/' + channel_id + '/posts/' + post_id)
+            var url = '/api/users/' + user_id + '/channels/' + channel_id + '/posts';
+            if (post_id) {
+                url += '/' + post_id;
+            }
+            return $http.get(url)
             .then(function (response) {
                 if (response.data) {
                     return $q.resolve(response.data);

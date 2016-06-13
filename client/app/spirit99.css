@@ -19,6 +19,13 @@
     margin: 2px 5px;
 }
 
+.s99-channel-logo-small {
+    width:32px;
+    height:32px;
+    border-radius: 10%;
+    margin: 2px 5px;
+}
+
 .s99-channel-logo-offline {
     opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:50:10
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-02 10:20:42
+* @Last Modified time: 2016-06-13 11:47:29
 */
 
 'use strict';
@@ -15,18 +15,20 @@
         templateUrl: 'app/post/item.tpl.html',
         controller: PostItemController,
         bindings: {
-            post: '='
+            post: '=',
+            link: '<'
         }
     });
 
-    PostItemController.$inject = [];
+    PostItemController.$inject = ['$window'];
 
     /* @ngInject */
-    function PostItemController() {
+    function PostItemController($window) {
         var $ctrl = this;
         $ctrl.title = 'PostItem';
 
         $ctrl.getHeaderTextFromHtml = getHeaderTextFromHtml;
+        $ctrl.gotoView = gotoView;
 
         $ctrl.$onInit = function () {
         };
@@ -35,5 +37,10 @@
             return html ? String(html).replace(/<[^>]+>/gm, '').substr(0, length) + ' ...' : '';
         }
 
+        function gotoView() {
+            if ($ctrl.link) {
+                $window.open($ctrl.link);
+            }
+        }
     }
 })();

@@ -1,10 +1,12 @@
-<div class='s99-post-item' layout='row' layout-align='start start'>
+<div class='s99-post-item' layout='row' layout-align='start start'
+ng-click='$ctrl.gotoView()'>
     <div style='max-width:96px; min-width: 96px; z-index: 10;'>
         <img class='s99-post-thumbnail'
         ng-src='{{$ctrl.post.thumbnail}}' ng-show='$ctrl.post.thumbnail'>
     </div>
     <div md-whiteframe="6" style='margin-left:-80px;margin-top:10px;z-index: 9;' layout-padding>
-        <h4 class='s99-post-title' style='margin-left: 80px;min-height: 60px'>{{$ctrl.post.title}}</h4>
+        <h4 class='s99-post-title'
+        ng-style='$ctrl.post.thumbnail ? {"margin-left":"80px", "min-height":"60px"} : {"min-height":"60px"}'>{{$ctrl.post.title}}</h4>
         <div class='s99-post-content'>
             <pre>{{$ctrl.getHeaderTextFromHtml($ctrl.post.content, 50)}}</pre>
         </div>
