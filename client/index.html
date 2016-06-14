@@ -43,12 +43,16 @@
     <!-- <navbar></navbar> -->
     <md-toolbar hide-gt-xs>
       <div class='md-toolbar-tools'>
+        <s99-quicklinks></s99-quicklinks>
         <span flex></span>
         <s99-account></s99-account>
       </div>
     </md-toolbar>
     <div layout='row' layout-align='center start'>
       <div ng-view=""></div>
+    </div>
+    <div hide-xs style="position:absolute;top:0;left:0">
+      <s99-quicklinks></s99-quicklinks>
     </div>
     <div hide-xs style="position:absolute;top:0;right:0">
       <s99-account></s99-account>
@@ -174,6 +178,7 @@
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
+      <script src="components/quicklinks/quicklinks.component.js"></script>
       <script src="components/socket/socket.service.js"></script>
       <script src="app/account/signup/signup-dialog.controller.js"></script>
       <script src="components/util/util.service.js"></script>
