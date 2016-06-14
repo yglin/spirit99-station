@@ -866,6 +866,22 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
+    grunt.registerTask('awseb-deploy', function () {
+        var done = this.async();
+        var awseb = require('./awseb');
+        awseb.deploy()
+        .then(function () {
+            grunt.log.ok('Complete deploy to AWS Elastic Beanstalk');
+            done();
+        })
+        .catch(function () {
+            grunt.log.error('Failed deploy to AWS Elastic Beanstalk');
+            done(false);
+        });
+    });
+
+    grunt.registerTask('deploy', ['build', 'awseb-deploy']);
+
     grunt.registerTask('default', [
         'newer:jshint',
         'test',

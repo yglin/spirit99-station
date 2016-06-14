@@ -3,7 +3,7 @@
 
 angular.module('spirit99StationApp.constants', [])
 
-.constant('appConfig', {env:'development',userRoles:['guest','user','admin'],spirit99Url:'http://localhost:9493',googleAPIKey:'AIzaSyCewhA8IKkKYEWgW0e5bSThsw6sNKauliE'})
+.constant('appConfig', {env:'production',userRoles:['guest','user','admin'],spirit99Url:'http://www.9493.tw',googleAPIKey:'AIzaSyB72lwL0HWu-jdurOAWFMIUMPAL6aHeZ0s'})
 
 ;
 })(angular);
