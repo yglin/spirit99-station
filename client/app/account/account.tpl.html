@@ -9,12 +9,14 @@ aria-label='Log In' ng-click="$ctrl.gotoLogin()">
     <div ng-show='$ctrl.avatar' style='margin:2px 5px;'>
         <a ng-href='/profile'>
             <img ng-src='{{$ctrl.avatar}}' style='border-radius: 50%;'/>
+            <md-tooltip>個人頁面</md-tooltip>
         </a>
     </div>
     <div ng-show='!$ctrl.avatar'>
         <md-button class='md-fab md-mini md-accent s99-ng-clickable'
         aria-label='Account' ng-href='/profile'>
             <md-icon class='material-icons'>account_circle</md-icon>
+            <md-tooltip>個人頁面</md-tooltip>
         </md-button>        
     </div>
     <div>
