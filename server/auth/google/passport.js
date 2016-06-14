@@ -8,24 +8,45 @@ export function setup(User, config) {
         callbackURL: config.google.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        User.find({where:{'provider_id': profile.id, provider: 'google'}})
-            .then(user => {
-                if (user) {
-                    return done(null, user);
+        var email = profile.emails[0].value;
+        var username = 
+
+        User.find({where:{
+            $or: [
+                {
+                    email: email
+                },
+                {
+                    provider_id: profile.id,
+                    provider: 'google'
                 }
+            ]
+        }})
+        .then(user => {
+            if (user) {
+                return user.update({
+                    name: profile.displayName,
+                    provider: 'google',
+                    provider_id: profile.id,
+                    google: profile._json
+                })
+                .then(function (user) {
+                    return done(null, user);                
+                });
+            }
+            else {
                 user = User.build({
                     name: profile.displayName,
-                    email: profile.emails[0].value,
+                    email: email,
                     role: 'user',
-                    username: profile.emails[0].value.split('@')[0],
                     provider: 'google',
                     provider_id: profile.id,
                     google: profile._json
                 });
-                user.save()
-                    .then(user => done(null, user))
-                    .catch(err => done(err));
-            })
-            .catch(err => done(err));
+                return user.save()
+                .then(user => done(null, user))
+            }
+        })
+        .catch(err => done(err));
     }));
 }

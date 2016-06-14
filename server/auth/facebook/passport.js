@@ -13,24 +13,44 @@ export function setup(User, config) {
         ]
     },
     function(accessToken, refreshToken, profile, done) {
-        User.find({where:{'provider_id': profile.id, provider: 'facebook'}})
-            .then(user => {
-                if (user) {
-                    return done(null, user);
+        var email = profile.emails[0].value;
+        
+        User.find({where:{
+            $or: [
+                {
+                    email: email
+                },
+                {
+                    provider_id: profile.id,
+                    provider: 'facebook'
                 }
-
+            ]
+        }})
+        .then(user => {
+            if (user) {
+                return user.update({
+                    name: profile.displayName,
+                    provider: 'facebook',
+                    provider_id: profile.id,
+                    facebook: profile._json
+                })
+                .then(function (user) {
+                    return done(null, user);                
+                });
+            }
+            else {
                 user = User.build({
                     name: profile.displayName,
-                    email: profile.emails[0].value,
+                    email: email,
                     role: 'user',
                     provider: 'facebook',
                     provider_id: profile.id,
                     facebook: profile._json
                 });
-                user.save()
-                    .then(user => done(null, user))
-                    .catch(err => done(err));
-            })
-            .catch(err => done(err));
+                return user.save()
+                .then(user => done(null, user));
+            }
+        })
+        .catch(err => done(err));
     }));
 }
