@@ -2,13 +2,13 @@
 'use strict';
 
 module.exports = function (grunt) {
-    var localConfig;
-    try {
-        localConfig = require('./server/config/local.env');
-    } catch(e) {
-        console.log(e);
-        localConfig = {};
-    }
+    // var localConfig;
+    // try {
+    //     localConfig = require('./server/config/local.env');
+    // } catch(e) {
+    //     console.log(e);
+    //     localConfig = {};
+    // }
 
     // Load grunt tasks automatically, when needed
     require('jit-grunt')(grunt, {
@@ -552,16 +552,17 @@ module.exports = function (grunt) {
         },
 
         env: {
+            options: grunt.file.readJSON('.credentials/shared.env.json'),
             dev: {
-                NODE_ENV: 'development'
+                src: '.credentials/development.env.json'
             },
             test: {
-                NODE_ENV: 'test'
+                src: '.credentials/test.env.json'
             },
             prod: {
-                NODE_ENV: 'production'
+                src: '.credentials/production.env.json'
             },
-            all: localConfig
+            // all: localConfig
         },
 
         // Compiles ES6 to JavaScript using Babel
@@ -693,14 +694,14 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('serve', function (target) {
-        if (target === 'dist') {
-            return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
-        }
+        // if (target === 'dist') {
+        //     return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
+        // }
 
         if (target === 'debug') {
             return grunt.task.run([
                 'clean:server',
-                'env:all',
+                // 'env:all',
                 'concurrent:pre',
                 'concurrent:server',
                 'injector',
@@ -713,7 +714,7 @@ module.exports = function (grunt) {
         if (target === 'test') {
             return grunt.task.run([
                 'clean:server',
-                'env:all',
+                // 'env:all',
                 'env:test',
                 'concurrent:pre',
                 'concurrent:server',
@@ -729,7 +730,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'env:all',
+            // 'env:all',
             'env:dev',
             'concurrent:pre',
             'concurrent:server',
@@ -752,7 +753,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', function(target, option) {
         if (target === 'server') {
             return grunt.task.run([
-                'env:all',
+                // 'env:all',
                 'env:test',
                 'mochaTest:unit',
                 'mochaTest:integration'
@@ -762,7 +763,7 @@ module.exports = function (grunt) {
         else if (target === 'client') {
             return grunt.task.run([
                 'clean:server',
-                'env:all',
+                // 'env:all',
                 'concurrent:pre',
                 'concurrent:test',
                 'injector',
@@ -777,7 +778,7 @@ module.exports = function (grunt) {
             if (option === 'prod') {
                 return grunt.task.run([
                     'build',
-                    'env:all',
+                    // 'env:all',
                     'env:prod',
                     'express:prod',
                     'protractor'
@@ -787,7 +788,7 @@ module.exports = function (grunt) {
             else {
                 return grunt.task.run([
                     'clean:server',
-                    'env:all',
+                    // 'env:all',
                     'env:test',
                     'concurrent:pre',
                     'concurrent:test',
@@ -806,7 +807,7 @@ module.exports = function (grunt) {
 
             if (option === 'unit') {
                 return grunt.task.run([
-                    'env:all',
+                    // 'env:all',
                     'env:test',
                     'mocha_istanbul:unit'
                 ]);
@@ -814,7 +815,7 @@ module.exports = function (grunt) {
 
             else if (option === 'integration') {
                 return grunt.task.run([
-                    'env:all',
+                    // 'env:all',
                     'env:test',
                     'mocha_istanbul:integration'
                 ]);
@@ -828,7 +829,7 @@ module.exports = function (grunt) {
 
             else {
                 return grunt.task.run([
-                    'env:all',
+                    // 'env:all',
                     'env:test',
                     'mocha_istanbul',
                     'istanbul_check_coverage'
