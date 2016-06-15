@@ -4,8 +4,8 @@
         <div layout='row' layout-padding layout-align='start center'
         style='outline:none;'
         ng-click="$ctrl.togglePosts($index)">
-            <div flex='10'><img class='s99-channel-logo-small' ng-src='{{channel["logo-url"]}}'></div>
-            <p flex='20'>{{channel.title}}</p>
+            <div flex='15' flex-xs='25'><img class='s99-channel-logo-small' ng-src='{{channel["logo-url"]}}'></div>
+            <p flex='20' flex-xs='40'>{{channel.title}}</p>
             <span flex></span>
             <md-progress-circular ng-show='channel.onLoadingPosts' md-mode='indeterminate' md-diameter="50px"></md-progress-circular>
             <md-button class='md-icon-button'>
