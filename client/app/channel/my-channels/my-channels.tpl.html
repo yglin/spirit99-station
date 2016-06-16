@@ -6,6 +6,9 @@
             <p hide-xs flex='30'>{{channel.description}}</p>
             <span flex></span>
             <div layout='row' layout-xs='column'>
+                    <md-button class='md-icon-button' ng-click='$ctrl.openClient($index)'>
+                    <md-icon class='material-icons'>open_in_new</md-icon>
+                </md-button>
                 <md-button class='md-icon-button' ng-href='/channels/update/{{channel.id}}'>
                     <md-icon class='material-icons'>edit</md-icon>
                 </md-button>
@@ -15,7 +18,7 @@
             </div>
         </div>
     </div>
-    <md-divider ng-show='$ctrl.channels.length > 0' layout-margin></md-divider>
+    <md-divider ng-show='$ctrl.closedChannels.length > 0' layout-margin></md-divider>
     <md-subheader ng-show='$ctrl.closedChannels.length > 0'>已關閉頻道</md-subheader>
     <div ng-repeat='channel in $ctrl.closedChannels' layout-padding>
         <div layout='row' layout-align='start center'>

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-09 10:57:13
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 17:39:45
+* @Last Modified time: 2016-06-16 13:58:20
 */
 
 (function() {
@@ -17,16 +17,17 @@
         }
     });
 
-    MyChannelsController.$inject = ['$scope', 'Auth', 'Channel', 'ygDialog'];
+    MyChannelsController.$inject = ['$scope', '$window', 'Auth', 'Channel', 'ygDialog'];
 
     /* @ngInject */
-    function MyChannelsController($scope, Auth, Channel, ygDialog) {
+    function MyChannelsController($scope, $window, Auth, Channel, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'MyChannels';
         $ctrl.channels = [];
         $ctrl.closedChannels = [];
         $ctrl.close = close;
         $ctrl.reopen = reopen;
+        $ctrl.openClient = openClient;
 
         $ctrl.$onInit = function () {
             Channel.getFromUser($ctrl.user._id)
@@ -70,6 +71,12 @@
                     $ctrl.closedChannels.splice(index, 1);
                 });                
             });
+        }
+
+        function openClient(index) {
+            var channel = $ctrl.channels[index];
+            var importUrl = Channel.getImportUrl(channel.id);
+            $window.open(importUrl);
         }
     }
 })();
