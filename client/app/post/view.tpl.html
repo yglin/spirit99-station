@@ -1,4 +1,4 @@
-<div id='s99-post-view' layout-padding style='max-width: 800px;'>
+<div id='s99-post-view' layout-padding>
     <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
     <div layout='row' layout-wrap layout-margin layout-align='end center'>
         <div>
@@ -34,7 +34,7 @@
         <div layout-margin>
             <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
             <span class='s99-category-title'>{{$ctrl.categoryTitle}}</span>
-            <md-content style='min-width:300px; min-height: 200px;'>
+            <md-content style='width:90%; min-height: 200px;'>
                 <div class='s99-post-content' ta-bind ng-model="$ctrl.post.content"></div>
             </md-content>
             <md-divider layout-margin></md-divider>
