@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 16:16:22
+* @Last Modified time: 2016-06-16 11:02:13
 */
 
 'use strict';
@@ -21,13 +21,16 @@
         }
     });
 
-    ChannelEditorController.$inject = ['$scope', 'ImageSelector', 'ygDialog'];
+    ChannelEditorController.$inject = ['$scope', 'Channel', 'ImageSelector', '$q', 'ygDialog'];
 
     /* @ngInject */
-    function ChannelEditorController($scope, ImageSelector, ygDialog) {
+    function ChannelEditorController($scope, Channel, ImageSelector, $q, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'ChannelEditor';
         $ctrl.channelIDPattern = /^[A-Z]\w+$/i;
+        $ctrl.importUrl = '';
+
+        $ctrl.onChangeID = onChangeID;
         $ctrl.assignLogo = assignLogo;
         $ctrl.selectCategory = selectCategory;
         $ctrl.selectCategoryIcon = selectCategoryIcon;
@@ -50,7 +53,15 @@
             }
             $ctrl.category = angular.copy(categoryDefaults);
             maxID = Math.max.apply(null, [0].concat(Object.keys($ctrl.channel.categories)));
+
+            if (!$ctrl.channel.public) {
+                $ctrl.channel.public = true;
+            }
         };
+
+        function onChangeID() {
+            $ctrl.importUrl = Channel.getImportUrl($ctrl.channel.id);
+        }
 
         function assignLogo() {
             ImageSelector.select({
@@ -122,9 +133,9 @@
             });
         }
 
-        function doSubmit(data) {
+        function doSubmit(channel) {
             $ctrl.processingSubmit = true;
-            $ctrl.submit(data)
+            $ctrl.submit(channel)
             .finally(function () {
                 $ctrl.processingSubmit = false;
             });
