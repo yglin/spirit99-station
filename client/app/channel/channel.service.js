@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 10:35:30
+* @Last Modified time: 2016-06-16 13:46:10
 */
 
 'use strict';
@@ -38,10 +38,6 @@
         }
 
         function create(channelData) {
-            if (channelData.public) {
-                channelData.state = 'public';
-                delete channelData.public;
-            }
             return $http.post('/api/channels', channelData)
             .then(function (response) {
                 return $q.resolve(response.data);
@@ -49,10 +45,6 @@
         }
 
         function update(channelData) {
-            if (channelData.public) {
-                channelData.state = 'public';
-                delete channelData.public;
-            }
             return $http.put('/api/channels/' + channelData.id, channelData)
             .then(function (response) {
                 return $q.resolve(response.data);

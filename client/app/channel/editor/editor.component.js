@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 11:34:23
+* @Last Modified time: 2016-06-16 13:45:49
 */
 
 'use strict';
@@ -55,8 +55,15 @@
             $ctrl.category = angular.copy(categoryDefaults);
             maxID = Math.max.apply(null, [0].concat(Object.keys($ctrl.channel.categories)));
 
-            if (!$ctrl.channel.public) {
-                $ctrl.channel.public = true;
+            if (!$ctrl.channel.state) {
+                $ctrl.public = true;
+            }
+            else {
+                $ctrl.public = $ctrl.channel.state == 'public';
+            }
+
+            if ($ctrl.channel.id) {
+                $ctrl.importUrl = Channel.getImportUrl($ctrl.channel.id);
             }
         };
 
@@ -135,6 +142,13 @@
         }
 
         function doSubmit(channel) {
+            if ($ctrl.public) {
+                $ctrl.channel.state = 'public';
+            }
+            else {
+                $ctrl.channel.state = 'private';
+            }
+            
             $ctrl.processingSubmit = true;
             $ctrl.submit(channel)
             .finally(function () {

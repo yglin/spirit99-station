@@ -99,9 +99,9 @@
             </div>
             <div>
                 <md-checkbox id='checkbox-public'
-                ng-model='$ctrl.channel.public'
+                ng-model='$ctrl.public'
                 aria-label='Public Channel'>公開</md-checkbox>
-                <p style='overflow-wrap: break-word;' ng-show='!$ctrl.channel.public && $ctrl.importUrl'>
+                <p style='overflow-wrap: break-word;' ng-show='!$ctrl.public && $ctrl.importUrl'>
                     非公開的頻道不會出現在頻道庫清單裡，<br>請複製以下連結給其他人<br>
                     {{$ctrl.importUrl}}
                 </p>
