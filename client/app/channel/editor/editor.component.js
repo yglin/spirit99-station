@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 11:02:13
+* @Last Modified time: 2016-06-16 11:34:23
 */
 
 'use strict';
@@ -21,14 +21,15 @@
         }
     });
 
-    ChannelEditorController.$inject = ['$scope', 'Channel', 'ImageSelector', '$q', 'ygDialog'];
+    ChannelEditorController.$inject = ['$scope', '$mdMedia', 'Channel', 'ImageSelector', '$q', 'ygDialog'];
 
     /* @ngInject */
-    function ChannelEditorController($scope, Channel, ImageSelector, $q, ygDialog) {
+    function ChannelEditorController($scope, $mdMedia, Channel, ImageSelector, $q, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'ChannelEditor';
         $ctrl.channelIDPattern = /^[A-Z]\w+$/i;
-        $ctrl.importUrl = '';
+        $ctrl.importUrl = undefined;
+        $ctrl.$mdMedia = $mdMedia;
 
         $ctrl.onChangeID = onChangeID;
         $ctrl.assignLogo = assignLogo;

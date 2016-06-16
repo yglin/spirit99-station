@@ -1,7 +1,7 @@
 <form name='channelForm'>
     <div>
-    <md-content layout='column' layout-gt-sm='row' layout-padding>
-        <div style='max-width: 300px;'>
+    <md-content layout='row' layout-wrap layout-padding>
+        <div ng-style='$ctrl.$mdMedia("xs") && {"width": "320px"} || $ctrl.$mdMedia("sm") && {"width": "360px"} || $ctrl.$mdMedia("gt-sm") && {"width": "600px"}'>
             <md-input-container class='md-block' ng-if='$ctrl.action == "create"'>
                 <label>ID</label>
                 <input name='id' ng-model='$ctrl.channel.id' required
@@ -48,7 +48,7 @@
                     </md-button>
                 </div>
             </div>
-            <md-subheader>分類圖標</md-subheader>
+            <md-subheader class='md-primary'>分類圖標</md-subheader>
             <div layout='row' layout-wrap layout-padding>
                 <div ng-repeat="(id, category) in $ctrl.channel.categories"
                 layout='column' layout-align='center center'
@@ -101,7 +101,7 @@
                 <md-checkbox id='checkbox-public'
                 ng-model='$ctrl.channel.public'
                 aria-label='Public Channel'>公開</md-checkbox>
-                <p style='overflow-wrap: break-word;' ng-show='!$ctrl.channel.public && $ctrl.channel.id'>
+                <p style='overflow-wrap: break-word;' ng-show='!$ctrl.channel.public && $ctrl.importUrl'>
                     非公開的頻道不會出現在頻道庫清單裡，<br>請複製以下連結給其他人<br>
                     {{$ctrl.importUrl}}
                 </p>
