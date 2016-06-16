@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-12 16:53:25
+* @Last Modified time: 2016-06-16 10:35:30
 */
 
 'use strict';
@@ -12,9 +12,9 @@
     angular.module('spirit99StationApp.channel')
     .factory('Channel', Channel);
 
-    Channel.$inject = ['$window', '$http', '$q', 'Auth'];
+    Channel.$inject = ['appConfig', '$window', '$http', '$q', 'Auth'];
 
-    function Channel($window, $http, $q, Auth) {
+    function Channel(appConfig, $window, $http, $q, Auth) {
         return {
             query: query,
             create: create,
@@ -23,7 +23,7 @@
             get: get,
             getPortal: getPortal,
             getFromUser: getFromUser,
-            importTo: importTo
+            getImportUrl: getImportUrl
         };
 
         function httpError(error) {
@@ -105,9 +105,9 @@
             }, httpError);
         }
 
-        function importTo(channel_id, client_url) {
+        function getImportUrl(channel_id) {
             var portalUrl = $window.location.protocol + '//' + $window.location.host + '/api/channels/' + channel_id + '/portal';
-            $window.location.href = client_url + '?import=' + $window.encodeURIComponent(portalUrl);
+            return appConfig.spirit99Url + '?import=' + $window.encodeURIComponent(portalUrl);
         }
     }
 })();
