@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-02 09:21:37
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-03 13:47:38
+* @Last Modified time: 2016-06-20 12:02:31
 */
 
 'use strict';
@@ -14,10 +14,10 @@
         .module('spirit99StationApp.post')
         .controller('PostViewController', PostViewController);
 
-    PostViewController.$inject = ['$scope', '$window', '$location', '$routeParams', 'Util', 'Channel', 'Post', 'Auth', 'ygDialog'];
+    PostViewController.$inject = ['$scope', '$window', '$location', '$routeParams', '$mdMedia', 'Util', 'Channel', 'Post', 'Auth', 'ygDialog'];
 
     /* @ngInject */
-    function PostViewController($scope, $window, $location, $routeParams, Util, Channel, Post, Auth, ygDialog) {
+    function PostViewController($scope, $window, $location, $routeParams, $mdMedia, Util, Channel, Post, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Post View';
         $ctrl.channel = undefined;
@@ -25,6 +25,7 @@
         $ctrl.categoryIcon = undefined;
         $ctrl.categoryTitle = undefined;
         $ctrl.isEvent = false;
+        $ctrl.$mdMedia = $mdMedia;
 
         $ctrl.gotoUpdate = gotoUpdate;
         $ctrl.deletePost = deletePost;

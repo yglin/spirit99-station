@@ -1,14 +1,8 @@
-<div id='s99-post-view' layout-padding>
+<div id='s99-post-view' layout-margin-gt-xs>
     <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
-    <div layout='row' layout-wrap layout-margin layout-align='end center'>
-        <div>
-            <span flex></span>
-            <span class='s99-post-author'>{{$ctrl.post.author}}</span>
-        </div>
-        <div>
-            <span flex></span>
-            <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
-        </div>
+    <div layout='column' layout-gt-xs='row' layout-padding-gt-xs layout-align='center end' layout-align-gt-xs='end center'>
+        <span class='s99-post-author'>{{$ctrl.post.author}}</span>
+        <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
         <div layout='row' ng-show='$ctrl.isMyPost'>
             <span flex></span>
             <md-button id='goto-update' class='md-icon-button md-accent'
@@ -22,7 +16,7 @@
         </div>
     </div>
     <div layout='row' layout-wrap layout-align='space-between center'
-    ng-show='$ctrl.isEvent'>
+    ng-show='$ctrl.isEvent' layout-margin-gt-xs>
         <div>
             <span>開始時間：</span><span>{{$ctrl.post.startAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
         </div>
@@ -30,16 +24,22 @@
             <span>結束時間：</span><span>{{$ctrl.post.endAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
         </div>
     </div>
-    <div layout='column' layout-gt-sm='row'>
-        <div layout-margin>
-            <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
-            <span class='s99-category-title'>{{$ctrl.categoryTitle}}</span>
-            <md-content style='width:90%; min-height: 200px;'>
+    <div layout='column' layout-gt-sm='row' layout-padding-gt-sm>
+        <div>
+            <div>
+                <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
+                <span class='s99-category-title'>{{$ctrl.categoryTitle}}</span>
+            </div>
+            <br>
+            <md-content style='height:90vh;'
+            ng-style='$ctrl.$mdMedia("gt-sm") && {"width": "50vw"} || {"width": "80vw"}'>
                 <div class='s99-post-content' ta-bind ng-model="$ctrl.post.content"></div>
             </md-content>
             <md-divider layout-margin></md-divider>
         </div>
-        <s99-locate-map ng-if='$ctrl.post' width='300' height='480' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
+        <div>
+            <s99-locate-map ng-if='$ctrl.post' ng-attr-width='{{$ctrl.$mdMedia("gt-sm") && "25vw" || $ctrl.$mdMedia("gt-xs") && "75vw" || "85vw"}}' height='75vh' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
+        </div>
     </div>
     <s99-comment-list ng-if='$ctrl.channel && $ctrl.post' channel='$ctrl.channel' post='$ctrl.post'></s99-comment-list>
 </div>
