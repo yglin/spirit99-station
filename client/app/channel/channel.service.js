@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-22 11:13:42
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 13:46:10
+* @Last Modified time: 2016-06-19 11:51:12
 */
 
 'use strict';
@@ -98,7 +98,7 @@
         }
 
         function getImportUrl(channel_id) {
-            var portalUrl = $window.location.protocol + '//' + $window.location.host + '/api/channels/' + channel_id + '/portal';
+            var portalUrl = '//' + $window.location.host + '/api/channels/' + channel_id + '/portal';
             return appConfig.spirit99Url + '?import=' + $window.encodeURIComponent(portalUrl);
         }
     }

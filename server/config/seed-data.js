@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-13 14:50:25
+* @Last Modified time: 2016-06-20 11:48:04
 */
 
 'use strict';
@@ -170,7 +170,9 @@ function genPosts(channel, options) {
             post.category = _.sample(categoryIDs);
         }
         if(Math.random() > 0.2){
-            post.thumbnail = _.sample(thumbnails);
+            var thumbnail = _.sample(thumbnails);
+            post.content += '<img src="' + thumbnail + '">';
+            post.thumbnail = thumbnail;
         }
         posts.push(post);
     };

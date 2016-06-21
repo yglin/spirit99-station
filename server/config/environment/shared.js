@@ -8,13 +8,13 @@ exports = module.exports = (function () {
     };
 
     if (process.env.NODE_ENV == 'production') {
-        sharedConstants.spirit99Url = 'http://www.9493.tw';
+        sharedConstants.spirit99Url = '//www.9493.tw';
     }
     else if (process.env.NODE_ENV == 'development') {
-        sharedConstants.spirit99Url = 'http://localhost:9493';
+        sharedConstants.spirit99Url = '//localhost:9493';
     }
     else if (process.env.NODE_ENV == 'test') {
-        sharedConstants.spirit99Url = 'http://localhost:9001';
+        sharedConstants.spirit99Url = '//localhost:9001';
     }
 
     if (process.env.NODE_ENV == 'production') {
