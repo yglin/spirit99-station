@@ -8,8 +8,7 @@ export function setup(User, config) {
         callbackURL: config.google.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        var email = profile.emails[0].value;
-        var username = 
+        var email = profile.emails[0].value.toLowerCase();
 
         User.find({where:{
             $or: [
