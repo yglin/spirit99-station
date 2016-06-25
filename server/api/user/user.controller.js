@@ -4,6 +4,27 @@ import {User} from '../../sqldb';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import {respondWithResult, handleError, handleEntityNotFound, handleEntityNotBelonging, saveUpdates} from '../requestHandlers';
+
+var HttpStatus = require('http-status-codes');
+var Q = require('q');
+var nodemailer = require('nodemailer');
+var crypto = require('crypto'),
+    algorithm = 'aes-256-ctr';
+
+function encrypt(text){
+    var cipher = crypto.createCipher(algorithm, config.secrets.session);
+    var crypted = cipher.update(text,'utf8','hex')
+    crypted += cipher.final('hex');
+    return crypted;
+}
+ 
+function decrypt(text){
+    var decipher = crypto.createDecipher(algorithm, config.secrets.session)
+    var dec = decipher.update(text,'hex','utf8')
+    dec += decipher.final('utf8');
+    return dec;
+}
 
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;
@@ -12,12 +33,12 @@ function validationError(res, statusCode) {
     }
 }
 
-function handleError(res, statusCode) {
-    statusCode = statusCode || 500;
-    return function(err) {
-        res.status(statusCode).send(err);
-    };
-}
+// function handleError(res, statusCode) {
+//     statusCode = statusCode || 500;
+//     return function(err) {
+//         res.status(statusCode).send(err);
+//     };
+// }
 
 /**
  * Get list of users
@@ -44,16 +65,16 @@ export function index(req, res) {
  */
 export function create(req, res, next) {
     var newUser = User.build(req.body);
-    newUser.setDataValue('provider', 'local');
-    newUser.setDataValue('role', 'user');
+    newUser.provider = 'local';
+
     return newUser.save()
-        .then(function(user) {
-            var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-                expiresIn: 60 * 60 * 5
-            });
-            res.json({ token });
-        })
-        .catch(validationError(res));
+    .then(function(user) {
+        var token = jwt.sign({ _id: user._id }, config.secrets.session, {
+            expiresIn: 60 * 60 * 5
+        });
+        res.json({ token });
+    })
+    .catch(validationError(res));
 }
 
 /**
@@ -162,7 +183,7 @@ export function authCallback(req, res, next) {
 export function validate(req, res) {
     if (req.params.field == 'email') {
         var result = {};
-        var email = req.body.value;
+        var email = req.body.value.toLowerCase();
         User.count({where: {email: email}})
         .then(function (count) {
             if (count > 0) {
@@ -175,4 +196,82 @@ export function validate(req, res) {
             res.status(200).json(result);
         });
     }
+}
+
+export function verify(req, res) {
+    var userId = req.user._id;
+
+    console.log(userId);
+    User.find({where: { _id: userId }})
+    .then(handleEntityNotFound(res))
+    .then(function (user) {
+        if (user.role == 'unverified') {
+            if (user.meta && user.meta.verify_code == req.body.code) {
+                user.role = 'user';
+                user.meta = null;
+                return user.save()
+                .then(function (user) {
+                    return Q.resolve(user);
+                });
+            }
+            else {
+                return Q.reject('Verification failed, try to send verification mail again');
+            }
+        }
+        else {
+            return Q.resolve(user);
+        }
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+
+// send email with verify code to user
+export function sendVerifyMail(req, res) {
+    var userId = req.user._id;
+
+    User.find({where: { _id: userId }})
+    .then(handleEntityNotFound(res))
+    .then(function (user) {
+        var done = Q.defer();
+        var verifyCode = crypto.randomBytes(32).toString('hex');
+        var mailContent = '認證碼：' + verifyCode;
+
+        // Configure nodemailer transporter
+        var transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            auth: {
+                user: process.env.SMTP_LOGIN,
+                pass: process.env.SMTP_PASSWORD
+            }
+        });
+
+        user.meta = { verify_code: verifyCode };
+        user.save()
+        .then(function (user) {
+            transporter.sendMail({
+                from: 'spirit99@mg.9493.tw',
+                to: user.email,
+                subject: 'User Verification 註冊認證碼，from www.9493.tw',
+                text: mailContent
+            }, function (error, info) {
+                if (error) {
+                    console.error(error);
+                    done.reject(error);
+                }
+                else {
+                    res.status(HttpStatus.OK).json(info);
+                    done.resolve();
+                }
+            });
+        })
+        .catch(function (error) {
+            console.error(error);
+            done.reject(error);
+        });
+
+        return done.promise;
+    })
+    .catch(handleError(res));
 }

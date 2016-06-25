@@ -60,6 +60,8 @@ function init() {
         db.User = db.sequelize.import('../api/user/user.model');
         db.Channel = db.sequelize.import('../api/channel/channel.model');
 
+        console.log('Database initialization complete...');
+
         return Q.resolve();
     });
 }

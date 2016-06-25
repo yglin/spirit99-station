@@ -69,16 +69,16 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
          */
         createUser(user, callback) {
             return User.save(user,
-                function(data) {
-                    $cookies.put('token', data.token);
-                    currentUser = User.get();
-                    $rootScope.$broadcast('account:login');
-                    return safeCb(callback)(null, user);
-                },
-                function(err) {
-                    Auth.logout();
-                    return safeCb(callback)(err);
-                }).$promise;
+            function(data) {
+                $cookies.put('token', data.token);
+                currentUser = User.get();
+                $rootScope.$broadcast('account:login');
+                return safeCb(callback)(null, user);
+            },
+            function(err) {
+                Auth.logout();
+                return safeCb(callback)(err);
+            }).$promise;
         },
 
         /**
@@ -154,7 +154,7 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
             */
         hasRole(role, callback) {
             var hasRole = function(r, h) {
-                return userRoles.indexOf(r) >= userRoles.indexOf(h);
+                return userRoles.indexOf(h) >= 0 && userRoles.indexOf(r) >= userRoles.indexOf(h);
             };
 
             if (arguments.length < 2) {
@@ -189,6 +189,33 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
          */
         getToken() {
             return $cookies.get('token');
+        },
+
+        sendVerifyEmail() {
+            var result = $q.defer();
+            User.sendVerifyEmail({ id: currentUser._id }, {},
+            function (response) {
+                result.resolve(response.accepted);
+            }, function (error) {
+                console.error(error);
+                result.reject(error.data);
+            });
+            
+            return result.promise;
+        },
+
+        verify(code) {
+            var result = $q.defer();
+            User.verify({ id: currentUser._id}, { code: code },
+            function (response) {
+                // Update user
+                currentUser = User.get();
+                result.resolve();  
+            }, function (error) {
+                console.error(error.data);
+                result.reject(error.data);
+            });
+            return result.promise;
         }
     };
 

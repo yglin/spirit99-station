@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         role: {
             type: DataTypes.STRING,
-            defaultValue: 'user'
+            defaultValue: 'unverified'
         },
         password: {
             type: DataTypes.STRING,
@@ -77,6 +77,11 @@ module.exports = function(sequelize, DataTypes) {
             get: getJSON('github'),
             set: setJSON('github')
         },
+        meta: {
+            type: DataTypes.TEXT,
+            get: getJSON('meta'),
+            set: setJSON('meta')            
+        }
         // // DataTypes.JSON only allowed in PostgreSQL
         // facebook: DataTypes.JSON,
         // twitter: DataTypes.JSON,

@@ -17,6 +17,7 @@ function setJSON(field) {
         this.setDataValue(field, JSON.stringify(value));
     };
 }
+
 module.exports = function(sequelize, DataTypes) {
     var Channel = sequelize.define('channel', {
         id: {

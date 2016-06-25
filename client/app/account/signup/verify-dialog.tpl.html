@@ -1,0 +1,36 @@
+<md-dialog id='s99-login-dialog' aria-label="Log-in" ng-cloak>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{$ctrl.title}}</h2>
+        <span flex></span>
+        <md-button id='cancel'
+        class="md-icon-button"
+        ng-click="$ctrl.cancel()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content layout-padding>
+    <div ng-show='$ctrl.isSendingEmail' layout='row' layout-align='center center'>
+        <md-progress-circular md-mode='indeterminate' md-diameter='100'></md-progress-circular>
+    </div>
+    <div ng-show='$ctrl.emailsSent'>
+        <p>註冊認證碼已經寄到以下信箱：</p>
+        <h3 ng-repeat="email in $ctrl.emails">{{email}}</h3>
+        <br>
+        <p>請將認證碼填入(複製貼上)下方輸入框內，以完成認證</p>
+        <br>
+        <input type='text' ng-model='$ctrl.verifyCode'>
+    </div>
+    <div class='md-warn' ng-show="$ctrl.errorMessage">
+        <h3>認證失敗</h3>
+        <p>{{$ctrl.errorMessage}}</p>
+    </div>
+    <md-button class='md-raised' ng-click='$ctrl.sendVerifyEmail()'>重新寄出認證碼</md-button>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <md-button class='md-primary' ng-click='$ctrl.confirm()'>
+        確定
+    </md-button>
+</md-dialog-actions>
+</md-dialog>

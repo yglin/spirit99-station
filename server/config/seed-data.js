@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-20 11:48:04
+* @Last Modified time: 2016-06-25 18:14:28
 */
 
 'use strict';
@@ -18,6 +18,7 @@ data.mainDB = {
         {
             provider: 'local',
             name: 'Test User',
+            role: 'user',
             email: 'test@example.com',
             password: 'test'
         }, 
@@ -27,6 +28,12 @@ data.mainDB = {
             name: 'Admin',
             email: 'admin@example.com',
             password: 'admin'
+        },
+        {
+            provider: 'local',
+            name: 'YGG',
+            email: 'yglin.mlanser@gmail.com',
+            password: 'ggyy'
         }
     ],
     channels: [

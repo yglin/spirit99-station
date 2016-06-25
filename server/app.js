@@ -37,12 +37,11 @@ sqldb.init()
         console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
       });
     }
-
     sqldb.sequelize.sync()
     .then(channelDBs.connectAll)
     .then(startServer)
     .catch(function(err) {
-    console.error('Server failed to start due to error: %s', err);
+        console.error('Server failed to start due to error: %s', err);
     });
 });
 

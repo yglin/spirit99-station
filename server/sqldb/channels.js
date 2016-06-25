@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-04-29 15:06:17
+* @Last Modified time: 2016-06-25 14:30:17
 */
 
 'use strict';
@@ -37,7 +37,12 @@ function connectAll() {
                 connectings.push(connectDB(channels[i]));
             }
         }
-        return Q.allSettled(connectings);
+        return Q.allSettled(connectings).then(function () {
+            console.log('All channel databases are connected');
+            return Q.resolve();
+        }, function (error) {
+            return Q.reject(error);
+        });
     });
 }
 
@@ -74,12 +79,23 @@ function connectDB(channel, options) {
 
     dbs[channel.id] = channelDB;
 
+    var connected;
+
     if (options.force) {
-        return sqldb.forceSync(channelDB.sequelize);
+        connected = sqldb.forceSync(channelDB.sequelize);
     }
     else {
-        return channelDB.sequelize.sync();
+        connected = channelDB.sequelize.sync();
     }
+
+    return connected.then(function () {
+        console.log('Connected to database: ' + dbName);
+        return Q.resolve();
+    }, function (error) {
+        console.error('Failed to connect to database: ' + dbName);
+        console.error(error);
+        return Q.reject(error);
+    });
 }
 
 function deleteDB(channel) {
