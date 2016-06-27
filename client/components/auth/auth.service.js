@@ -212,8 +212,13 @@ function AuthService($rootScope, $location, $http, $cookies, $q, appConfig, Util
                 currentUser = User.get();
                 result.resolve();  
             }, function (error) {
-                console.error(error.data);
-                result.reject(error.data);
+                console.error(error);
+                if (error.status == 409) {
+                    result.reject('錯誤的認證碼');
+                }
+                else {
+                    result.reject(error.data);
+                }
             });
             return result.promise;
         }

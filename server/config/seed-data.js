@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-25 18:14:28
+* @Last Modified time: 2016-06-27 10:39:55
 */
 
 'use strict';
@@ -32,7 +32,7 @@ data.mainDB = {
         {
             provider: 'local',
             name: 'YGG',
-            email: 'yglin.mlanser@gmail.com',
+            email: 'yglin.mlanser@yahoo.com.tw',
             password: 'ggyy'
         }
     ],

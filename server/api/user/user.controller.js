@@ -201,7 +201,6 @@ export function validate(req, res) {
 export function verify(req, res) {
     var userId = req.user._id;
 
-    console.log(userId);
     User.find({where: { _id: userId }})
     .then(handleEntityNotFound(res))
     .then(function (user) {
@@ -211,18 +210,20 @@ export function verify(req, res) {
                 user.meta = null;
                 return user.save()
                 .then(function (user) {
-                    return Q.resolve(user);
+                    res.status(HttpStatus.OK).json(user);
+                    return Q.resolve();
                 });
             }
             else {
-                return Q.reject('Verification failed, try to send verification mail again');
+                res.status(HttpStatus.CONFLICT).send('Verify code not match');
+                return Q.reject();
             }
         }
         else {
-            return Q.resolve(user);
+            res.status(HttpStatus.OK).json(user);
+            return Q.resolve();
         }
     })
-    .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
@@ -240,7 +241,8 @@ export function sendVerifyMail(req, res) {
 
         // Configure nodemailer transporter
         var transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
+            service: process.env.MAIL_SERVICE,
+            // host: process.env.SMTP_HOST,
             auth: {
                 user: process.env.SMTP_LOGIN,
                 pass: process.env.SMTP_PASSWORD
@@ -261,12 +263,12 @@ export function sendVerifyMail(req, res) {
                     done.reject(error);
                 }
                 else {
+                    console.log(info);
                     res.status(HttpStatus.OK).json(info);
                     done.resolve();
                 }
             });
-        })
-        .catch(function (error) {
+        }, function (error) {
             console.error(error);
             done.reject(error);
         });
