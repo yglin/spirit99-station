@@ -2,11 +2,12 @@
 * @Author: yglin
 * @Date:   2016-06-14 13:30:46
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-14 15:08:27
+* @Last Modified time: 2016-06-27 16:34:12
 */
 
 'use strict';
 
+const _ = require('underscore');
 const path = require('path');
 const fs = require('fs');
 const exec = require('child_process').exec;
@@ -18,7 +19,7 @@ module.exports = {
 
 function deploy(options) {
     options = typeof options == 'undefined' ? {} : options;
-    options.envJSON = typeof options.envJSON == 'undefined' ? path.resolve(__dirname, '.credentials/production.env') : options.envJSON;
+    options.envJSONs = typeof options.envJSONs == 'undefined' ? [path.resolve(__dirname, '.credentials/shared.env'), path.resolve(__dirname, '.credentials/production.env')] : options.envJSONs;
     options.distDir = typeof options.distDir == 'undefined' ? path.resolve(__dirname, 'dist') : options.distDir;
 
     console.log('Deploy to AWS Elastic Beanstalk ...');
@@ -26,7 +27,10 @@ function deploy(options) {
     var done = Q.defer();
 
     // Update environment variables
-    var envVars = require(options.envJSON);
+    var envVars = {};
+    for (var i = 0; i < options.envJSONs.length; i++) {
+        envVars = _.extend(envVars, require(options.envJSONs[i]));
+    }
     var optionSettings = { option_settings:[] };
     for (var key in envVars) {
         optionSettings.option_settings.push({
