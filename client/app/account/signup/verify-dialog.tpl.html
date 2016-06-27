@@ -26,10 +26,9 @@
         <h3>認證失敗</h3>
         <p>{{$ctrl.errorMessage}}</p>
     </div>
-    <md-button class='md-raised' ng-click='$ctrl.sendVerifyEmail()'>重新寄出認證碼</md-button>
 </md-dialog-content>
 <md-dialog-actions layout="row">
-    <md-button class='md-primary' ng-click='$ctrl.confirm()'>
+    <md-button class='md-primary md-raised' ng-disabled='!$ctrl.verifyCode' ng-click='$ctrl.confirm()'>
         確定
     </md-button>
 </md-dialog-actions>
