@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-10 15:30:41
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-13 20:10:15
+* @Last Modified time: 2016-06-27 12:14:56
 */
 
 'use strict';
@@ -24,7 +24,7 @@
     function AccountController($scope, $location, $cookies, Account, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Account';
-        $ctrl.gotoLogin = Account.loginDialog;
+        $ctrl.gotoLogin = Account.getToLogInAs;
         $ctrl.gotoLogout = Account.logoutDialog;
         $ctrl.user = undefined;
 
