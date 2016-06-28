@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 11:15:22
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 11:13:38
+* @Last Modified time: 2016-06-28 10:29:49
 */
 
 'use strict';
@@ -36,7 +36,7 @@
             return Channel.create(channelData)
             .then(function(response) {
                 $window.alert('新增成功！');
-                $location.path('/channels');
+                $location.path('/profile/my-channels');
             }, function (error) {
                 $window.alert('新增失敗');
                 console.error(error);
