@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-25 14:30:17
+* @Last Modified time: 2016-06-28 09:41:50
 */
 
 'use strict';
@@ -79,16 +79,7 @@ function connectDB(channel, options) {
 
     dbs[channel.id] = channelDB;
 
-    var connected;
-
-    if (options.force) {
-        connected = sqldb.forceSync(channelDB.sequelize);
-    }
-    else {
-        connected = channelDB.sequelize.sync();
-    }
-
-    return connected.then(function () {
+    return channelDB.sequelize.sync().then(function () {
         console.log('Connected to database: ' + dbName);
         return Q.resolve();
     }, function (error) {
