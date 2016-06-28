@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-01 11:20:39
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 11:27:48
+* @Last Modified time: 2016-06-28 12:11:45
 */
 
 'use strict';
@@ -21,8 +21,9 @@
         var $ctrl = this;
         $ctrl.title = '登入';
         $ctrl.user = {};
-        $ctrl.errors = {};
         $ctrl.submitted = false;
+        $ctrl.loginFailed = false;
+        $ctrl.serverErrors = {};
 
         $ctrl.login = login;
         $ctrl.cancel = cancel;
@@ -44,9 +45,11 @@
 
         function login(form) {
             $ctrl.submitted = true;
-            $ctrl.errors.other = null;
+            $ctrl.loginFailed = false;
+            $ctrl.serverErrors = {};
 
             if (form.$valid) {
+                $ctrl.isLoggingIn = true;
                 Auth.login({
                     email: $ctrl.user.email,
                     password: $ctrl.user.password
@@ -54,11 +57,22 @@
                 .then(function (user) {
                     $mdDialog.hide(true);
                 })
+                .finally(function () {
+                    $ctrl.isLoggingIn = false;
+                })
                 .catch(function (err) {
-                    $ctrl.errors.other = err.message;
+                    $ctrl.loginFailed = true;
+                    if (err.fields) {
+                        angular.forEach(err.fields, function(message, field) {
+                            form[field].$setValidity('server', false);
+                            $ctrl.serverErrors[field] = message;
+                        });
+                    }
+                    else {
+                        console.error(err);
+                    }
                 });
             }
         }
-
     }
 })();

@@ -128,6 +128,10 @@
     filter: alpha(opacity=30); /* For IE8 and earlier */
 }
 
+.s99-warn {
+    color: red;
+}
+
 .s99-input-hint {
     color: grey;
     font-size: 14px;

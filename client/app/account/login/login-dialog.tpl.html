@@ -11,35 +11,39 @@
     </div>
 </md-toolbar>
 <md-dialog-content layout-padding>
-    <form class="form" name="loginForm" novalidate>
+    <form class="form" name="loginForm">
         <md-input-container class='md-block'>
             <label>Email帳號</label>
-            <input type="email" name="email" ng-model="$ctrl.user.email" required>
+            <input type="email" name="email" ng-model="$ctrl.user.email" required
+            ng-focus='loginForm.email.$setValidity("server", true);'>
             <div ng-messages='loginForm.email.$error'>
                 <div ng-message='required'>請輸入電子信箱帳號</div>
+                <div ng-message='email'>請輸入正確的電子信箱格式<br>ex: yggy@example.com</div>
+                <div ng-message='server'>{{$ctrl.serverErrors.email}}</div>
             </div>
         </md-input-container>
 
         <md-input-container class='md-block'>
             <label>密碼</label>
-            <input type="password" name="password" ng-model="$ctrl.user.password" required>
+            <input type="password" name="password" ng-model="$ctrl.user.password" required ng-focus='loginForm.password.$setValidity("server", true);'>
             <div ng-messages='loginForm.password.$error'>
                 <div ng-message='required'>請輸入密碼</div>
+                <div ng-message='server'>{{$ctrl.serverErrors.password}}</div>
             </div>
         </md-input-container>
-
         <hr/>
         <div class="row">
             <oauth-buttons classes="btn-block"></oauth-buttons>
         </div>
-        <div class='md-warn' ng-show='$ctrl.errors.other'>{{$ctrl.errors.other}}</div>
     </form>
 </md-dialog-content>
-<md-dialog-actions layout="row">
+<md-dialog-actions layout='row'>
     <md-button class='md-primary' ng-click="$ctrl.gotoSignup()">
         註冊
     </md-button>
     <span flex></span>
+    <md-progress-circular md-mode='indeterminate' ng-show='$ctrl.isLoggingIn'></md-progress-circular>
+    <p class='s99-warn' ng-show='$ctrl.loginFailed'>登入失敗</p>
     <md-button id='confirm' class='md-primary md-raised' ng-disabled='loginForm.$invalid'
     ng-click='$ctrl.login(loginForm)'>
         登入

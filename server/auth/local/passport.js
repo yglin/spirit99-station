@@ -10,20 +10,16 @@ function localAuthenticate(User, email, password, done) {
     .then(user => {
         if (!user) {
             return done(null, false, {
-                message: 'This email is not registered.'
+                fields: { email: '這個信箱帳號尚未註冊' }
             });
         }
-        else if (user.state == 'inactive') {
-            return done(null, false, {
-                message: 'User account not activated'
-            });
-        }
+
         user.authenticate(password, function(authError, authenticated) {
             if (authError) {
                 return done(authError);
             }
             if (!authenticated) {
-                return done(null, false, { message: 'This password is not correct.' });
+                return done(null, false, { fields: { password: '密碼錯誤'} });
             } else {
                 return done(null, user);
             }
