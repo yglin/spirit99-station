@@ -6,14 +6,17 @@
             <p hide-xs flex='30'>{{channel.description}}</p>
             <span flex></span>
             <div layout='row' layout-xs='column'>
-                    <md-button class='md-icon-button' ng-click='$ctrl.openClient($index)'>
+                <md-button class='md-icon-button' ng-click='$ctrl.openClient($index)'>
                     <md-icon class='material-icons'>open_in_new</md-icon>
+                    <md-tooltip>開啟地圖檢視</md-tooltip>
                 </md-button>
                 <md-button class='md-icon-button' ng-href='/channels/update/{{channel.id}}'>
                     <md-icon class='material-icons'>edit</md-icon>
+                    <md-tooltip>修改資料</md-tooltip>
                 </md-button>
                 <md-button class='md-icon-button' ng-click='$ctrl.close($index)'>
                     <md-icon class='material-icons'>portable_wifi_off</md-icon>
+                    <md-tooltip>關閉頻道</md-tooltip>
                 </md-button>
             </div>
         </div>
@@ -28,6 +31,7 @@
             <span flex></span>
             <md-button class='md-icon-button' ng-click='$ctrl.reopen($index)'>
                 <md-icon class='material-icons'>wifi_tethering</md-icon>
+                <md-tooltip>重新開啟頻道</md-tooltip>
             </md-button>
         </div>
     </div>
