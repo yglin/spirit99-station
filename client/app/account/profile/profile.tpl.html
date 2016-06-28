@@ -1,13 +1,13 @@
 <h3>{{$ctrl.user.name}}</h3>
 <div ng-cloak>
     <md-tabs md-dynamic-height ng-style='$ctrl.layout'>
-        <md-tab label='我的資料'>
+        <md-tab label='我的資料' md-active='$ctrl.activeTab == "profile"'>
             <s99-my-settings ng-if="$ctrl.user" user='$ctrl.user'></s99-my-settings>
         </md-tab>
-        <md-tab label='我的頻道'>
+        <md-tab label='我的頻道' md-active='$ctrl.activeTab == "my-channels"'>
             <s99-my-channels ng-if='$ctrl.user' user='$ctrl.user'></s99-my-channels>
         </md-tab>
-        <md-tab label='我的文章'>
+        <md-tab label='我的文章' md-active='$ctrl.activeTab == "my-posts"'>
             <s99-my-posts ng-if='$ctrl.user' user='$ctrl.user'></s99-my-posts>
         </md-tab>
     </md-tabs>

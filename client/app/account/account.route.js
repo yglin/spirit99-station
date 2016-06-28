@@ -12,7 +12,7 @@
     /* @ngInject */
     function AccountRouter($routeProvider){
         $routeProvider
-        .when('/profile', {
+        .when('/profile/:tab?', {
             templateUrl: 'app/account/profile/profile.tpl.html',
             controller: 'ProfileController',
             controllerAs: '$ctrl',

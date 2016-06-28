@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-09 09:58:46
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-14 21:02:58
+* @Last Modified time: 2016-06-28 10:27:34
 */
 
 (function() {
@@ -12,12 +12,13 @@
         .module('spirit99StationApp')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope', '$mdMedia', 'Util', 'Auth', 'Channel', 'Post', 'user'];
+    ProfileController.$inject = ['$scope', '$routeParams', '$mdMedia', 'Util', 'Auth', 'Channel', 'Post', 'user'];
 
     /* @ngInject */
-    function ProfileController($scope, $mdMedia, Util, Auth, Channel, Post, user) {
+    function ProfileController($scope, $routeParams, $mdMedia, Util, Auth, Channel, Post, user) {
         var $ctrl = this;
         $ctrl.title = 'Profile';
+        $ctrl.activeTab = "profile";
         $ctrl.user = user;
         $ctrl.layout = {};
 
@@ -26,6 +27,10 @@
         ////////////////
 
         function activate() {
+            if ($routeParams.tab) {
+                $ctrl.activeTab = $routeParams.tab;
+            }
+            
             $scope.$on('account:logout', function () {
                 Util.returnUrl(); 
             });
