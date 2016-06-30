@@ -20,18 +20,22 @@
 </style>
 <form name='commentForm'>
 <div class='md-whiteframe-5dp' layout-padding>
-    <div text-angular id='comment-content-input' name='content'
-    ta-toolbar='[["h4", "h5", "h6"], ["bold", "italics", "underline", "strikeThrough"], ["html", "insertImage", "insertVideo", "insertLink"]]'
-    ta-text-editor-class='s99-comment-editor'
-    ta-html-editor-class='s99-comment-editor'
-    ng-model="$ctrl.comment.content"
-    placeholder='點此留言...'
-    required></div>
-    <div layout='row' layout-align='center end'>
+    <md-input-container class='md-block' flex>
+        <label>留言</label>
+        <textarea name='content' ng-model='$ctrl.comment.content' required>ＧＧＹＧＧＹＧＹ</textarea>
+        <div ng-messages='commentForm.content.$error'>
+            <div ng-message='required'>請填入留言內容</div>
+        </div>
+    </md-input-container>
+    <div layout='row' layout-align='end end'>
         <md-input-container class='md-block' flex>
-            <label>我是誰...</label>
+            <label>聯絡我</label>
             <input name='author' ng-model='$ctrl.comment.author' required></input>
+            <div ng-messages='commentForm.author.$error'>
+                <div ng-message='required'>請填入你的Email帳號或聯絡資料</div>
+            </div>
         </md-input-container>
+        <span flex></span>
         <div>
             <md-progress-circular ng-show='$ctrl.processingSubmit' class='s99-progress-circular' md-mode='indeterminate'></md-progress-circular>
         </div>
