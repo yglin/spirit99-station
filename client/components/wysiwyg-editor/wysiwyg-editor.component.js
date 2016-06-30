@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-30 11:22:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-30 12:04:57
+* @Last Modified time: 2016-06-30 13:28:53
 */
 
 (function() {
@@ -31,7 +31,7 @@
             $ctrl.editorConfig.sanitize = true;
             if ($mdMedia('xs')) {
                 $ctrl.editorConfig.toolbar = [
-                    {name: 'toolbar-xs', items: ['bold', 'italic', 'underline', 'strikethrough', 'fontColor', 'undo', 'symbols', 'image']}
+                    {name: 'toolbar-xs', items: ['bold', 'italic', 'underline', 'fontColor', 'undo', 'symbols', 'image']}
                 ];
             }
             else if ($mdMedia('sm')) {
