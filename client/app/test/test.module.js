@@ -9,7 +9,7 @@
     'use strict';
 
     angular
-    .module('spirit99StationApp.debug', [
+    .module('spirit99StationApp.test', [
         'ngMaterial',
         'ngWYSIWYG'
     ]);
