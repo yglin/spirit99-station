@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-30 11:22:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-30 11:25:10
+* @Last Modified time: 2016-06-30 12:04:57
 */
 
 (function() {
@@ -13,7 +13,8 @@
         templateUrl: '/components/wysiwyg-editor/wysiwyg-editor.tpl.html',
         controller: WysiwygEditorController,
         bindings: {
-            content: '='
+            content: '=',
+            postInsertImage: '='
         }
     });
 
@@ -64,6 +65,9 @@
                 maxSizeMb: 5
             }).then(function (data) {
                 if (data && data.url) {
+                    if (typeof $ctrl.postInsertImage === 'function') {
+                        $ctrl.postInsertImage(data.url);
+                    }
                     var imgElement = '<img src="' + data.url + '">';
                     return imgElement;
                 }
