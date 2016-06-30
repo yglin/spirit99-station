@@ -1,4 +1,3 @@
 <div>
-    <button ng-click='$ctrl.focusOnEditor()'>Editor</button>
-    <div id='text-angular-editor' text-angular serial='54088' ng-model='$ctrl.text' name='debug-editor' ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+    <wysiwyg-edit content="$ctrl.text" config='$ctrl.editorConfig'></wysiwyg-edit>
 </div>

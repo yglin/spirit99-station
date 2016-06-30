@@ -14,10 +14,9 @@
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-      <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-      <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
       <link rel="stylesheet" href="bower_components/angular-datepicker/dist/angular-datepicker.css" />
+      <link rel="stylesheet" href="bower_components/ngWYSIWYG/dist/editor.min.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -93,18 +92,10 @@
       <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
       <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
       <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-      <script src="bower_components/rangy/rangy-core.js"></script>
-      <script src="bower_components/rangy/rangy-classapplier.js"></script>
-      <script src="bower_components/rangy/rangy-highlighter.js"></script>
-      <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
-      <script src="bower_components/rangy/rangy-serializer.js"></script>
-      <script src="bower_components/rangy/rangy-textrange.js"></script>
-      <script src="bower_components/textAngular/dist/textAngular.js"></script>
-      <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
-      <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
       <script src="bower_components/moment/moment.js"></script>
       <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
       <script src="bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
+      <script src="bower_components/ngWYSIWYG/dist/wysiwyg.min.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -114,13 +105,13 @@
       <script src="app/admin/admin.module.js"></script>
       <script src="app/channel/channel.module.js"></script>
       <script src="app/comment/comment.module.js"></script>
+      <script src="app/debug/debug.module.js"></script>
       <script src="app/post/post.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/dialog/dialog.module.js"></script>
       <script src="components/map/map.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/post/my-posts/my-posts.component.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/post/grid/posts-grid.component.js"></script>
       <script src="app/account/signup/verify-dialog.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.component.js"></script>
@@ -141,19 +132,22 @@
       <script src="app/comment/create.component.js"></script>
       <script src="app/comment/item.component.js"></script>
       <script src="app/comment/list.component.js"></script>
+      <script src="app/debug/debug.controller.js"></script>
+      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/debug/debug.route.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/post/create.controller.js"></script>
       <script src="app/post/editor.component.js"></script>
-      <script src="app/post/grid/posts-grid.component.js"></script>
-      <script src="app/post/item.component.js"></script>
       <script src="app/account/account.route.js"></script>
-      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/post/item.component.js"></script>
+      <script src="app/post/my-posts/my-posts.component.js"></script>
+      <script src="app/account/profile/profile.controller.js"></script>
       <script src="app/post/post.route.js"></script>
       <script src="app/post/post.service.js"></script>
       <script src="app/post/update.controller.js"></script>
       <script src="app/post/view.controller.js"></script>
-      <script src="app/account/profile/profile.controller.js"></script>
+      <script src="app/account/settings/change-password-dialog.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
@@ -163,7 +157,7 @@
       <script src="components/dialog/dialog-alert.controller.js"></script>
       <script src="components/dialog/dialog-confirm.controller.js"></script>
       <script src="components/dialog/dialog-prompt.controller.js"></script>
-      <script src="app/account/settings/change-password-dialog.controller.js"></script>
+      <script src="app/account/settings/my-settings.component.js"></script>
       <script src="components/dialog/dialog.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
       <script src="components/image-selector/image-onload.directive.js"></script>
@@ -172,7 +166,7 @@
       <script src="components/image-selector/image-selector.service.js"></script>
       <script src="components/map/locate-map.component.js"></script>
       <script src="components/map/map.config.js"></script>
-      <script src="app/account/settings/my-settings.component.js"></script>
+      <script src="app/account/signup/signup-dialog.controller.js"></script>
       <script src="components/map/preview-map.component.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
@@ -181,7 +175,7 @@
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
       <script src="components/quicklinks/quicklinks.component.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/signup/signup-dialog.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
