@@ -17,7 +17,8 @@ angular.module('spirit99StationApp', [
     'ngMaterial',
     'ngFileUpload',
     'ygDialog',
-    'datePicker'
+    'datePicker',
+    'ngWYSIWYG'
 ])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
