@@ -33,7 +33,7 @@
             <br>
             <md-content style='height:90vh;'
             ng-style='$ctrl.$mdMedia("gt-sm") && {"width": "50vw"} || {"width": "80vw"}'>
-                <div class='s99-post-content' ta-bind ng-model="$ctrl.post.content"></div>
+                <div class='s99-post-content' ng-bind-html="$ctrl.post.content"></div>
             </md-content>
             <md-divider layout-margin></md-divider>
         </div>
