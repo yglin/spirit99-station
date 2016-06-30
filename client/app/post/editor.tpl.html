@@ -27,10 +27,11 @@
                 </div>
             </div>
         </div>
-        <div id='post-content-input' text-angular ng-model="$ctrl.post.content" ng-change='$ctrl.onChangeContent()'></div>
-        <md-button id='select-logo' class='md-raised'
+        <s99-wysiwyg-editor content='$ctrl.post.content' post-insert-image='$ctrl.postInsertImage'></s99-wysiwyg-editor>
+        <!-- <div id='post-content-input' text-angular ng-model="$ctrl.post.content" ng-change='$ctrl.onChangeContent()'></div> -->
+<!--         <md-button id='select-logo' class='md-raised'
         ng-click='$ctrl.addImage()'>上傳圖片</md-button>
-        <br>
+ -->        <br>
         <br>
         <div>
             <md-checkbox ng-model="$ctrl.isEvent" aria-label='Post is event'>

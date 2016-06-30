@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:05:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 18:20:13
+* @Last Modified time: 2016-06-30 11:58:29
 */
 
 'use strict';
@@ -32,7 +32,7 @@
         $ctrl.isEvent = false;
 
         $ctrl.selectCategory = selectCategory;
-        $ctrl.onChangeContent = onChangeContent;
+        $ctrl.postInsertImage = postInsertImage;
         $ctrl.addImage = addImage;
         $ctrl.doSubmit = doSubmit;
         $ctrl.setDateTime = setDateTime;
@@ -92,8 +92,8 @@
             }
         }
 
-        function onChangeContent() {
-             $ctrl.post.thumbnail = grabFirstImgUrl($ctrl.post.content);
+        function postInsertImage(imgUrl) {
+             $ctrl.post.thumbnail = imgUrl;
         }
 
         function addImage() {
