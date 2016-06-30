@@ -1,34 +1,37 @@
 <div id='s99-post-view' layout-margin-gt-xs>
     <h3 class='s99-post-title'>{{$ctrl.post.title}}</h3>
-    <div layout='column' layout-gt-xs='row' layout-padding-gt-xs layout-align='center end' layout-align-gt-xs='end center'>
+    <br>
+    <div layout='column' layout-align='center end'>
         <span class='s99-post-author'>{{$ctrl.post.author}}</span>
+        <md-divider layout-fill></md-divider>
         <span class='s99-date'>{{$ctrl.post.createdAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
-        <div layout='row' ng-show='$ctrl.isMyPost'>
-            <span flex></span>
-            <md-button id='goto-update' class='md-icon-button md-accent'
-            ng-click='$ctrl.gotoUpdate()'>
-                <md-icon class='material-icons'>edit</md-icon>
-            </md-button>
-            <md-button id='delete' class='md-icon-button md-accent'
-            ng-click="$ctrl.deletePost()">
-                <md-icon class='material-icons'>delete</md-icon>
-            </md-button>
-        </div>
     </div>
-    <div layout='row' layout-wrap layout-align='space-between center'
-    ng-show='$ctrl.isEvent' layout-margin-gt-xs>
-        <div>
-            <span>開始時間：</span><span>{{$ctrl.post.startAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
-        </div>
-        <div>
-            <span>結束時間：</span><span>{{$ctrl.post.endAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
-        </div>
-    </div>
+    <br>
     <div layout='column' layout-gt-sm='row' layout-padding-gt-sm>
         <div>
-            <div>
-                <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
-                <span class='s99-category-title'>{{$ctrl.categoryTitle}}</span>
+            <div layout='row' layout-padding>
+                <div>
+                    <img class='s99-category-icon' ng-src="{{$ctrl.categoryIcon.url}}">
+                </div>
+                <div class='s99-category-title'>{{$ctrl.categoryTitle}}</div>
+                <span flex></span>
+                <div layout='row' ng-show='$ctrl.isMyPost'>
+                    <span flex></span>
+                    <md-button id='goto-update' class='md-icon-button md-accent'
+                    ng-click='$ctrl.gotoUpdate()'>
+                        <md-icon class='material-icons'>edit</md-icon>
+                    </md-button>
+                    <md-button id='delete' class='md-icon-button md-accent'
+                    ng-click="$ctrl.deletePost()">
+                        <md-icon class='material-icons'>delete</md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <div layout='row' layout-align='start center' ng-show='$ctrl.isEvent' layout-margin-gt-xs>
+                <span>事件：</span>
+                <span class='s99-date'>{{$ctrl.post.startAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
+                <span>&#8212;</span>
+                <span class='s99-date'>{{$ctrl.post.endAt | date: 'yyyy-MM-dd a h:m:s'}}</span>
             </div>
             <br>
             <md-content style='height:90vh;'

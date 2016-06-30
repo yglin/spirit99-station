@@ -158,6 +158,12 @@
     max-height: 256px;
 }
 
+.s99-date {
+    font-size: 16px;
+    font-style: italic;
+    color: chocolate;
+}
+
 .ta-editor {
     min-height: 300px;
     height: auto;
