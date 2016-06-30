@@ -61,8 +61,15 @@
 
 .s99-post-item pre {
     white-space: pre-line;
+    overflow-wrap: break-word;
     background-color: white;
     border: none;
+}
+
+.s99-post-title {
+    font-size: 24px;
+    color: darkblue;
+    margin: 10px;
 }
 
 .s99-post-thumbnail {
