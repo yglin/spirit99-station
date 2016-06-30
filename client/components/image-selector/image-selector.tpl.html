@@ -58,6 +58,7 @@
         <md-input-container class='md-block'>
             <label>圖片網址</label>
             <input type='url' name='imageUrl' required
+            placeholder="可複製貼上網址" 
             ng-model='$ctrl.image.url'
             ng-change='$ctrl.onChange();'>
             <div ng-messages='imageForm.imageUrl.$error'>
