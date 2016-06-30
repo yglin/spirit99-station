@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-30 11:22:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-30 13:28:53
+* @Last Modified time: 2016-06-30 15:37:52
 */
 
 (function() {
@@ -10,7 +10,7 @@
 
     angular.module('spirit99StationApp')
     .component('s99WysiwygEditor',{
-        templateUrl: '/components/wysiwyg-editor/wysiwyg-editor.tpl.html',
+        templateUrl: 'components/wysiwyg-editor/wysiwyg-editor.tpl.html',
         controller: WysiwygEditorController,
         bindings: {
             content: '=',
