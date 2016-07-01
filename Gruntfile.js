@@ -267,7 +267,7 @@ module.exports = function (grunt) {
                 // This is so we update image references in our ng-templates
                 patterns: {
                     css: [
-                        [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the CSS to reference our revved images']
+                        [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Replace assets/images/* to reference our revved images'],
                     ],
                     js: [
                         [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
@@ -282,8 +282,13 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.client %>/assets/images',
-                    src: '{,*/}*.{png,jpg,jpeg,gif,svg}',
+                    src: '**/*.{png,jpg,jpeg,gif,svg}',
                     dest: '<%= yeoman.dist %>/<%= yeoman.client %>/assets/images'
+                }, {
+                    expand: true,
+                    cwd: '<%= yeoman.client %>/bower_components/ngWYSIWYG/dist/images',
+                    src: '**/*.{png,jpg,jpeg,gif,svg}',
+                    dest: '<%= yeoman.dist %>/<%= yeoman.client %>/app/images'
                 }]
             }
         },
