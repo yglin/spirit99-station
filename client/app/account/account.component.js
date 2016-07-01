@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-10 15:30:41
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-27 12:14:56
+* @Last Modified time: 2016-07-01 10:59:38
 */
 
 'use strict';
@@ -18,12 +18,13 @@
         }
     });
 
-    AccountController.$inject = ['$scope', '$location', '$cookies', 'Account', 'Auth', 'ygDialog'];
+    AccountController.$inject = ['$scope', '$location', '$cookies', '$mdMedia', 'Account', 'Auth', 'ygDialog'];
 
     /* @ngInject */
-    function AccountController($scope, $location, $cookies, Account, Auth, ygDialog) {
+    function AccountController($scope, $location, $cookies, $mdMedia, Account, Auth, ygDialog) {
         var $ctrl = this;
         $ctrl.title = 'Account';
+        $ctrl.$mdMedia = $mdMedia;
         $ctrl.gotoLogin = Account.getToLogInAs;
         $ctrl.gotoLogout = Account.logoutDialog;
         $ctrl.user = undefined;

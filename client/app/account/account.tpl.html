@@ -5,7 +5,9 @@ aria-label='Log In' ng-click="$ctrl.gotoLogin()">
     <md-tooltip>登入</md-tooltip>
 </md-button>
 <div id='user-pane' layout='row' layout-align='end center' ng-show='$ctrl.user'>
-    <h4>{{$ctrl.user.name}}</h4>
+    <!-- <h4>{{$ctrl.user.name}}</h4> -->
+    <md-button ng-if='::($ctrl.$mdMedia("gt-xs"))' ng-href="/profile/my-channels">我的頻道</md-button>
+    <md-button ng-if='::($ctrl.$mdMedia("gt-xs"))' ng-href="/profile/my-posts">我的文章</md-button>
     <div ng-show='$ctrl.avatar' style='margin:2px 5px;'>
         <a ng-href='/profile'>
             <img ng-src='{{$ctrl.avatar}}' style='border-radius: 50%;'/>
