@@ -1,20 +1,32 @@
+.btn:hover {
+  cursor: pointer;
+}
+
 .btn-facebook {
   color: #fff;
   background-color: #3B5998;
   border-color: #133783;
+  border-radius: 10px;
+  font-size: 15px;
 }
 .btn-google {
   color: #fff;
   background-color: #dd4b39;
   border-color: #c53727;
+  border-radius: 10px;
+  font-size: 15px;
 }
 .btn-twitter {
   color: #fff;
   background-color: #2daddc;
   border-color: #0271bf;
+  border-radius: 10px;
+  font-size: 15px;
 }
 .btn-github {
   color: #fff;
   background-color: #fafafa;
   border-color: #ccc;
+  border-radius: 10px;
+  font-size: 15px;
 }
