@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-14 19:47:06
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-27 17:21:18
+* @Last Modified time: 2016-07-04 13:08:14
 */
 
 'use strict';
@@ -36,12 +36,8 @@
             // console.log(scope.onLoaded);
             element.bind('load', function() {
                 var img = this;
-                // console.log('image loaded~!!');
                 scope.$apply(function() {
-                    scope.onLoaded({
-                        width: img.width,
-                        height: img.height
-                    });
+                    scope.onLoaded(img);
                 });
                 // scope.$apply(attrs['s99stImageOnload']);
             });

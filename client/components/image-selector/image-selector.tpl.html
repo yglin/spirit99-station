@@ -32,14 +32,15 @@
         <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.fail'>上傳失敗</h3>
     </div>
     <div>
-        <div class='md-caption' ng-show="$ctrl.image.width && $ctrl.image.height">{{$ctrl.image.width}} X {{$ctrl.image.height}}</div>
-        <img ng-src='{{$ctrl.previewUrl}}' style='max-width: 256px; max-height: 256px;'
+        <img ng-src='{{$ctrl.image.src}}' ng-show="$ctrl.image.src"
+        style='max-width: 256px; max-height: 256px;'
         s99st-image-onload on-loaded='$ctrl.onLoaded' on-error='$ctrl.onError'>
-        <p ng-show='$ctrl.uploading.invalidFiles.length > 0 || $ctrl.invalid'>
-            請選擇寬介於{{$ctrl.minWidth}}～{{$ctrl.maxWidth}},<br>
-            高介於{{$ctrl.minHeight}}～{{$ctrl.maxHeight}},<br>
-            檔案大小不超過{{$ctrl.maxSizeMb}}MB的圖檔
-        </p>
+        <div class='md-caption' ng-show="$ctrl.image.naturalWidth && $ctrl.image.naturalHeight">{{$ctrl.image.naturalWidth}} x {{$ctrl.image.naturalHeight}}</div>
+    </div>
+    <div class='s99-warn' ng-show='$ctrl.invalid'>
+        請選擇寬介於{{$ctrl.minWidth}}～{{$ctrl.maxWidth}},<br>
+        高介於{{$ctrl.minHeight}}～{{$ctrl.maxHeight}},<br>
+        檔案大小不超過{{$ctrl.maxSizeMb}}MB的圖檔
     </div>
     <form name='imageForm'>
         <div ng-if='$ctrl.anchor'>
@@ -63,7 +64,7 @@
             <label>圖片網址</label>
             <input type='url' name='imageUrl' required
             placeholder="可複製貼上網址" 
-            ng-model='$ctrl.image.url'
+            ng-model='$ctrl.image.src'
             ng-change='$ctrl.onChange();'>
             <div ng-messages='imageForm.imageUrl.$error'>
                 <div ng-message='required'>必須有圖片網址</div>

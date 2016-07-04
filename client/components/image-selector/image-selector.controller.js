@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-04 11:46:26
+* @Last Modified time: 2016-07-04 15:05:06
 */
 
 'use strict';
@@ -26,9 +26,7 @@
         $ctrl.onLoaded = onLoaded;
         $ctrl.onError = onError;
 
-        $ctrl.image = {
-            url: ''
-        };
+        $ctrl.image = {};
 
         $ctrl.uploading = {
             progress: -1,
@@ -41,12 +39,14 @@
         $ctrl.invalid = false;
         $ctrl.inProgress = false;
 
-        $ctrl.$onInit = function () {
-            $ctrl.minWidth = $ctrl.minWidth || '24';
-            $ctrl.minHeight = $ctrl.minHeight || '24';
-            $ctrl.maxWidth = $ctrl.maxWidth || '128';
-            $ctrl.maxHeight = $ctrl.maxHeight || '128';
-            $ctrl.maxSizeMb = $ctrl.maxSizeMb || '2';
+        activate();
+
+        function activate () {
+            $ctrl.minWidth = parseInt($ctrl.minWidth || '12');
+            $ctrl.minHeight = parseInt($ctrl.minHeight || '12');
+            $ctrl.maxWidth = parseInt($ctrl.maxWidth || '2048');
+            $ctrl.maxHeight = parseInt($ctrl.maxHeight || '2048');
+            $ctrl.maxSizeMb = parseFloat($ctrl.maxSizeMb || '5');
         };
 
         function cancel() {
@@ -55,17 +55,25 @@
 
         function confirm() {
             $mdDialog.hide({
-                url: $ctrl.image.url,
+                url: $ctrl.image.src,
                 anchor: $ctrl.anchor
             });
         }
 
         function uploadFile(file, invalidFiles) {
+            $ctrl.invalid = false;
+            $ctrl.image = {};
+
             $ctrl.uploading.progress = -1;
             $ctrl.uploading.success = false;
             $ctrl.uploading.fail = false;
             $ctrl.uploading.errorMessages = null;
             $ctrl.uploading.invalidFiles = invalidFiles;
+
+            if (invalidFiles.length > 0) {
+                $ctrl.invalid = true;
+            }
+            
             if (file) {
                 file.upload = Upload.upload({
                     url: 'https://api.imgur.com/3/image',
@@ -74,12 +82,10 @@
                 });
 
                 file.upload.then(function (response) {
-                    console.log(response);
                     if (response.data.data) {
-                        $ctrl.image.url = response.data.data.link;
-                        $ctrl.image.width = response.data.data.width;
-                        $ctrl.image.height = response.data.data.height;                        
-                        $ctrl.previewUrl = $ctrl.image.url;
+                        $ctrl.image.src = response.data.data.link;
+                        $ctrl.image.naturalWidth = response.data.data.width;
+                        $ctrl.image.naturalHeight = response.data.data.height;                        
                     }
                     $timeout(function() {
                         $ctrl.uploading.success = true;
@@ -93,24 +99,25 @@
             }
         }
 
+        function checkImageDimension(width, height) {
+            var isValid = true
+            if (width && (width < $ctrl.minWidth || width > $ctrl.maxWidth)) {
+                isValid = false;
+            }
+            if (height && (height < $ctrl.minheight || height > $ctrl.maxheight)) {
+                isValid = false;
+            }
+            return isValid;
+        }
+
         function onChange() {
+            $ctrl.invalid = false;
             $ctrl.inProgress = true;
-            $timeout.cancel($ctrl.timeoutLoadImage);
-            $ctrl.timeoutLoadImage = $timeout(function () {
-                $ctrl.previewUrl = $ctrl.image.url;
-            }, 1000);
         }
 
         function onLoaded(image) {
-            if (!image.width || image.width < $ctrl.minWidth || image.width > $ctrl.maxWidth) {
-                $ctrl.invalid = true;
-            }
-            else if (!image.height || image.height < $ctrl.minHeight || image.height > $ctrl.maxHeight) {
-                $ctrl.invalid = true;
-            }
-            else {
-                $ctrl.invalid = false;
-            }
+            $ctrl.image = image;
+            $ctrl.invalid = !checkImageDimension(image.naturalWidth, image.naturalHeight);
             $ctrl.inProgress = false;
         }
 

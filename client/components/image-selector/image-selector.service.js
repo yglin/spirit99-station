@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:08:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-05 10:58:22
+* @Last Modified time: 2016-07-04 14:50:50
 */
 
 'use strict';
@@ -38,8 +38,8 @@
                 clickOutsideToClose: true,
                 locals: options
             })
-            .then(function(url) {
-                defer.resolve(url);
+            .then(function(image) {
+                defer.resolve(image);
             }, function (error) {
                 defer.reject(error);
             });
