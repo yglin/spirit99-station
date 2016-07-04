@@ -11,11 +11,12 @@
 <div id='s99st-image-selector' layout='column' layout-margin>
     <div layout='row' layout-padding layout-align='start center'>
         <div>
-            <md-button class='md-raised' type="file"
-            ngf-select="$ctrl.uploadFile($file, $invalidFiles)"
-            accept="image/*" ngf-max-width="{{$ctrl.maxWidth}}" ngf-max-height="{{$ctrl.maxHeight}}"
-            ngf-max-size="{{$ctrl.maxSizeMb}}MB">
-                上傳圖片
+            <md-button class='md-raised md-primary'>
+                <label for='input-file'>上傳圖片</label>
+                <input type="file" id='input-file' accept="image/*" class='ng-hide'
+                ngf-select="$ctrl.uploadFile($file, $invalidFiles)"
+                ngf-max-width="{{$ctrl.maxWidth}}" ngf-max-height="{{$ctrl.maxHeight}}"
+                ngf-max-size="{{$ctrl.maxSizeMb}}MB">
             </md-button>
         </div>
         <md-progress-circular md-mode="determinate" md-diameter='36'
