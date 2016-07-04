@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-27 18:17:44
+* @Last Modified time: 2016-07-04 11:46:26
 */
 
 'use strict';
@@ -29,6 +29,7 @@
         $ctrl.image = {
             url: ''
         };
+
         $ctrl.uploading = {
             progress: -1,
             success: false,
@@ -73,8 +74,13 @@
                 });
 
                 file.upload.then(function (response) {
-                    $ctrl.image.url = response.data.data.link;
-                    $ctrl.previewUrl = $ctrl.image.url;
+                    console.log(response);
+                    if (response.data.data) {
+                        $ctrl.image.url = response.data.data.link;
+                        $ctrl.image.width = response.data.data.width;
+                        $ctrl.image.height = response.data.data.height;                        
+                        $ctrl.previewUrl = $ctrl.image.url;
+                    }
                     $timeout(function() {
                         $ctrl.uploading.success = true;
                     });

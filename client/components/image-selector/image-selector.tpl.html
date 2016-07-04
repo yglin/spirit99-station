@@ -9,7 +9,7 @@
 </md-toolbar>
 <md-dialog-content>
 <div id='s99st-image-selector' layout='column' layout-margin>
-    <div layout='row' layout-padding layout-align='start center'>
+    <div layout='row' layout-padding layout-align='space-around center'>
         <div>
             <md-button class='md-raised md-primary'>
                 <label for='input-file'>上傳圖片</label>
@@ -19,18 +19,21 @@
                 ngf-max-size="{{$ctrl.maxSizeMb}}MB">
             </md-button>
         </div>
-        <md-progress-circular md-mode="determinate" md-diameter='36'
-        ng-show='$ctrl.uploading.progress >= 0 && $ctrl.uploading.progress < 100'
-        value="{{$ctrl.uploading.progress}}">
-        </md-progress-circular>
-        <md-progress-circular md-mode="indeterminate" md-diameter='36'
-        ng-show='$ctrl.uploading.progress >= 100 && !($ctrl.uploading.success) && !($ctrl.uploading.fail)'>
-        </md-progress-circular>
+        <div>
+            <md-progress-circular class='md-hue-1' md-mode="determinate"
+            ng-show='$ctrl.uploading.progress >= 0 && $ctrl.uploading.progress < 100'
+            value="{{$ctrl.uploading.progress}}">
+            </md-progress-circular>
+            <md-progress-circular md-mode="indeterminate" md-diameter='100px'
+            ng-show='$ctrl.uploading.progress >= 100 && !($ctrl.uploading.success) && !($ctrl.uploading.fail)'>
+            </md-progress-circular>
+        </div>
         <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.success'>上傳成功</h3>
         <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.fail'>上傳失敗</h3>
     </div>
     <div>
-        <img ng-src='{{$ctrl.previewUrl}}'
+        <div class='md-caption' ng-show="$ctrl.image.width && $ctrl.image.height">{{$ctrl.image.width}} X {{$ctrl.image.height}}</div>
+        <img ng-src='{{$ctrl.previewUrl}}' style='max-width: 256px; max-height: 256px;'
         s99st-image-onload on-loaded='$ctrl.onLoaded' on-error='$ctrl.onError'>
         <p ng-show='$ctrl.uploading.invalidFiles.length > 0 || $ctrl.invalid'>
             請選擇寬介於{{$ctrl.minWidth}}～{{$ctrl.maxWidth}},<br>
