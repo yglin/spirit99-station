@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-04 15:05:06
+* @Last Modified time: 2016-07-04 17:51:55
 */
 
 'use strict';
@@ -44,9 +44,9 @@
         function activate () {
             $ctrl.minWidth = parseInt($ctrl.minWidth || '12');
             $ctrl.minHeight = parseInt($ctrl.minHeight || '12');
-            $ctrl.maxWidth = parseInt($ctrl.maxWidth || '2048');
-            $ctrl.maxHeight = parseInt($ctrl.maxHeight || '2048');
-            $ctrl.maxSizeMb = parseFloat($ctrl.maxSizeMb || '5');
+            $ctrl.maxWidth = parseInt($ctrl.maxWidth || '4096');
+            $ctrl.maxHeight = parseInt($ctrl.maxHeight || '4096');
+            $ctrl.maxSizeMb = parseFloat($ctrl.maxSizeMb || '8');
         };
 
         function cancel() {
