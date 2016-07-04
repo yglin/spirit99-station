@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-30 11:22:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-30 15:37:52
+* @Last Modified time: 2016-07-04 20:05:35
 */
 
 (function() {
@@ -59,11 +59,8 @@
         };
 
         function insertImage() {
-            return ImageSelector.select({
-                maxWidth: 2048,
-                maxHeight: 2048,
-                maxSizeMb: 5
-            }).then(function (data) {
+            return ImageSelector.select()
+            .then(function (data) {
                 if (data && data.url) {
                     if (typeof $ctrl.postInsertImage === 'function') {
                         $ctrl.postInsertImage(data.url);
