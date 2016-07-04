@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-04 17:51:55
+* @Last Modified time: 2016-07-04 18:01:14
 */
 
 'use strict';
@@ -13,10 +13,10 @@
     angular.module('spirit99StationApp')
     .controller('ImageSelectorController', ImageSelectorController);
 
-    ImageSelectorController.$inject = ['$mdDialog', '$timeout', 'Upload'];
+    ImageSelectorController.$inject = ['appConfig', '$mdDialog', '$timeout', 'Upload'];
 
     /* @ngInject */
-    function ImageSelectorController($mdDialog, $timeout, Upload) {
+    function ImageSelectorController(appConfig, $mdDialog, $timeout, Upload) {
         var $ctrl = this;
         $ctrl.title = '選擇圖片';
         $ctrl.cancel = cancel;
@@ -77,7 +77,7 @@
             if (file) {
                 file.upload = Upload.upload({
                     url: 'https://api.imgur.com/3/image',
-                    headers: {'Authorization': 'Client-ID 38186eac8820601'},
+                    headers: {'Authorization': 'Client-ID ' + appConfig.ImgurClientID},
                     data: {image: file}
                 });
 

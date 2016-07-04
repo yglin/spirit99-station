@@ -24,5 +24,7 @@ exports = module.exports = (function () {
         sharedConstants.googleAPIKey = 'AIzaSyCewhA8IKkKYEWgW0e5bSThsw6sNKauliE';
     }
 
+    sharedConstants.ImgurClientID = '38186eac8820601';
+
     return sharedConstants;
 })();
