@@ -17,14 +17,8 @@ exports = module.exports = (function () {
         sharedConstants.spirit99Url = '//localhost:9001';
     }
 
-    if (process.env.NODE_ENV == 'production') {
-        sharedConstants.googleAPIKey = 'AIzaSyB72lwL0HWu-jdurOAWFMIUMPAL6aHeZ0s';
-    }
-    else {
-        sharedConstants.googleAPIKey = 'AIzaSyCewhA8IKkKYEWgW0e5bSThsw6sNKauliE';
-    }
-
-    sharedConstants.ImgurClientID = '38186eac8820601';
+    sharedConstants.googleAPIKey = process.env.GOOGLE_CLIENT_API_KEY;
+    sharedConstants.ImgurClientID = process.env.IMGUR_CLIENT_ID;
 
     return sharedConstants;
 })();
