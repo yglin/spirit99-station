@@ -1,6 +1,6 @@
 <div id='s99st-channel-list'>
     <div layout='column' layout-gt-sm='row' layout-wrap>
-        <channel-item ng-repeat='channel in $ctrl.channels' channel='channel'></channel-item>
+        <channel-item ng-repeat='channel in $ctrl.channels' channel='channel' on-click='$ctrl.import(channel.id)'></channel-item>
     </div>
     <md-button id='s99st-button-create' class='md-primary md-raised'
     ng-click='$ctrl.gotoCreatePage()'>
