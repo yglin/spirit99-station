@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:50:10
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-13 11:47:29
+* @Last Modified time: 2016-07-05 13:32:28
 */
 
 'use strict';
@@ -39,7 +39,7 @@
 
         function gotoView() {
             if ($ctrl.link) {
-                $window.open($ctrl.link);
+                $window.location.href = $ctrl.link;
             }
         }
     }

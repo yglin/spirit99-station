@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-06-09 10:57:13
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 13:58:20
+* @Last Modified time: 2016-07-05 11:51:03
 */
 
 (function() {
@@ -76,7 +76,7 @@
         function openClient(index) {
             var channel = $ctrl.channels[index];
             var importUrl = Channel.getImportUrl(channel.id);
-            $window.open(importUrl);
+            $window.open(importUrl, 'spirit99');
         }
     }
 })();

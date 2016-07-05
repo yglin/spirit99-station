@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-12 15:09:47
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 10:37:03
+* @Last Modified time: 2016-07-05 13:41:30
 */
 
 'use strict';
@@ -27,14 +27,11 @@
         $ctrl.title = 'ChannelItem';
         $ctrl.import = _import;
 
-        $ctrl.$onInit = function () {
-        };
-
         function _import() {
             ygDialog.confirm('匯入頻道', '匯入頻道至' + appConfig.spirit99Url + '?')
             .then(function () {
-                $window.open(Channel.getImportUrl($ctrl.channel.id));
-            })
+                $window.open(Channel.getImportUrl($ctrl.channel.id), 'spirit99').focus();
+            });
         }
     }
 })();

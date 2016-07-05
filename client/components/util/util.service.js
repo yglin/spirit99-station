@@ -57,7 +57,15 @@ function UtilService($window, $location, $routeParams) {
 
         returnUrl(optionPath) {
             if ($routeParams.returnUrl) {
-                $window.location.href = $routeParams.returnUrl;
+                if ($routeParams.target) {
+                    $window.open($routeParams.returnUrl, $routeParams.target).focus();
+                    if (optionPath) {
+                        $location.path(optionPath);
+                    }
+                }
+                else {
+                    $window.location.href = $routeParams.returnUrl;
+                }
             }
             else if (optionPath) {
                 $location.path(optionPath);
