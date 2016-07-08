@@ -12,6 +12,28 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
+      'client/bower_components/angular/angular.js',
+      'client/bower_components/angular-resource/angular-resource.js',
+      'client/bower_components/angular-cookies/angular-cookies.js',
+      'client/bower_components/angular-sanitize/angular-sanitize.js',
+      'client/bower_components/angular-route/angular-route.js',
+      'client/bower_components/lodash/lodash.js',
+      'client/bower_components/angular-socket-io/socket.js',
+      'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
+      'client/bower_components/angular-messages/angular-messages.js',
+      'client/bower_components/angular-animate/angular-animate.js',
+      'client/bower_components/angular-aria/angular-aria.js',
+      'client/bower_components/angular-material/angular-material.js',
+      'client/bower_components/ng-remote-validate/release/ngRemoteValidate.js',
+      'client/bower_components/ng-file-upload/ng-file-upload.js',
+      'client/bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
+      'client/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
+      'client/bower_components/angular-google-maps/dist/angular-google-maps.js',
+      'client/bower_components/moment/moment.js',
+      'client/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
+      'client/bower_components/angular-datepicker/dist/angular-datepicker.js',
+      'client/bower_components/ngWYSIWYG/dist/wysiwyg.min.js',
+      'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',
       'client/app/app.js',

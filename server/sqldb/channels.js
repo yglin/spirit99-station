@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-08 10:14:24
+* @Last Modified time: 2016-07-08 20:51:32
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var config = require('../config/environment');
 var Sequelize = require('sequelize');
 var sqldb = require('./index');
 var Q = require('q');
+var inquirer = require('inquirer');
 
 var dbs = {};
 
@@ -79,17 +80,9 @@ function connectDB(channel, options) {
 
     dbs[channel.id] = channelDB;
 
-    var sync;
-    if (options.force) {
-        sync = sqldb.forceSync(channelDB.sequelize);
-    }
-    else {
-        sync = channelDB.sequelize.sync();
-    }
-
-    return sync.then(function () {
+    return channelDB.sequelize.sync().then(function () {
         console.log('Connected to database: ' + dbName);
-        return Q.resolve();
+        return Q.resolve(channelDB);
     }, function (error) {
         console.error('Failed to connect to database: ' + dbName);
         console.error(error);
@@ -100,8 +93,32 @@ function connectDB(channel, options) {
 function deleteDB(channel) {
     var dbName = channel.id.replace(/-/g, '_');
     var queryScript = 'DROP DATABASE IF EXISTS ' + dbName + '';
+
+    var permission = Q.defer();
+    if (process.env.NODE_ENV === 'production') {
+        inquirer.prompt([{
+            type: 'confirm',
+            name: 'killthemall',
+            message: 'Drop database ' + dbName + '? Are you serious?',
+            default: false
+        }])
+        .then(function (answer) {
+            if (answer.killthemall) {
+                permission.resolve();
+            }
+            else {
+                permission.reject('Can\'drop database ' + dbName + ', never think about it');
+            }
+        })
+    }
+    else {
+        permission.resolve();
+    }
     
-    return sqldb.sequelize.query(queryScript)
+    return permission.promise
+    .then(function () {
+        return sqldb.sequelize.query(queryScript);
+    })
     .then(function (result) {
         console.log('Database ' + dbName + ' is dropped~!!!');
         return Q.resolve(channel);

@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-19 11:31:58
+* @Last Modified time: 2016-07-08 19:52:19
 */
 
 'use strict';
@@ -68,10 +68,10 @@ function create(req, res) {
     .then(respondWithResult(res, 201))
     .finally(function () {
         if (req.requestCancelled) {
-            channel.destroy()
-            .then(function () {
-                return deleteDB(channel);
-            });
+            channel.destroy();
+            // .then(function () {
+            //     return deleteDB(channel);
+            // });
         }        
     })
     .catch(handleError(res))

@@ -62,26 +62,20 @@ function seedChannelDatabases() {
     return Channel.findAll()
     .then((channels) => {
         if (channels.length > 0) {
-            var channelDBsSeeded = [];
+            var lastDBSeeded = Q.defer();
+            lastDBSeeded.resolve();
+            lastDBSeeded = lastDBSeeded.promise;
             
             for (var i = 0; i < channels.length; i++) {
-                var DBSeeded = (function (channel) {
-                    return ChannelDBs.createDB(channel)
-                    .then(() => {
-                        var channelDB = ChannelDBs.dbs[channel.id];
-                        if (channelDB) {
-                            return seedChannelDB(channelDB);
-                        }
-                        else {
-                            return Q.reject();
-                        }
+                (function (channel) {
+                    lastDBSeeded = lastDBSeeded
+                    .then(function () {
+                        return seedChannelDB(channel);                    
                     });
                 })(channels[i]);
-
-                channelDBsSeeded.push(DBSeeded);
             }
 
-            return Q.all(channelDBsSeeded)
+            return lastDBSeeded
             .then(() => {
                 console.log('Done seeding all channel databases');
                 return Q.resolve();
@@ -94,9 +88,22 @@ function seedChannelDatabases() {
     });
 }
 
-function seedChannelDB(channelDB) {
+function seedChannelDB(channel) {
+    return ChannelDBs.deleteDB(channel)
+    .then(function () {
+        return ChannelDBs.createDB(channel);
+    })
+    .then(function (channelDB) {
+        return populateChannelDB(channelDB);
+    });
+}
+
+function populateChannelDB(channelDB) {
+    if (!channelDB) {
+        return Q.reject('channelDB is null or undefined');
+    }
     if (!seedData.channelDBs[channelDB.id]) {
-        return Q.resolve('No fake data of channel ' + channelDB.id);
+        return Q.resolve('No fake data for channel ' + channelDB.id);
     }
 
     var sequences = [];
@@ -129,7 +136,7 @@ function seedChannelDB(channelDB) {
 
     return sequences.reduce(Q.when, Q(0))
     .then(() => {
-        console.log('Done seeding channel database ' + channelDB.database);
+        console.log('Done populating channel database ' + channelDB.database);
         return Q.resolve();
     }, (error) => {
         console.error(error);
