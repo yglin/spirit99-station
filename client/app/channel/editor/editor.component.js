@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-20 14:43:04
+* @Last Modified time: 2016-07-20 16:59:23
 */
 
 'use strict';
@@ -92,7 +92,8 @@
             }
             else {
                 $ctrl.selectedCategoryID = id;
-                $ctrl.category = angular.copy($ctrl.channel.categories[id]);
+                // $ctrl.category = angular.copy($ctrl.channel.categories[id]);
+                $ctrl.category = $ctrl.channel.categories[id];
             }
         }
 
@@ -101,7 +102,7 @@
                 maxWidth: 48,
                 maxHeight: 48,
                 maxSizeMb: 1,
-                image: $ctrl.category.icon
+                image: angular.copy($ctrl.category.icon)
             })
             .then(function(image) {
                 $ctrl.category.icon = image;
