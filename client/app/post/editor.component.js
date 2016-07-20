@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:05:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-20 13:40:26
+* @Last Modified time: 2016-07-20 13:56:47
 */
 
 'use strict';
@@ -98,15 +98,12 @@
         }
 
         function addImage() {
-            ImageSelector.select({
-                maxWidth: 2048,
-                maxHeight: 2048,
-                maxSizeMb: 5
-            }).then(function (data) {
+            ImageSelector.select({})
+            .then(function (data) {
                 if (data && data.url) {
                     var img = '<img src="' + data.url + '">';
                     $ctrl.post.content += '<br>' + img;
-                    $ctrl.post.thumbnail = grabFirstImgUrl($ctrl.post.content);
+                    $ctrl.post.thumbnail = data.url;
                 }
             })
         }
