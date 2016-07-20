@@ -41,7 +41,7 @@
             <md-divider layout-margin></md-divider>
         </div>
         <div>
-            <s99-locate-map ng-if='$ctrl.post' ng-attr-width='{{$ctrl.$mdMedia("gt-sm") && "25vw" || $ctrl.$mdMedia("gt-xs") && "75vw" || "85vw"}}' height='75vh' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
+            <s99-locate-map ng-if='::($ctrl.post && $ctrl.categoryIcon)' ng-attr-width='{{$ctrl.$mdMedia("gt-sm") && "25vw" || $ctrl.$mdMedia("gt-xs") && "75vw" || "85vw"}}' height='75vh' coords='$ctrl.post' icon='$ctrl.categoryIcon'></s99-locate-map>
         </div>
     </div>
     <s99-comment-list ng-if='$ctrl.channel && $ctrl.post' channel='$ctrl.channel' post='$ctrl.post'></s99-comment-list>
