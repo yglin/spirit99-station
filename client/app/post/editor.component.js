@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-28 17:05:54
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-30 11:58:29
+* @Last Modified time: 2016-07-20 13:40:26
 */
 
 'use strict';
@@ -43,6 +43,7 @@
             }
 
             if ($ctrl.post.category && $ctrl.channel.categories[$ctrl.post.category]){
+                $ctrl.selectedCategoryID = $ctrl.post.category;
                 var icon = $ctrl.channel.categories[$ctrl.post.category].icon;
                 if (icon) {
                     $ctrl.postIcon = icon;
