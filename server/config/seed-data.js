@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-27 10:39:55
+* @Last Modified time: 2016-07-20 15:00:26
 */
 
 'use strict';
@@ -41,7 +41,7 @@ data.mainDB = {
             id: 'nuclear-test-field',
             title: '核子試爆場',
             description: '測試新功能，以及給使用者隨便亂搞，資料不定時會清除',
-            'logo-url': 'https://i.warosu.org/data/sci/img/0073/32/1434439598515.jpg',
+            'logo-url': 'https://i.imgur.com/VgsIH2C.gif',
             'categories': {
                 1: {
                     title: 'sweat',
@@ -76,6 +76,13 @@ data.mainDB = {
                     icon: {
                         anchor: 'right',
                         url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/fire.png'
+                    }
+                },
+                6: {
+                    title: 'HAPPY~!!!',
+                    icon: {
+                        anchor: 'middle',
+                        url: 'https://i.imgur.com/xAYbtYc.gif'
                     }
                 }
             },

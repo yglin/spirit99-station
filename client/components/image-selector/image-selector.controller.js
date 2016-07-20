@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-15 10:31:11
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-04 18:01:14
+* @Last Modified time: 2016-07-20 14:57:25
 */
 
 'use strict';
@@ -26,8 +26,6 @@
         $ctrl.onLoaded = onLoaded;
         $ctrl.onError = onError;
 
-        $ctrl.image = {};
-
         $ctrl.uploading = {
             progress: -1,
             success: false,
@@ -47,6 +45,7 @@
             $ctrl.maxWidth = parseInt($ctrl.maxWidth || '4096');
             $ctrl.maxHeight = parseInt($ctrl.maxHeight || '4096');
             $ctrl.maxSizeMb = parseFloat($ctrl.maxSizeMb || '8');
+            $ctrl.image = typeof $ctrl.image === 'undefined' ? {} : $ctrl.image;
         };
 
         function cancel() {
@@ -54,10 +53,7 @@
         }
 
         function confirm() {
-            $mdDialog.hide({
-                url: $ctrl.image.src,
-                anchor: $ctrl.anchor
-            });
+            $mdDialog.hide($ctrl.image);
         }
 
         function uploadFile(file, invalidFiles) {
@@ -83,7 +79,7 @@
 
                 file.upload.then(function (response) {
                     if (response.data.data) {
-                        $ctrl.image.src = response.data.data.link;
+                        $ctrl.image.url = response.data.data.link;
                         $ctrl.image.naturalWidth = response.data.data.width;
                         $ctrl.image.naturalHeight = response.data.data.height;                        
                     }
@@ -116,7 +112,7 @@
         }
 
         function onLoaded(image) {
-            $ctrl.image = image;
+            $ctrl.image.url = image.src;
             $ctrl.invalid = !checkImageDimension(image.naturalWidth, image.naturalHeight);
             $ctrl.inProgress = false;
         }

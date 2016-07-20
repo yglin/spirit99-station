@@ -32,7 +32,7 @@
         <h3 style="white-space: nowrap;" class='md-title' ng-show='$ctrl.uploading.fail'>上傳失敗</h3>
     </div>
     <div>
-        <img ng-src='{{$ctrl.image.src}}' ng-show="$ctrl.image.src"
+        <img ng-src='{{$ctrl.image.url}}' ng-show="$ctrl.image.url"
         style='max-width: 256px; max-height: 256px;'
         s99st-image-onload on-loaded='$ctrl.onLoaded' on-error='$ctrl.onError'>
         <div class='md-caption' ng-show="$ctrl.image.naturalWidth && $ctrl.image.naturalHeight">{{$ctrl.image.naturalWidth}} x {{$ctrl.image.naturalHeight}}</div>
@@ -43,9 +43,9 @@
         檔案大小不超過{{$ctrl.maxSizeMb}}MB的圖檔
     </div>
     <form name='imageForm'>
-        <div ng-if='$ctrl.anchor'>
+        <div ng-if='$ctrl.image.anchor'>
             <h5 class='s99-hint'>選擇錨點</h5>
-            <md-radio-group ng-model='$ctrl.anchor' layout='row' layout-padding>
+            <md-radio-group ng-model='$ctrl.image.anchor' layout='row' layout-padding>
                 <div layout='column' layout-align='center center'>
                     <img src='assets/images/marker-anchor-left.jpg'>
                     <md-radio-button value='left' aria-label='anchor-left'>靠左</md-radio-button>
@@ -64,7 +64,7 @@
             <label>圖片網址</label>
             <input type='url' name='imageUrl' required
             placeholder="可複製貼上網址" 
-            ng-model='$ctrl.image.src'
+            ng-model='$ctrl.image.url'
             ng-change='$ctrl.onChange();'>
             <div ng-messages='imageForm.imageUrl.$error'>
                 <div ng-message='required'>必須有圖片網址</div>

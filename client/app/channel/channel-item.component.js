@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-12 15:09:47
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-05 17:26:06
+* @Last Modified time: 2016-07-20 14:59:24
 */
 
 'use strict';
@@ -26,6 +26,6 @@
     function ChannelItemController() {
         var $ctrl = this;
         $ctrl.title = 'ChannelItem';
-        console.log($ctrl.onClick);
+        // console.log($ctrl.onClick);
     }
 })();

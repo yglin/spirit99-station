@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-16 13:45:49
+* @Last Modified time: 2016-07-20 14:43:04
 */
 
 'use strict';
@@ -73,12 +73,15 @@
 
         function assignLogo() {
             ImageSelector.select({
-                maxWidth: 64,
-                maxHeight: 64,
-                maxSizeMb: 1
+                maxWidth: 128,
+                maxHeight: 128,
+                maxSizeMb: 1,
+                image: {
+                    url: $ctrl.channel['logo-url']
+                }
             })
-            .then(function(data) {
-                $ctrl.channel['logo-url'] = data.url;
+            .then(function(image) {
+                $ctrl.channel['logo-url'] = image.url;
             });
         }
 
@@ -98,13 +101,10 @@
                 maxWidth: 48,
                 maxHeight: 48,
                 maxSizeMb: 1,
-                anchor: 'middle'
+                image: $ctrl.category.icon
             })
-            .then(function(data) {
-                $ctrl.category.icon = {
-                    url: data.url,
-                    anchor: data.anchor
-                };
+            .then(function(image) {
+                $ctrl.category.icon = image;
             });            
         }
 
