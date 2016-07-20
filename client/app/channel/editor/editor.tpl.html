@@ -65,12 +65,14 @@
                     <img class='s99-category-icon' ng-src='{{category.icon.url}}'>
                     <div class='md-caption'>{{category.title}}</div>
                 </div>
-            </div>
-            <div>
-                <md-button class='md-raised md-warn'
-                id='remove-all-categories'
-                ng-show='$ctrl.channel.categories.length > 0'
-                ng-click="$ctrl.clearCategories()">全部移除</md-button>
+                <div>
+                    <md-button class='md-fab md-mini md-accent'
+                    id='new-category'
+                    ng-show='$ctrl.selectedCategoryID'
+                    ng-click="$ctrl.selectCategory(null)">
+                        <md-icon class='material-icons'>add</md-icon>
+                    </md-button>
+                </div>
             </div>
             <div layout='row' layout-padding layout-align='start start'>
                 <md-input-container>

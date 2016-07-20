@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-23 13:35:09
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-20 16:59:23
+* @Last Modified time: 2016-07-20 17:12:58
 */
 
 'use strict';
@@ -86,7 +86,7 @@
         }
 
         function selectCategory(id) {
-            if ($ctrl.selectedCategoryID == id) {
+            if ($ctrl.selectedCategoryID == id || !$ctrl.channel.categories[id]) {
                 $ctrl.selectedCategoryID = null;
                 $ctrl.category = angular.copy(categoryDefaults);
             }
