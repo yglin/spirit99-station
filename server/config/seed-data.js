@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-20 15:00:26
+* @Last Modified time: 2016-07-22 10:21:36
 */
 
 'use strict';
@@ -47,35 +47,35 @@ data.mainDB = {
                     title: 'sweat',
                     icon: {
                         anchor: 'right',
-                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/sweat.png'
+                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/48/sweat.png'
                     }
                 },
                 2: {
                     title: '哭哭',
                     icon: {
                         anchor: 'right',
-                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/cry.png'
+                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/48/cry.png'
                     }
                 },
                 3: {
                     title: 'love',
                     icon: {
                         anchor: 'right',
-                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/love.png'
+                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/48/love.png'
                     }
                 },
                 4: {
                     title: 'startle',
                     icon: {
                         anchor: 'right',
-                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/startle.png'
+                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/48/startle.png'
                     }
                 },
                 5: {
                     title: '龜藍波火',
                     icon: {
                         anchor: 'right',
-                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/128/fire.png'
+                        url: 'http://findicons.com/files/icons/2020/2s_space_emotions/48/fire.png'
                     }
                 },
                 6: {
