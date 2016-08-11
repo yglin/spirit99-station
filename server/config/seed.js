@@ -67,12 +67,8 @@ function seedChannelDatabases() {
             lastDBSeeded = lastDBSeeded.promise;
             
             for (var i = 0; i < channels.length; i++) {
-                (function (channel) {
-                    lastDBSeeded = lastDBSeeded
-                    .then(function () {
-                        return seedChannelDB(channel);                    
-                    });
-                })(channels[i]);
+                lastDBSeeded = lastDBSeeded
+                .then(seedChannelDB.bind(undefined, channels[i]));
             }
 
             return lastDBSeeded
@@ -103,38 +99,24 @@ function populateChannelDB(channelDB) {
         return Q.reject('channelDB is null or undefined');
     }
     if (!seedData.channelDBs[channelDB.id]) {
-        return Q.resolve('No fake data for channel ' + channelDB.id);
+        console.log('No seed data for ' + channelDB.id + ', skip populating');
+        return Q.resolve();
     }
 
-    var sequences = [];
-
+    console.log('Start populating channel database ' + channelDB.database);
+    
+    var startup = Q.defer();
+    var promise = startup.promise;
     for (var i = 0; i < ChannelDBs.channelModelsOrdered.length; i++) {
         var modelName = ChannelDBs.channelModelsOrdered[i];
         if (!(modelName in seedData.channelDBs[channelDB.id])) {
             continue;
         }
-
-        sequences.push(function (index) {
-            var modelName = ChannelDBs.channelModelsOrdered[index];
-
-            var Model = channelDB.models[modelName];
-
-            var bulkData = seedData.channelDBs[channelDB.id][modelName];
-
-            return (function (model, bulkData) {
-                return model.sync()
-                .then(() => {
-                    return model.bulkCreate(bulkData)
-                    .then(() => {
-                        console.log('Done populating ' + channelDB.database + '.' + modelName);
-                        return index + 1;
-                    });
-                });
-            })(Model, bulkData);
-        });
+        promise = promise.then(populateModel.bind(undefined, channelDB.id, modelName));
     }
+    startup.resolve();
 
-    return sequences.reduce(Q.when, Q(0))
+    return promise
     .then(() => {
         console.log('Done populating channel database ' + channelDB.database);
         return Q.resolve();
@@ -142,4 +124,23 @@ function populateChannelDB(channelDB) {
         console.error(error);
         return Q.reject();
     });
+}
+
+function populateModel(channel_id, modelName) {
+    var Model = ChannelDBs.getModel(channel_id, modelName);
+    var bulkData = seedData.channelDBs[channel_id][modelName];
+    var done = Q.defer();
+    Model.sync()
+    .then(function() {
+        return Model.bulkCreate(bulkData)
+        .then(function() {
+            console.log('Done populating ' + modelName);
+            return done.resolve();
+        });
+    })
+    .catch(function (error) {
+        console.error(error);
+        done.reject();
+    });
+    return done.promise;
 }

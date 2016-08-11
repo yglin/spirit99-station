@@ -29,7 +29,7 @@ function (req, res, next) {
 },
 auth.isAuthenticated(),
 function (req, res, next) {
-    if (req.user._id != req.locals.user_id) {
+    if (req.user._id !== req.locals.user_id) {
         console.error('User ID not match, ' + req.user._id + ' != ' + req.locals.user_id);
         res.status(HttpStatus.UNAUTHORIZED).end();
         return;

@@ -181,7 +181,7 @@ export function authCallback(req, res, next) {
 }
 
 export function validate(req, res) {
-    if (req.params.field == 'email') {
+    if (req.params.field === 'email') {
         var result = {};
         var email = req.body.value.toLowerCase();
         User.count({where: {email: email}})
@@ -204,8 +204,8 @@ export function verify(req, res) {
     User.find({where: { _id: userId }})
     .then(handleEntityNotFound(res))
     .then(function (user) {
-        if (user.role == 'unverified') {
-            if (user.meta && user.meta.verify_code == req.body.code) {
+        if (user.role === 'unverified') {
+            if (user.meta && user.meta.verify_code === req.body.code) {
                 user.role = 'user';
                 user.meta = null;
                 return user.save()

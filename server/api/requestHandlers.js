@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-05-04 15:54:17
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-13 10:11:57
+* @Last Modified time: 2016-08-11 16:20:56
 */
 
 'use strict';
@@ -44,7 +44,7 @@ function handleError(res, statusCode) {
 
 function handleEntityNotFound(res) {
     return function(entity) {
-        if (!entity || entity.length == 0) {
+        if (!entity || entity.length === 0) {
             var errorMsg = 'Not found any, entity = ' + entity.toString();
             return Q.reject({
                 message: errorMsg,

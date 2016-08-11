@@ -668,7 +668,7 @@ module.exports = function (grunt) {
         }, 1500);
     });
 
-    grunt.registerTask('seedDB', 'Force sync database and populate fake data', function () {
+    grunt.registerTask('seedDB', 'Clear database and populate fake data', function () {
         var done = this.async();
         var clearData = require('./e2e/mocks/clear-data');
         var seedDB = require('./server/config/seed');
@@ -684,7 +684,7 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask('clearData', 'Clear temp data created in previous test ...', function () {
+    grunt.registerTask('clearData', 'Clear database', function () {
         var done = this.async();
         require('./e2e/mocks/clear-data')()
         .then(function () {
@@ -694,6 +694,14 @@ module.exports = function (grunt) {
             grunt.log.error(error);
             done(false);
         });
+    });
+
+    grunt.registerTask('seed', 'Seeding database against target environment', function (target) {
+        target = typeof target === 'undefined' ? 'dev' : target;
+        return grunt.task.run([
+            'env:' + target,
+            'seedDB'
+        ]);
     });
 
     grunt.registerTask('migrate-up', 'Migration up database data and schemas', function () {
@@ -789,12 +797,13 @@ module.exports = function (grunt) {
             'clean:server',
             // 'env:all',
             'env:dev',
+            'jshint:server',
             'concurrent:pre',
             'concurrent:server',
             'injector',
             'wiredep:client',
             'postcss',
-            'seedDB',
+            // 'seedDB',
             'express:dev',
             'wait',
             'open',

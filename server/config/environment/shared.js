@@ -7,13 +7,13 @@ exports = module.exports = (function () {
         userRoles: ['guest', 'user', 'admin']
     };
 
-    if (process.env.NODE_ENV == 'production') {
+    if (process.env.NODE_ENV === 'production') {
         sharedConstants.spirit99Url = '//www.9493.tw';
     }
-    else if (process.env.NODE_ENV == 'development') {
+    else if (process.env.NODE_ENV === 'development') {
         sharedConstants.spirit99Url = '//localhost:9493';
     }
-    else if (process.env.NODE_ENV == 'test') {
+    else if (process.env.NODE_ENV === 'test') {
         sharedConstants.spirit99Url = '//localhost:9001';
     }
 

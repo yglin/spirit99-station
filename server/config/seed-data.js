@@ -2,8 +2,10 @@
 * @Author: yglin
 * @Date:   2016-04-25 14:35:53
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-22 10:21:36
+* @Last Modified time: 2016-08-11 17:31:25
 */
+
+/* jshint -W100 */
 
 'use strict';
 var _ = require('lodash');
@@ -133,7 +135,8 @@ data.mainDB = {
 data.mainDB.users = data.mainDB.users.concat(genUsers({count: 30}));
 
 data.channelDBs['nuclear-test-field'] = {
-    post: genPosts(data.mainDB.channels[0], {count: 100}),
+    place: genPlaces({count: 100}),
+    post: genPosts(data.mainDB.channels[0], 100, {count: 100}),
     comment: genComment(data.mainDB.channels[0], {count: 100, post_id_range: [1, 10]})
 }
 
@@ -155,7 +158,21 @@ function genUsers(options) {
     return users;
 }
 
-function genPosts(channel, options) {
+function genPlaces(options) {
+    options = typeof options === 'undefined' ? {} : options;
+    options.count = typeof options.count === 'undefined' ? 10 : options.count;
+    var count = Math.min(options.count, 100);
+    var places = [];
+    for (var i = 0; i < count; i++) {
+        var place = {};
+        place.latitude = 23.973875 + (2.0 * (Math.random() - 0.5));
+        place.longitude = 120.982024 + (2.0 * (Math.random() - 0.5));
+        places.push(place);
+    }
+    return places;
+}
+
+function genPosts(channel, placesCount, options) {
     options = typeof options === 'undefined' ? {} : options;
     options.count = typeof options.count === 'undefined' ? 10 : options.count;
     var count = Math.min(options.count, 100);
@@ -171,12 +188,10 @@ function genPosts(channel, options) {
         var post = {};
         post.title = _.sample(titles);
         post.content = '<p>' + _.sample(descriptions) + '</p>';
-        post.latitude = 23.973875 + (2.0 * (Math.random() - 0.5));
-        post.longitude = 120.982024 + (2.0 * (Math.random() - 0.5));
         post.author = _.sample(_fakeUsers).email;
         post.owner_id = i % 5;
         post.createdAt = pickDateInTurn();
-        if ((i % 4) == 0) {
+        if ((i % 4) === 0) {
             post.startAt = new Date(post.createdAt + oneDay);
             post.endAt = new Date(post.createdAt + oneDay + Math.random() * oneDay);
         }
@@ -188,8 +203,9 @@ function genPosts(channel, options) {
             post.content += '<img src="' + thumbnail + '">';
             post.thumbnail = thumbnail;
         }
+        post.place_id = 1 + Math.floor(Math.random() * placesCount);
         posts.push(post);
-    };
+    }
     return posts;
 }
 

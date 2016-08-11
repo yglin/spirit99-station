@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 11:45:28
+* @Last Modified time: 2016-08-11 18:17:31
 */
 
 'use strict';
@@ -100,13 +100,14 @@ module.exports = function(sequelize, DataTypes) {
         ]
     });
 
-    var Place = require('../place/place.model')(sequelize, DataTypes);
-    Post.belongsTo(Place, {
-        foreignKey: 'place_id',
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE'
-    });
-    Place.hasMany(Post, { foreignKey: 'place_id' });
+    // var Place = require('../place/place.model')(sequelize, DataTypes);
+    // Post.belongsTo(Place, {
+    //     foreignKey: 'place_id',
+    //     onDelete: 'SET NULL',
+    //     onUpdate: 'CASCADE',
+    //     as: 'Location'
+    // });
+    // Place.hasMany(Post, { foreignKey:'place_id', as:'Posts' });
 
     return Post;
 }

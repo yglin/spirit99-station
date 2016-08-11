@@ -12,7 +12,6 @@ export default function(app) {
     app.use('/api/channels', require('./api/channel'));
     app.use('/api/things', require('./api/thing'));
     app.use('/api/users', require('./api/user'));
-    // app.use('/api/:channel_id/posts', require('./api/post'));
 
     app.use('/auth', require('./auth').default);
 

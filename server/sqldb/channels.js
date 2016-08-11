@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-10 11:01:46
+* @Last Modified time: 2016-08-11 19:36:14
 */
 
 'use strict';
@@ -33,6 +33,9 @@ var channelModels = {
 function connectAll() {
     return sqldb.Channel.findAll()
     .then(function (channels) {
+        console.log('Got these channels: ' + channels.map(function (channel, index) {
+            return channel.id;
+        }).toString());
         var connectings = [];
         for (var i = 0; i < channels.length; i++) {
             if (!(channels[i].id in dbs)) {
@@ -46,8 +49,8 @@ function connectAll() {
             return Q.reject(error);
         });
     });
-}
 
+}
 function createDB(channel) {
     var dbName = channel.id.replace(/-/g, '_');
     var queryScript = 'CREATE DATABASE IF NOT EXISTS ' + dbName + '';
@@ -78,9 +81,12 @@ function connectDB(channel, options) {
     for (var model in channelModels) {
         channelDB.models[model] = channelDB.sequelize.import(channelModels[model]);
     }
-
+    // Associations
+    associate(channelDB.models);
+    
     dbs[channel.id] = channelDB;
 
+    console.log('Now connect to database ' + dbName + '...');
     return channelDB.sequelize.sync().then(function () {
         console.log('Connected to database: ' + dbName);
         return Q.resolve(channelDB);
@@ -137,4 +143,17 @@ function getModel(channel_id, modelName) {
         return null;
     }
     return channelDB.models[modelName];
+}
+
+function associate(models) {
+    var Post = models.post;
+    var Place = models.place;
+    Post.belongsTo(Place, {
+        foreignKey: 'place_id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+        as: 'Location'
+    });
+
+    Place.hasMany(Post, { foreignKey:'place_id', as:'Posts' });
 }

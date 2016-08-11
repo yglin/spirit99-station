@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-08 19:52:19
+* @Last Modified time: 2016-08-11 16:19:18
 */
 
 'use strict';
@@ -15,12 +15,36 @@ import {createDB, deleteDB} from '../../sqldb/channels';
 import {respondWithResult, handleError, handleEntityNotFound, handleEntityNotBelonging, saveUpdates} from '../requestHandlers';
 
 module.exports = {
+    isChannelClosed: isChannelClosed,
+    passChannelID: passChannelID,
     query: query,
     create: create,
     update: update,
     // delete: _delete,
     validateID: validateID,
     portal: portal
+}
+
+function isChannelClosed(req, res, next) {
+    Channel.findById(req.params.channel_id)
+    .then(handleEntityNotFound(res))
+    .then(function (channel) {
+        if (channel.state === 'closed') {
+            res.status(HttpStatus.CONFLICT);
+            res.send('Channel ' + req.params.channel_id + ' is closed').end();
+        }
+        else {
+            next();
+        }
+    });
+}
+
+function passChannelID(req, res, next) {
+    if (!req.locals) {
+        req.locals = {};
+    }
+    req.locals.channel_id = req.params.channel_id;
+    next();
 }
 
 function query(req, res) {
