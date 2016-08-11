@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 16:20:23
+* @Last Modified time: 2016-08-11 20:25:54
 */
 
 'use strict';
@@ -116,15 +116,26 @@ function query(req, res) {
 }
 
 function get(req, res) {
+    var Comment = channelDBs.getModel(req.locals.channel_id, 'comment');
     var whereConditions = {};
     whereConditions._id = req.params.id;
     if (req.locals && req.locals.user_id) {
         whereConditions.owner_id = req.locals.user_id;
     }
     var Post = req.locals.Post;
-    Post.findOne({where: whereConditions, raw: true})
+    Post.findOne({
+        where: whereConditions,
+        // raw: true,
+        include: [
+            {
+                model: Comment,
+                as: 'Comments'
+            }
+        ]
+    })
     .then(handleEntityNotFound(res))
     .then(function (post) {
+        post = post.get();
         var hostUrl = req.protocol + '://' + req.headers.host;
         post.links = {
             'read': hostUrl + '/' + req.locals.channel_id + '/posts/' + post._id

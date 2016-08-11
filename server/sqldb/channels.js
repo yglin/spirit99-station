@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 19:36:14
+* @Last Modified time: 2016-08-11 20:14:31
 */
 
 'use strict';
@@ -83,7 +83,7 @@ function connectDB(channel, options) {
     }
     // Associations
     associate(channelDB.models);
-    
+
     dbs[channel.id] = channelDB;
 
     console.log('Now connect to database ' + dbName + '...');
@@ -148,12 +148,21 @@ function getModel(channel_id, modelName) {
 function associate(models) {
     var Post = models.post;
     var Place = models.place;
+    var Comment = models.comment;
+
     Post.belongsTo(Place, {
         foreignKey: 'place_id',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
         as: 'Location'
     });
-
     Place.hasMany(Post, { foreignKey:'place_id', as:'Posts' });
+
+    Comment.belongsTo(Post, {
+        foreignKey: 'post_id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+        as: 'Post'
+    });
+    Post.hasMany(Comment, { foreignKey:'post_id', as:'Comments' });
 }

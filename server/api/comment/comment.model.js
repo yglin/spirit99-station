@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 09:26:00
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-05-03 10:05:39
+* @Last Modified time: 2016-08-11 20:11:54
 */
 
 'use strict';
@@ -22,9 +22,6 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
         timestamps: true
     });
-
-    var Post = require('../post/post.model')(sequelize, DataTypes);
-    Comment.belongsTo(Post, {foreignKey: 'post_id'});
 
     return Comment;
 }
