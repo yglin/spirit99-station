@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 14:20:38
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-06-02 14:03:13
+* @Last Modified time: 2016-08-11 11:45:28
 */
 
 'use strict';
@@ -85,20 +85,28 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
         timestamps: true,
         indexes: [
-            {
-                fields: ['latitude'],
-                method: 'BTREE'
-            },
-            {
-                fields: ['longitude'],
-                method: 'BTREE'                
-            },
+            // {
+            //     fields: ['latitude'],
+            //     method: 'BTREE'
+            // },
+            // {
+            //     fields: ['longitude'],
+            //     method: 'BTREE'                
+            // },
             {
                 fields: ['owner_id'],
                 method: 'BTREE'
             }
         ]
     });
+
+    var Place = require('../place/place.model')(sequelize, DataTypes);
+    Post.belongsTo(Place, {
+        foreignKey: 'place_id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
+    });
+    Place.hasMany(Post, { foreignKey: 'place_id' });
 
     return Post;
 }

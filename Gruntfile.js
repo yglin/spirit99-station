@@ -1,6 +1,8 @@
 // Generated on 2016-03-31 using generator-angular-fullstack 3.5.0
 'use strict';
 
+var exec = require('child_process').exec;
+
 module.exports = function (grunt) {
     // var localConfig;
     // try {
@@ -692,10 +694,60 @@ module.exports = function (grunt) {
             grunt.log.error(error);
             done(false);
         });
-    })
+    });
+
+    grunt.registerTask('migrate-up', 'Migration up database data and schemas', function () {
+        var done = this.async();
+        var childP = exec('node_modules/db-migrate/bin/db-migrate up --config migrations/config.json'
+        , {}, 
+        function (error, stdout, stderr) {
+            if (error) {
+                grunt.log.error(error);
+                done(false);
+            }
+            else {
+                grunt.log.ok('Migration-Up done !!!');
+                done(true);
+            }
+        });
+        childP.stdout.pipe(process.stdout);
+        childP.stderr.pipe(process.stderr);
+    });
+
+    grunt.registerTask('migrate-down', 'Migration down database data and schemas', function () {
+        var done = this.async();
+        var childP = exec('node_modules/db-migrate/bin/db-migrate down --config migrations/config.json'
+        , {}, 
+        function (error, stdout, stderr) {
+            if (error) {
+                grunt.log.error(error);
+                done(false);
+            }
+            else {
+                grunt.log.ok('Migration-Down done !!!');
+                done(true);
+            }
+        });
+        childP.stdout.pipe(process.stdout);
+        childP.stderr.pipe(process.stderr);
+    });
 
     grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
         this.async();
+    });
+
+    grunt.registerTask('db-migrate-up', function (target) {
+        return grunt.task.run([
+            'env:' + target,
+            'migrate-up'
+        ]);
+    });
+
+    grunt.registerTask('db-migrate-down', function (target) {
+        return grunt.task.run([
+            'env:' + target,
+            'migrate-down'
+        ]);
     });
 
     grunt.registerTask('serve', function (target) {

@@ -1,0 +1,19 @@
+{
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    "development": {
+        "driver": "mysql",
+        "host": {"ENV": "DB_HOST"},
+        "database": {"ENV": "DB_DATABASE"},
+        "user": {"ENV": "DB_USERNAME"},
+        "password": {"ENV": "DB_PASSWORD"},
+        "multipleStatements": true
+    },
+    "production": {
+        "driver": "mysql",
+        "host": {"ENV": "DB_HOST"},
+        "database": {"ENV": "DB_DATABASE"},
+        "user": {"ENV": "DB_USERNAME"},
+        "password": {"ENV": "DB_PASSWORD"},
+        "multipleStatements": true
+    }
+}

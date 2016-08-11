@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-07-08 20:51:32
+* @Last Modified time: 2016-08-10 11:01:46
 */
 
 'use strict';
@@ -21,10 +21,11 @@ module.exports = {
     createDB: createDB,
     deleteDB: deleteDB,
     getModel: getModel,
-    channelModelsOrdered: ['post', 'comment']
+    channelModelsOrdered: ['place', 'post', 'comment']
 };
 
 var channelModels = {
+    place: '../api/place/place.model',
     post: '../api/post/post.model',
     comment: '../api/comment/comment.model'
 };
