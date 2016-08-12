@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-02 14:34:24
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 16:19:18
+* @Last Modified time: 2016-08-11 20:30:31
 */
 
 'use strict';
@@ -154,6 +154,7 @@ function portal(req, res) {
             categories: channel.categories
         };
         var hostUrl = '//' + req.headers.host;
+        portalData['places-url'] = hostUrl + '/api/channels/' + channel.id + '/places';
         portalData['query-url'] = hostUrl + '/api/channels/' + channel.id + '/posts';
         portalData['create-url'] = hostUrl + '/' + channel.id + '/posts/create';
         portalData['portal-url'] = hostUrl + req.originalUrl;
