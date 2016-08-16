@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-26 12:01:44
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 20:14:31
+* @Last Modified time: 2016-08-15 18:00:13
 */
 
 'use strict';
@@ -61,7 +61,7 @@ function createDB(channel) {
         return Q.resolve(channel);
     })
     .then(function (channel) {
-        return connectDB(channel, {force: true});
+        return connectDB(channel);
     })
     .catch(function (error) {
         console.error(queryScript + ' failed: ' + error);
@@ -69,8 +69,7 @@ function createDB(channel) {
     });
 }
 
-function connectDB(channel, options) {
-    options = typeof options === 'object' ? options : {};
+function connectDB(channel) {
     var dbName = channel.id.replace(/-/g, '_');
     var channelDB = {};
     channelDB.id = channel.id;

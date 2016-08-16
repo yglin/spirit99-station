@@ -2,7 +2,7 @@
 * @Author: yglin
 * @Date:   2016-04-27 16:22:20
 * @Last Modified by:   yglin
-* @Last Modified time: 2016-08-11 20:25:54
+* @Last Modified time: 2016-08-16 14:10:48
 */
 
 'use strict';
@@ -14,7 +14,7 @@ import {respondWithResult, handleError, handleEntityNotFound, handleEntityNotBel
 
 module.exports = {
     getModel: getModel,
-    passPostID: passPostID,
+    passStoryID: passStoryID,
     query: query,
     get: get,
     create: create, 
@@ -29,9 +29,9 @@ function getModel(req, res, next) {
         res.status(HttpStatus.BAD_REQUEST).send(error_msg).end();
     }
     else {
-        req.locals.Post = channelDBs.getModel(req.locals.channel_id, 'post');
-        if (!req.locals.Post) {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('Can not retrive model Post of channel ' + req.locals.channel_id).end();
+        req.locals.Story = channelDBs.getModel(req.locals.channel_id, 'story');
+        if (!req.locals.Story) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('Can not retrive model Story of channel ' + req.locals.channel_id).end();
         }
         else {
             next();
@@ -39,11 +39,11 @@ function getModel(req, res, next) {
     }
 }
 
-function passPostID(req, res, next) {
+function passStoryID(req, res, next) {
     if (!req.locals) {
         req.locals = {};
     }
-    req.locals.post_id = req.params.post_id;
+    req.locals.story_id = req.params.story_id;
     next();
 }
 
@@ -99,17 +99,17 @@ function query(req, res) {
     //     }
     // }
 
-    var Post = req.locals.Post;
-    Post.findAll({where: whereConditions, raw: true})
+    var Story = req.locals.Story;
+    Story.findAll({where: whereConditions, raw: true})
     .then(handleEntityNotFound(res))
-    .then(function (posts) {
-        for (var i = 0; i < posts.length; i++) {
+    .then(function (storys) {
+        for (var i = 0; i < storys.length; i++) {
             var hostUrl = req.protocol + '://' + req.headers.host;
-            posts[i].links = {
-                'read': hostUrl + '/' + req.locals.channel_id + '/posts/' + posts[i]._id
+            storys[i].links = {
+                'read': hostUrl + '/' + req.locals.channel_id + '/storys/' + storys[i]._id
             };
         }
-        return Q.resolve(posts);
+        return Q.resolve(storys);
     })
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -122,8 +122,8 @@ function get(req, res) {
     if (req.locals && req.locals.user_id) {
         whereConditions.owner_id = req.locals.user_id;
     }
-    var Post = req.locals.Post;
-    Post.findOne({
+    var Story = req.locals.Story;
+    Story.findOne({
         where: whereConditions,
         // raw: true,
         include: [
@@ -134,27 +134,27 @@ function get(req, res) {
         ]
     })
     .then(handleEntityNotFound(res))
-    .then(function (post) {
-        post = post.get();
+    .then(function (story) {
+        story = story.get();
         var hostUrl = req.protocol + '://' + req.headers.host;
-        post.links = {
-            'read': hostUrl + '/' + req.locals.channel_id + '/posts/' + post._id
+        story.links = {
+            'read': hostUrl + '/' + req.locals.channel_id + '/storys/' + story._id
         };
-        return Q.resolve(post);
+        return Q.resolve(story);
     })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 function create(req, res) {
-    var Post = req.locals.Post;
+    var Story = req.locals.Story;
 
     var user_id = null;
     if (req.user && req.user._id) {
         user_id = req.user._id;
     }
     
-    var post = Post.build({
+    var story = Story.build({
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
@@ -167,7 +167,7 @@ function create(req, res) {
         owner_id: user_id
     });
 
-    return post.save()
+    return story.save()
     .then(function (entity) {
         res.status(HttpStatus.CREATED)
         .json(entity);
@@ -179,14 +179,14 @@ function create(req, res) {
 }
 
 function update(req, res) {
-    var Post = req.locals.Post;
+    var Story = req.locals.Story;
     if (req.body.id) {
         delete req.body.id;
     }
     if (req.body.owner_id) {
         delete req.body.owner_id;
     }
-    return Post.findById(req.params.id)
+    return Story.findById(req.params.id)
     .then(handleEntityNotFound(res))
     .then(handleEntityNotBelonging(res, req.user._id, 'owner_id'))
     .then(saveUpdates(req.body))
@@ -195,8 +195,8 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-    var Post = req.locals.Post;
-    return Post.findById(req.params.id)
+    var Story = req.locals.Story;
+    return Story.findById(req.params.id)
     .then(handleEntityNotFound(res))
     .then(handleEntityNotBelonging(res, req.user._id, 'owner_id'))
     .then(saveUpdates({state: 'deleted'}))

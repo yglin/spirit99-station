@@ -706,7 +706,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('migrate-up', 'Migration up database data and schemas', function () {
         var done = this.async();
-        var childP = exec('node_modules/db-migrate/bin/db-migrate up --config migrations/config.json'
+        var childP = exec('node_modules/db-migrate/bin/db-migrate up --config migrations/config.json --count 1'
         , {}, 
         function (error, stdout, stderr) {
             if (error) {
@@ -724,7 +724,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('migrate-down', 'Migration down database data and schemas', function () {
         var done = this.async();
-        var childP = exec('node_modules/db-migrate/bin/db-migrate down --config migrations/config.json'
+        var childP = exec('node_modules/db-migrate/bin/db-migrate down --config migrations/config.json --count 1'
         , {}, 
         function (error, stdout, stderr) {
             if (error) {
@@ -747,6 +747,7 @@ module.exports = function (grunt) {
     grunt.registerTask('db-migrate-up', function (target) {
         return grunt.task.run([
             'env:' + target,
+            'jshint:server',
             'migrate-up'
         ]);
     });
@@ -754,6 +755,7 @@ module.exports = function (grunt) {
     grunt.registerTask('db-migrate-down', function (target) {
         return grunt.task.run([
             'env:' + target,
+            'jshint:server',
             'migrate-down'
         ]);
     });

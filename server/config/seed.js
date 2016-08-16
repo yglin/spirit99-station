@@ -15,10 +15,12 @@ var Channel;
 
 module.exports = function (options) {
     return sqldb.init()
-    .then(sqldb.forceSync)
-    .then(populateThings)
-    .then(populateUsers)
-    .then(populateChannels)
+    .then(function () {
+        return sqldb.sequelize.sync();
+    })
+    // .then(populateThings)
+    // .then(populateUsers)
+    // .then(populateChannels)
     .then(seedChannelDatabases);
 }
 
@@ -59,6 +61,7 @@ function populateChannels() {
 }
 
 function seedChannelDatabases() {
+    Channel = sqldb.Channel;
     return Channel.findAll()
     .then((channels) => {
         if (channels.length > 0) {

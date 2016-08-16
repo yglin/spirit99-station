@@ -52,8 +52,5 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: true
     });
 
-    var User = require('../user/user.model')(sequelize, DataTypes);
-    Channel.belongsTo(User, {foreignKey: 'owner_id'});
-
     return Channel;
 }
